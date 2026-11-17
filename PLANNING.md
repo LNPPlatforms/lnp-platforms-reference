@@ -1,14 +1,17 @@
-# Planning features for the CRM
+# Planning and building features for the CRM
 
-This repository is a **read-only reference copy** of a white label CRM. It is here so you (and your AI assistant) can see what already exists and what's possible while planning new features. Nothing here deploys or runs anywhere. Changes made here go nowhere.
+This repository is a **reference copy** of a white label CRM. It does not deploy or run anywhere: nothing pushed here reaches the live app. The owner reviews work done here and moves it into the live app himself.
 
-**Your job is to plan, not build.** The output is a written feature spec (format at the bottom) that gets sent to the owner. Don't write code, don't promise dates or prices, and don't change files here.
+**It's a PWA (progressive web app), not a native app.** It runs in the browser and installs to the home screen. There is no App Store or Google Play app, so plan around what a web app can do (see Hard limits).
+
+You can plan features here, and you can build them here too. Either way, the owner gets a written spec plus a clear list of what changed.
 
 ## If you're an AI assistant reading this
 
 - Read this file first, then look through the code to answer "does this exist?" and "how does it work today?" before suggesting anything.
 - Interview the person. Ask one or two questions at a time, not ten. Push back when an idea duplicates something that exists, breaks a rule below or needs something the platform can't do.
-- When you're confident, write the spec in the format at the bottom. Mark anything you're unsure of as an open question instead of guessing.
+- Write the spec (format at the bottom) before writing code. Mark anything you're unsure of as an open question instead of guessing.
+- If you build it, follow "Building here" below.
 
 ## What the CRM is
 
@@ -68,6 +71,16 @@ The full list with descriptions is `FEATURES` in `field.js`. Always check whethe
 7. **Help comes with it.** Every feature gets help articles, and outdated ones get fixed in the same change.
 8. **Beta first** when it's big: shown to admins first, off for everyone else until an admin turns it on.
 9. **Weekly releases.** Updates ship Sunday at 2 AM Central unless something is urgent. New database changes must not break screens that are already out.
+
+## Building here
+
+- **One branch per feature,** named like `feature/short-name`. Never push straight to `main`; `main` stays the clean snapshot so changes can be compared against it.
+- **Log every change** in `CHANGES.md` on your branch: date, what you changed, which files, and any database change. The owner uses this list to move the work into the live app.
+- **Database changes go in a new file** in `schema/` with the next number (look at the highest number there). Never edit an old schema file. Database functions the app calls are `public.x`, internal helpers are `private.x`, every table has row level security, and every account only sees its own rows.
+- **Match the style around you.** Plain JavaScript modules, no frameworks, no build step, no new libraries without a reason written in CHANGES.md.
+- **Add help articles** for anything a user will see (`HELP` in `app.js`) and a feature switch if it's a new feature (`FEATURES` in `field.js`).
+- **Test what you can:** `tests/run_db.sh` for database tests and `tests/ui_clickthrough.js` for the browser click-through. Say in CHANGES.md what you tested and what you couldn't.
+- **No secrets.** Never put a password or API key in the code. Server functions read keys from environment variables.
 
 ## Questions to ask about any idea
 

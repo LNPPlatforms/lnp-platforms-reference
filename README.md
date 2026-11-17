@@ -1,4 +1,4 @@
-> **Reference copy for planning.** This repository is a snapshot for reading only. It doesn't deploy or run anything. Start with [PLANNING.md](PLANNING.md).
+> **Reference copy for planning and building.** This repository doesn't deploy or run anything. Work goes on feature branches and gets moved into the live app by the owner. Start with [PLANNING.md](PLANNING.md).
 
 # LNP Platforms
 
