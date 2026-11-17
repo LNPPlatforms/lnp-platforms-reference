@@ -1,0 +1,963 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Compassio Clinic Dashboard (Sample) | Referralogix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: Compassio purple shell inside Referralogix; member view is a 3-column module grid (letter anchors left, campaign + sponsor stack right, three feeds below). Admin view mirrors the modules as edit panels. */
+:root{
+  --bg:#F5F2FA; --surface:#FFFFFF; --surface-2:#FAF8FD; --ink:#221838; --muted:#5B5670; --line:#E4DCF0;
+  --navy:#2B1650; --navy-deep:#160F2B; --on-navy:#FFFFFF; --on-navy-muted:#C9BEDF;
+  --green:#C9A3F2; --green-ink:#6A2FA8; --on-green:#160F2B; --chip:#F0EAF8;
+  --warn:#9A4A00; --warn-bg:#FFF1DD; --crit:#B42318; --crit-bg:#FDECEA; --ok:#00801F; --ok-bg:#E2F8E6;
+  --track:#E9E2F3;
+  --f-ui:"Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-letter:"Lora", Georgia, "Times New Roman", serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#120C22; --surface:#1D1436; --surface-2:#18112D; --ink:#EEE9F7; --muted:#ABA2C2; --line:#33285A;
+  --navy:#2B1650; --navy-deep:#0E0920; --on-navy:#FFFFFF; --on-navy-muted:#C9BEDF;
+  --green:#C9A3F2; --green-ink:#C9A3F2; --on-green:#160F2B; --chip:#2A1F48;
+  --warn:#F6B65A; --warn-bg:#3A2A12; --crit:#FF8C82; --crit-bg:#3C1816; --ok:#45F06A; --ok-bg:#12341D;
+  --track:#2E2450; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#120C22; --surface:#1D1436; --surface-2:#18112D; --ink:#EEE9F7; --muted:#ABA2C2; --line:#33285A;
+  --navy:#2B1650; --navy-deep:#0E0920; --on-navy:#FFFFFF; --on-navy-muted:#C9BEDF;
+  --green:#C9A3F2; --green-ink:#C9A3F2; --on-green:#160F2B; --chip:#2A1F48;
+  --warn:#F6B65A; --warn-bg:#3A2A12; --crit:#FF8C82; --crit-bg:#3C1816; --ok:#45F06A; --ok-bg:#12341D;
+  --track:#2E2450; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
+a{color:var(--green-ink)}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+
+/* Brand mark */
+.mark{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;color:var(--on-navy)}
+.mark svg{flex:none}
+.mark small{font-weight:600;color:var(--on-navy-muted);letter-spacing:.02em}
+
+/* ---------- Sign-in ---------- */
+#v-login{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.login-brand{background:var(--navy);color:var(--on-navy);padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;position:relative;overflow:hidden}
+.login-brand::after{content:"";position:absolute;right:-120px;bottom:-120px;width:360px;height:360px;border-radius:50%;border:56px solid rgba(201,160,74,.12)}
+.login-brand h1{font-size:clamp(28px,3.4vw,42px);line-height:1.12;font-weight:800;max-width:15ch;letter-spacing:-.015em}
+.login-brand h1 span{color:var(--green)}
+.login-brand p{color:var(--on-navy-muted);max-width:42ch;margin-top:14px;font-size:16px}
+.login-brand .foot{font-size:13px;color:var(--on-navy-muted);position:relative;z-index:1}
+.login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px 24px}
+.login-card{width:100%;max-width:380px;display:flex;flex-direction:column;gap:18px}
+.login-card .eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green-ink)}
+.login-card h2{font-size:26px;font-weight:800;letter-spacing:-.01em}
+.login-card .sub{color:var(--muted);margin-top:4px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:600;color:var(--muted)}
+.input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--surface);transition:border-color .15s}
+.input:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(201,160,74,.3)}
+textarea.input{resize:vertical;min-height:90px;line-height:1.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:8px;padding:11px 18px;font-weight:700;cursor:pointer;transition:transform .1s, filter .15s, background .15s}
+.btn:active{transform:translateY(1px)}
+.btn-green{background:var(--green);color:var(--on-green)}
+.btn-green:hover{filter:brightness(.94)}
+.btn-navy{background:var(--navy);color:var(--on-navy)}
+.btn-navy:hover{filter:brightness(1.12)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{padding:7px 12px;font-size:13px}
+.btn-block{width:100%}
+.login-meta{display:flex;justify-content:space-between;font-size:13px}
+.login-meta a{text-decoration:none;font-weight:600}
+.demo-note{font-size:12.5px;color:var(--muted);background:var(--surface-2);border:1px dashed var(--line);border-radius:8px;padding:10px 12px}
+.linkish{background:none;border:0;padding:0;color:var(--green-ink);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- App shell ---------- */
+.topbar{background:var(--navy);color:var(--on-navy);position:sticky;top:env(safe-area-inset-top,0px);z-index:10;border-bottom:3px solid var(--green)}
+.topbar-in{max-width:1240px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar .org{display:flex;align-items:center;gap:10px;padding-left:16px;border-left:1px solid rgba(255,255,255,.18);font-weight:700}
+.topbar .org small{display:block;font-size:11.5px;font-weight:600;color:var(--on-navy-muted);letter-spacing:.06em;text-transform:uppercase}
+.spacer{flex:1}
+.seg{display:inline-flex;background:var(--navy-deep);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--on-navy-muted);padding:6px 14px;border-radius:999px;font-weight:700;font-size:13px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--green);color:var(--on-green)}
+.signout{background:none;border:0;color:var(--on-navy-muted);font-weight:600;font-size:13px;cursor:pointer}
+.signout:hover{color:var(--on-navy)}
+
+.page{max-width:1480px;margin:0 auto;padding-inline:20px;padding-block:28px 56px}
+.welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.welcome h1{font-size:clamp(24px,2.6vw,32px);font-weight:800;letter-spacing:-.015em}
+.welcome .date{color:var(--muted);font-weight:600}
+
+/* Module grid */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-areas:"letter letter campaign" "letter letter equip" "events funding funding"}
+.m{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.m-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.m-label{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.m-label b{color:var(--green-ink)}
+.empty{color:var(--muted);font-size:14px;padding:18px;border:1px dashed var(--line);border-radius:8px;background:var(--surface-2)}
+.empty strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
+
+/* Letter */
+.a-letter{grid-area:letter}
+.letter-title{font-family:var(--f-letter);font-size:clamp(22px,2.2vw,28px);font-weight:600;line-height:1.25;letter-spacing:-.005em}
+.letter-body{font-family:var(--f-letter);font-size:17px;line-height:1.7;max-width:65ch;display:flex;flex-direction:column;gap:14px;color:var(--ink)}
+.letter-sign{display:flex;align-items:center;gap:12px;padding-top:6px;border-top:1px solid var(--line);margin-top:4px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--on-navy);display:grid;place-items:center;font-weight:800;flex:none}
+.letter-sign .who{font-weight:700}
+.letter-sign .role{color:var(--muted);font-size:13.5px}
+.letter-date{color:var(--muted);font-size:13px;font-weight:600}
+
+/* Campaign */
+.a-campaign{grid-area:campaign}
+.raised{font-size:clamp(32px,3.6vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1}
+.goal-line{color:var(--muted);font-weight:600;margin-top:6px}
+.bar{height:14px;border-radius:999px;background:var(--track);overflow:hidden;position:relative}
+.bar i{display:block;height:100%;background:var(--green);border-radius:999px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.bar-meta{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--muted)}
+.bar-meta .pct{color:var(--green-ink)}
+.milestone{background:var(--surface-2);border-radius:8px;padding:10px 12px;font-size:14px}
+.milestone b{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.updated{font-size:12.5px;color:var(--muted)}
+
+/* Sponsor */
+.a-sponsor{grid-area:sponsor;background:var(--navy);border-color:var(--navy);color:var(--on-navy);position:relative;overflow:hidden}
+.a-sponsor .m-label{color:var(--on-navy-muted)}
+.a-sponsor .tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.12);color:var(--on-navy);padding:3px 8px;border-radius:999px}
+.sp-name{font-size:13px;font-weight:700;color:var(--green)}
+.sp-head{font-size:21px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sp-body{color:var(--on-navy-muted);font-size:14.5px}
+.a-sponsor .empty{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.2);color:var(--on-navy-muted)}
+.a-sponsor .empty strong{color:var(--on-navy)}
+.a-sponsor .btn{align-self:flex-start}
+
+/* Feeds */
+.a-events{grid-area:events}.a-funding{grid-area:funding}.a-policy{grid-area:policy}
+.list{display:flex;flex-direction:column}
+.row{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);min-width:0}
+.row:first-child{border-top:0;padding-top:2px}
+.dateblock{flex:none;width:50px;text-align:center;border-radius:8px;background:var(--chip);padding:6px 0 7px;line-height:1.05}
+.dateblock .mo{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green-ink)}
+.dateblock .dy{font-size:21px;font-weight:800}
+.row-main{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.row-title{font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.row-sub{color:var(--muted);font-size:13.5px;overflow-wrap:anywhere}
+.row-sub a{font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:999px;white-space:nowrap;align-self:flex-start}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.crit{background:var(--crit-bg);color:var(--crit)}
+.pill.neutral{background:var(--chip);color:var(--muted)}
+.chip{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--green-ink)}
+.meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* ---------- Admin ---------- */
+.admin-intro{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:var(--r);padding:16px 18px;margin-bottom:22px;color:var(--muted)}
+.admin-intro strong{color:var(--ink)}
+.admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel.wide{grid-column:1/-1}
+.admin-grid:has(#sp-panel[hidden]) > .panel:first-child{grid-column:1/-1}
+.panel h2{font-size:18px;font-weight:800}
+.panel .hint{color:var(--muted);font-size:13.5px;margin-top:-8px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fields .full{grid-column:1/-1}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.status{font-size:13px;font-weight:600;color:var(--muted)}
+.status.good{color:var(--ok)}
+.status.bad{color:var(--crit)}
+.items{display:flex;flex-direction:column;gap:8px}
+.item{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);min-width:0}
+.item .row-main{gap:1px}
+.del{background:none;border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12.5px;font-weight:700;color:var(--crit);cursor:pointer;flex:none}
+.del:hover{background:var(--crit-bg)}
+.ro-banner{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:12px 14px;font-weight:600;margin-bottom:18px}
+
+.demo-bar{background:var(--warn-bg);color:var(--warn);font-size:13.5px;font-weight:600;text-align:center;padding:8px 16px}
+.logo-plate{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:8px;padding:3px 8px;height:44px}
+.logo-plate img{height:34px;width:auto;display:block}
+.in-rlx{font-size:12px;font-weight:600;color:var(--on-navy-muted);letter-spacing:.02em;margin-left:4px}
+.in-rlx b{color:#fff}
+.m.openable{cursor:pointer;transition:border-color .15s, box-shadow .15s}
+.m.openable:hover,.m.openable:focus-visible{border-color:var(--green);box-shadow:0 8px 24px -16px rgba(26,42,82,.5)}
+.m-open{font-size:12px;font-weight:700;color:var(--green-ink);display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.a-sponsor .m-open{color:var(--green)}
+.m-body{min-height:0}
+.glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+.glance-tile{background:var(--chip);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.glance-tile b{font-size:26px;font-weight:800;color:var(--ink);line-height:1.1}
+.glance-tile span{font-size:12.5px;color:var(--muted);font-weight:600}
+@media (max-width:520px){.glance{grid-template-columns:1fr}}
+@media (min-width:1100px){
+  .page.fit{padding-block:14px 16px}
+  .fit .welcome{margin-bottom:12px}
+  .fit .welcome h1{font-size:24px}
+  .grid.fit{grid-template-columns:1.45fr 1fr 1fr;grid-template-rows:auto auto;
+    grid-template-areas:"letter campaign equip" "letter events funding";gap:14px}
+  .grid.fit .a-letter{background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);border-top:4px solid var(--green)}
+  .grid.fit .a-letter .letter-body{font-size:15px;line-height:1.6}
+  .grid.fit .a-letter .letter-title{font-size:23px}
+  .grid.fit #letter-out{display:flex;flex-direction:column}
+  .grid.fit #letter-out .glance{margin-top:auto;padding-top:18px}
+  .grid.fit .m{padding:18px;gap:10px}
+  .grid.fit #events-out .list > :nth-child(n+3),.grid.fit #funding-out .list > :nth-child(n+4){display:none}
+  
+  .grid.fit .m-body{flex:1}
+  .grid.fit .raised{font-size:34px}
+}
+dialog.mdlg{border:0;padding:0;border-radius:14px;width:min(760px,calc(100vw - 32px));max-height:calc(100dvh - 48px);background:var(--surface);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+dialog.mdlg::backdrop{background:rgba(14,24,48,.55)}
+.mdlg-head{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 22px;background:var(--surface);border-bottom:1px solid var(--line);z-index:1}
+.mdlg-head .m-label{font-size:13px}
+.mdlg-body{padding:22px;display:flex;flex-direction:column;gap:14px}
+.mdlg.sponsor .mdlg-body{background:var(--navy);color:var(--on-navy)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--navy);color:var(--on-navy);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;border:2px solid var(--green);z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Responsive */
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"letter letter" "campaign equip" "events funding"}
+}
+@media (max-width:760px){
+  #v-login{grid-template-columns:1fr}
+  .login-brand{padding:32px 20px}
+  .grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"campaign" "letter" "equip" "events" "funding"}
+  .admin-grid,.fields{grid-template-columns:minmax(0,1fr)}
+  .topbar .org{border-left:0;padding-left:0}
+  .page{padding-inline:16px}
+  .m,.panel{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.res{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.res-ic{width:34px;height:34px;border-radius:9px;background:var(--chip);color:var(--green-ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+.dl{border:1px solid var(--line);background:var(--surface);color:var(--green-ink);font-weight:700;font-size:12.5px;padding:6px 10px;border-radius:8px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.dl:hover{border-color:var(--green-ink)}
+.m-body .res .row-sub{display:none}
+.m-body .res{gap:10px}
+.m-body .res .row-title{font-size:14px}
+.refrow{display:flex;justify-content:space-between;gap:8px;align-items:center;background:rgba(255,255,255,.07);border-radius:9px;padding:8px 10px}
+.refrow b{display:block;font-size:13.5px}.refrow small{display:block;font-size:11.5px;color:var(--on-navy-muted)}
+.refrow.urgent{background:rgba(255,140,130,.16)}
+.urg{background:#FF8C82;color:#3a0d08;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border-radius:999px;white-space:nowrap}
+.aud-pick{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-weight:700}
+.seg2{display:inline-flex;background:var(--chip);border-radius:999px;padding:3px}
+.seg2 button{border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.rlx-shot{display:block;width:100%;height:auto}
+.a-connect{grid-area:connect}.a-equip{grid-area:equip}
+.cx{display:flex;flex-direction:column;gap:12px}
+.cx-who{display:flex;gap:12px;align-items:center}.cx-who b{display:block;font-size:14.5px}.cx-who small{display:block;color:var(--muted);font-size:12.5px;line-height:1.4}
+.cx-av{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.cx-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cx-b{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:10px;padding:9px 10px;font:inherit;font-size:13px;font-weight:700;text-align:left;cursor:pointer}
+.cx-b:hover{border-color:var(--green-ink);color:var(--green-ink)}
+.a-equip{background:linear-gradient(180deg,#FFFFFF,#F3F7FC);border-top:4px solid #1E5BAA}
+.tag-e3{background:#E3EEFA;color:#1E5BAA;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.eq{display:flex;flex-direction:column;gap:8px}.eq-lead{margin:0;font-weight:700;font-size:14px}
+.eq-row{display:flex;gap:10px;align-items:center}.eq-row b{display:block;font-size:13.5px}.eq-row small{display:block;color:var(--muted);font-size:12px}
+.eq-ic{width:32px;height:32px;border-radius:9px;background:#E3EEFA;display:grid;place-items:center;font-size:16px;flex:none}
+.eq-cta{align-self:flex-start;margin-top:4px}
+.bar-logos{display:flex;align-items:center;gap:12px}
+.clinic-ph{border:2px dashed rgba(255,255,255,.55);color:#E6E1F2;border-radius:8px;padding:6px 14px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.bar-logos .x{color:#C9BEDF;font-weight:700}
+.cmp-logo{background:#fff;border-radius:10px;padding:6px 12px;display:flex}.cmp-logo img{height:44px;width:auto;display:block}
+.rlx-hd{position:relative}
+.hd-clinic{position:absolute;left:0;top:0;width:15.2%;height:66%;background:#fff;display:flex;align-items:center;padding:0 .6%}
+.hd-clinic span{flex:1;height:78%;border:2px dashed #9AA3AD;border-radius:6px;display:grid;place-items:center;color:#6B7480;font:700 clamp(9px,.75vw,14px)/1.1 Arial,Helvetica,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-align:center}
+.sample-mark{position:fixed;inset:0;pointer-events:none;z-index:40;display:grid;place-items:center;overflow:hidden}
+.sample-mark span{transform:rotate(-24deg);font-family:var(--f-ui);font-weight:800;font-size:clamp(90px,16vw,240px);letter-spacing:.12em;color:rgba(85,25,127,.07);white-space:nowrap;user-select:none}
+.sample-tag{position:fixed;right:16px;bottom:16px;z-index:41;background:var(--navy);color:#fff;font-weight:800;font-size:12px;letter-spacing:.14em;padding:7px 12px;border-radius:999px;border:2px solid var(--green);pointer-events:none}
+.rlxbtn{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:#0F2A4A;color:#fff;border:1.5px solid #8FB0D8;border-radius:6px;padding:8px 14px;font:700 14px/1 Arial,Helvetica,sans-serif;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.rlxbtn svg{width:20px;height:20px}
+.rlxbtn:hover{background:#163A63}
+.eq-foot{display:flex;align-items:center;gap:16px;margin-top:4px;flex-wrap:wrap}
+.eq-link{border:0;background:none;color:var(--green-ink);font:inherit;font-weight:700;font-size:13.5px;cursor:pointer;padding:0}
+.cx-topics{display:flex;flex-wrap:wrap;gap:6px}.cx-topics span{background:var(--chip);color:var(--ink);border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:600}
+.bar-connect{display:flex;align-items:center;gap:14px}
+.bc-txt b{display:block;font-size:15px;color:#fff}.bc-txt small{display:block;font-size:12px;color:#C9BEDF}
+.bar-connect .rlxbtn{align-self:center}
+@media (max-width:720px){.bc-txt small{display:none}.bar-connect{gap:10px}}
+.more-link{display:none;align-self:flex-start;border:0;background:var(--chip);color:var(--green-ink);font:inherit;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;cursor:pointer;margin-top:8px}
+.grid.fit .more-link{display:inline-block}
+#mdlg-body .more-link{display:none!important}
+.hd-tab{position:absolute;left:30.71%;top:69.5%;height:26%;width:9.2%;background:#2E7FD0;color:#fff;display:flex;align-items:center;justify-content:center;gap:.35vw;font:700 clamp(8px,.68vw,14px)/1 Arial,Helvetica,sans-serif;white-space:nowrap;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
+.hd-tab svg{width:1.1em;height:1.1em}
+/* ---------- Referralogix shell (matches the RLX client management screen) ---------- */
+.rlx{background:#fff;color:#1d2a3a;font-family:Arial,Helvetica,sans-serif;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 #dfe3e8}
+.rlx-top{display:flex;align-items:stretch;gap:6px;padding:6px 10px;border-bottom:1px solid #e3e6ea;min-height:72px}
+.rlx-logo{display:flex;align-items:center;width:210px;flex:none}
+.rlx-logo img{height:40px;width:auto}
+.ad{display:flex;align-items:center;gap:10px;border:1px solid #d7dbe0;padding:6px 8px;min-width:0;flex:1 1 0;max-width:385px;overflow:hidden}
+.ad small{display:block;font-size:10px;color:#9aa3ad}
+.ad b{display:block;font-size:13px;line-height:1.25}
+.ad-kw{background:#141e3c;color:#fff;border-color:#141e3c}
+.ad-kw .ad-l{width:70px;flex:none}.ad-kw .ad-l small{font-style:italic;color:#8d98b3;font-size:8.5px;line-height:1.2}
+.ad-kw .ad-m b{color:#E2B44C;font-size:14px}.ad-kw .ad-m small{color:#d5daea}.ad-kw .ad-m i{color:#E2B44C}
+.rlxc{margin-left:auto;align-self:flex-end;background:#0f2a4a;color:#fff;border:1px solid #6f8ab0;border-radius:4px;font-size:10.5px;padding:3px 7px;white-space:nowrap}
+.ad-gelp{background:#FBF8F1}
+.g-mark{font-family:Georgia,serif;font-size:22px;color:#6b6b6b;text-align:center;line-height:1;width:44px;flex:none}.g-mark small{font-size:9px;letter-spacing:.15em}
+.ad-gelp .ad-m b{color:#1A2A52}.ad-gelp .ad-r{margin-left:auto;display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.see{background:#1A2A52;color:#fff;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:3px;white-space:nowrap}
+.ad-rlx{border:0;border-right:1px solid #d7dbe0;gap:12px;font-size:12.5px}
+.rlx-word{font-size:19px;font-weight:700;color:#3b4a5c;display:flex;align-items:center;gap:4px;white-space:nowrap}.rlx-word i{color:#fff;background:#18C318;font-style:normal;font-size:12px;width:18px;height:18px;display:grid;place-items:center;border-radius:3px}
+.ad-rlx b{color:#1660B0}
+.rlx-user{margin-left:auto;display:flex;align-items:center;gap:12px;padding-left:10px;flex:none}
+.bell{position:relative;font-size:20px;color:#3466c2}.bell i{position:absolute;top:-6px;right:-7px;background:#E3241B;color:#fff;font-size:9px;font-style:normal;width:14px;height:14px;border-radius:50%;display:grid;place-items:center}
+.rlx-user .who{text-align:right;font-size:11px;color:#555;line-height:1.35}.rlx-user .who span{display:block;font-size:12px}.rlx-user .who small{display:block;font-size:9.5px}.rlx-user .who b{font-size:11px;color:#333}
+.av{width:38px;height:38px;border-radius:50%;background:#55197F;color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px}
+.rlx-tabs{display:flex;align-items:stretch;gap:0;border-bottom:1px solid #e3e6ea;font-size:12px;color:#555;height:30px;padding-left:8px;overflow:hidden}
+.rlx-search{border:1px solid #6b8fd0;width:270px;flex:none;display:flex;align-items:center;gap:6px;padding:0 8px;margin:1px 22px 1px 0;color:#2c58a0;font-size:11.5px;white-space:nowrap;overflow:hidden}
+.rlx-tabs .t{display:flex;align-items:center;gap:5px;padding:0 14px;border-left:1px solid #e7e9ec;white-space:nowrap}
+.rlx-tabs .t.ic{padding:0 12px}
+.rlx-tabs .t.on{background:#2E7FD0;color:#fff}
+.rlx-tabs .doc{display:flex;align-items:center;justify-content:space-between;width:230px;padding:0 10px;border-left:1px solid #e7e9ec;background:#f7f8fa;white-space:nowrap}
+.rlx-tabs .doc.on{background:#fff;font-weight:700;color:#222;box-shadow:inset 0 2px 0 #39A12A}
+.rlx-tabs .doc i{font-style:normal;color:#444;align-self:flex-start;margin-top:2px}
+.svc{margin-left:auto;align-self:center;font-size:10.5px;padding-right:14px;white-space:nowrap}
+.rlx-green{font-family:var(--f-ui);background:#2B1650;border-bottom:3px solid #C9A3F2;color:#fff;display:flex;align-items:center;gap:28px;padding:8px 14px;min-height:50px;flex-wrap:wrap}
+.rlx-green .gt{font-size:19px;font-weight:700}
+.rlx-green label{display:flex;align-items:center;gap:5px;font-weight:700;font-size:13.5px;cursor:pointer}
+.rlx-green .gsp{flex:1}
+.rlx-green .seg{background:rgba(0,0,0,.18)}
+.rlx-green .seg button{color:#E6E1F2}
+.rlx-green .seg button[aria-pressed="true"]{background:#C9A3F2;color:#2B1650}
+@media (max-width:1300px){ .ad-rlx{display:none} }
+@media (max-width:1000px){ .ad-kw{display:none} .rlx-tabs .doc{width:auto} .rlx-green .gt{margin-right:0} }
+@media (max-width:720px){ .ad{display:none} .rlx-tabs{display:none} .rlx-user .who{display:none} .rlx-logo{width:auto} .rlx-green{gap:14px;padding:8px 12px} .rlx-green label{display:none} .svc{display:none} }
+</style>
+
+<!-- ============ APP SHELL ============ -->
+<script>document.documentElement.setAttribute("data-theme","light")</script>
+<div id="v-app">
+  <header class="rlx">
+    <div class="rlx-hd"><img class="rlx-shot" src="rlx-header.jpg" alt="Referralogix header"><span class="hd-clinic"><span>Clinic logo here</span></span><span class="hd-tab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Compassio</span></div>
+    <div class="rlx-green">
+      <div class="bar-logos"><span class="cmp-logo"><img src="../compassio-logo.webp" alt="Compassio Medical Education"></span></div>
+      <span class="gsp"></span>
+      <div class="bar-connect"><span class="bc-txt"><b>Message with Compassio now</b><small>Questions about a tracing, billing or training?</small></span><button type="button" class="rlxbtn" data-sample="Opens an RLXconnect conversation with Compassio."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>RLXconnect</button></div>
+      <div class="seg" role="group" aria-label="View" hidden>
+        <button type="button" id="seg-dash" data-go="dashboard" aria-pressed="true">Clinic view</button>
+        <button type="button" id="seg-ent" data-go="ent" aria-pressed="false" hidden>ENT view</button>
+        <button type="button" id="seg-admin" data-go="admin" aria-pressed="false">Compassio admin</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Member dashboard -->
+  <div class="sample-mark" aria-hidden="true"><span>SAMPLE</span></div>
+  <main id="v-dashboard" class="page">
+    <div class="welcome">
+      <h1 id="greet">Welcome back</h1>
+      <div class="date" id="today"></div>
+    </div>
+    <div class="grid">
+      <article class="m a-letter">
+        <div class="m-head"><span class="m-label" id="letter-label">From the Desk of Dr. LaCour</span><span class="letter-date" id="letter-date"></span></div>
+        <div id="letter-out"></div>
+      </article>
+
+      <article class="m a-campaign">
+        <div class="m-head"><span class="m-label" id="lbl-campaign">Team <b>training</b></span></div>
+        <div id="campaign-out"></div>
+      </article>
+
+      <aside class="m a-sponsor" aria-label="Your ENT partner" hidden>
+        <div class="m-head"><span class="m-label" id="lbl-sponsor">Your ENT partner</span><span class="tag" id="tag-sponsor">Local Champion</span></div>
+        <div id="sponsor-out"></div>
+      </aside>
+
+      <article class="m a-events">
+        <div class="m-head"><span class="m-label" id="lbl-events">Webinars &amp; screening days</span></div>
+        <div id="events-out"></div>
+      </article>
+
+      <article class="m a-funding">
+        <div class="m-head"><span class="m-label">Resources</span></div>
+        <div id="funding-out"></div>
+      </article>
+
+      <aside class="m a-equip" aria-label="More equipment from MAICO and E3">
+        <div class="m-head"><span class="m-label">More from <b>MAICO</b></span><span class="tag tag-e3">via E3</span></div>
+        <div id="equip-out" class="eq">
+          <p class="eq-lead">See our other equipment for your clinic.</p>
+          <div class="eq-row"><span class="eq-ic">&#127911;</span><div><b>Screening audiometers</b><small>Quick hearing checks in the exam room</small></div></div>
+          <div class="eq-row"><span class="eq-ic">&#128066;</span><div><b>OAE hearing screeners</b><small>For newborns and young children</small></div></div>
+          <div class="eq-row"><span class="eq-ic">&#128200;</span><div><b>Middle ear analyzers</b><small>Desktop tympanometry for busy clinics</small></div></div>
+          <div class="eq-foot"><button type="button" class="rlxbtn" data-sample="Opens an RLXconnect conversation with E3 about MAICO equipment."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>RLXconnect</button><button type="button" class="eq-link" data-sample="Opens the MAICO and E3 equipment catalog.">See our equipment &rarr;</button></div>
+        </div>
+      </aside>
+
+      <article class="m a-policy" hidden>
+        <div class="m-head"><span class="m-label">Research &amp; guidelines</span></div>
+        <div id="policy-out"></div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Admin -->
+  <main id="v-admin" class="page" hidden>
+    <div class="welcome">
+      <h1>Update the dashboard</h1>
+      <div class="date">Changes go live for every clinic on save</div>
+    </div>
+    <div id="ro-banner" class="ro-banner" hidden></div>
+    <div class="aud-pick" hidden><span>Editing the</span><div class="seg2" role="group" aria-label="Dashboard to edit"><button type="button" data-edit="pcp" aria-pressed="true">PCP dashboard</button><button type="button" data-edit="ent" aria-pressed="false">ENT dashboard</button></div></div>
+    <p class="admin-intro"><strong>Two things change most:</strong> the letter from Dr. LaCour and each clinic's training progress. Webinars, screening days, resources and research can be added here too.</p>
+
+    <div class="admin-grid">
+      <section class="panel">
+        <h2>Team training</h2>
+        <p class="hint">How many of this clinic's team have finished the Compassio course. Fed automatically from the LMS later.</p>
+        <form id="f-campaign" class="fields">
+          <div class="field full"><label for="c-name">Course</label><input class="input" id="c-name" placeholder="e.g. Tympanometry for Primary Care"></div>
+          <div class="field"><label for="c-raised">Team members trained</label><input class="input num" id="c-raised" inputmode="numeric" placeholder="0"></div>
+          <div class="field"><label for="c-goal">Team size</label><input class="input num" id="c-goal" inputmode="numeric" placeholder="0"></div>
+          <div class="field full"><label for="c-note">Latest milestone (optional)</label><input class="input" id="c-note" placeholder="e.g. Two MAs finished the competency check-off"></div>
+          <div class="actions full"><button class="btn btn-navy" type="submit">Save training</button><span class="status" id="s-campaign"></span></div>
+        </form>
+      </section>
+
+      <section class="panel" id="sp-panel">
+        <h2>Your ENT partner</h2>
+        <p class="hint">The Local Champion ENT practice for this clinic's area.</p>
+        <form id="f-sponsor" class="fields">
+          <div class="field"><label for="sp-name">ENT practice</label><input class="input" id="sp-name"></div>
+          <div class="field"><label for="sp-cta">Button text</label><input class="input" id="sp-cta" placeholder="Send a referral"></div>
+          <div class="field full"><label for="sp-head">Headline</label><input class="input" id="sp-head"></div>
+          <div class="field full"><label for="sp-body">Short description</label><textarea class="input" id="sp-body" rows="3"></textarea></div>
+          <div class="field full"><label for="sp-url">Button link (https://)</label><input class="input" id="sp-url" placeholder="https://"></div>
+          <div class="actions full"><button class="btn btn-navy" type="submit">Save ENT partner</button><button class="btn btn-ghost" type="button" id="sp-clear">Remove</button><span class="status" id="s-sponsor"></span></div>
+        </form>
+      </section>
+
+      <section class="panel wide">
+        <h2>From the Desk of Dr. LaCour</h2>
+        <p class="hint">Paste the new letter and save. Leave a blank line between paragraphs.</p>
+        <form id="f-letter" class="fields">
+          <div class="field full"><label for="l-title">Headline</label><input class="input" id="l-title" placeholder="e.g. Three tracings worth a second look"></div>
+          <div class="field full"><label for="l-body">Letter</label><textarea class="input" id="l-body" rows="9" style="font-family:var(--f-letter);font-size:16px"></textarea></div>
+          <div class="field"><label for="l-author">Signed by</label><input class="input" id="l-author" placeholder="e.g. Jeff LaCour, MD"></div>
+          <div class="field"><label for="l-role">Title</label><input class="input" id="l-role" placeholder="e.g. Otolaryngologist and Founder, Compassio Medical Education"></div>
+          <div class="actions full"><button class="btn btn-navy" type="submit">Publish letter</button><span class="status" id="s-letter"></span></div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Webinars &amp; screening days</h2>
+        <form id="f-event" class="fields">
+          <div class="field full"><label for="e-title">Event</label><input class="input" id="e-title" placeholder="e.g. Live webinar: reading Type C tracings"></div>
+          <div class="field"><label for="e-date">Date</label><input class="input" id="e-date" type="date"></div>
+          <div class="field"><label for="e-time">Time</label><input class="input" id="e-time" placeholder="e.g. 10:00 AM"></div>
+          <div class="field full"><label for="e-loc">Location or link</label><input class="input" id="e-loc" placeholder="e.g. Virtual, or Bayou Elementary gym"></div>
+          <div class="actions full"><button class="btn btn-navy" type="submit">Add event</button><span class="status" id="s-event"></span></div>
+        </form>
+        <div class="items" id="events-admin"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Resources</h2>
+        <p class="hint">Flyers, handouts and guides clinics can download, print and use with their logo.</p>
+        <form id="f-fund" class="fields">
+          <div class="field full"><label for="g-title">Resource name</label><input class="input" id="g-title" placeholder="e.g. Screening day flyer"></div>
+          <div class="field"><label for="g-amt">Type</label><input class="input" id="g-amt" placeholder="e.g. Flyer, Handout, Guide"></div>
+          <div class="field"><label for="g-url">File link (https://)</label><input class="input" id="g-url" placeholder="https://"></div>
+          <div class="field full"><label for="g-src">Short description</label><input class="input" id="g-src" placeholder="e.g. Print and post in exam rooms"></div>
+          <div class="actions full"><button class="btn btn-navy" type="submit">Add item</button><span class="status" id="s-fund"></span></div>
+        </form>
+        <div class="items" id="funding-admin"></div>
+      </section>
+
+      <section class="panel wide">
+        <h2>Research &amp; guidelines</h2>
+        <form id="f-policy" class="fields">
+          <div class="field"><label for="p-title">Headline</label><input class="input" id="p-title" placeholder="e.g. Tympanometry and middle ear fluid in 3,686 children"></div>
+          <div class="field"><label for="p-tag">Topic</label><input class="input" id="p-tag" placeholder="e.g. Pediatrics, Guideline, Antibiotics"></div>
+          <div class="field full"><label for="p-sum">Plain-language summary</label><textarea class="input" id="p-sum" rows="3"></textarea></div>
+          <div class="field"><label for="p-date">Date</label><input class="input" id="p-date" type="date"></div>
+          <div class="field"><label for="p-url">Source link (optional)</label><input class="input" id="p-url" placeholder="https://"></div>
+          <div class="actions full"><button class="btn btn-navy" type="submit">Post</button><span class="status" id="s-policy"></span></div>
+        </form>
+        <div class="items" id="policy-admin"></div>
+      </section>
+
+      <section class="panel wide" id="reset-panel" hidden>
+        <h2>Reset dashboard</h2>
+        <p class="hint">Wipes the letter, training, ENT partner and every webinar, resource and research item so the dashboard starts blank. Only you see this.</p>
+        <div class="actions"><button class="btn btn-ghost" type="button" id="reset-btn" style="color:var(--crit);border-color:var(--crit)">Reset everything</button><span class="status" id="s-reset"></span></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog class="mdlg" id="mdlg" aria-labelledby="mdlg-title"><div class="mdlg-head"><span class="m-label" id="mdlg-title"></span><button type="button" class="btn btn-ghost btn-sm" id="mdlg-x">Close</button></div><div class="mdlg-body" id="mdlg-body"></div></dialog>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const stores = { pcp:{ letter:null, campaign:null, sponsor:null, events:[], funding:[], policy:[] }, ent:{ letter:null, campaign:null, sponsor:null, events:[], funding:[], policy:[] } };
+  let aud = 'pcp', edit = 'pcp';
+  const V = () => stores[aud], E = () => stores[edit];
+  const P = n => (edit === 'ent' ? 'ent/' : 'content/') + n;
+  const C = n => (n === 'policy' || edit !== 'ent') ? n : 'ent_' + n;
+  let db = null, canWrite = null;
+
+  /* ---------- helpers ---------- */
+  function h(tag, attrs, ...kids){
+    const el = document.createElement(tag);
+    if (attrs) for (const k in attrs){
+      if (k === 'class') el.className = attrs[k];
+      else if (k === 'text') el.textContent = attrs[k];
+      else if (k.startsWith('on')) el.addEventListener(k.slice(2), attrs[k]);
+      else el.setAttribute(k, attrs[k]);
+    }
+    for (const c of kids){ if (c == null || c === false) continue; el.append(c.nodeType ? c : document.createTextNode(String(c))); }
+    return el;
+  }
+  const safeUrl = u => (typeof u === 'string' && /^https?:\/\//i.test(u.trim())) ? u.trim() : '';
+  const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n||0);
+  const toNum = s => { const n = Number(String(s||'').replace(/[^0-9.]/g,'')); return isFinite(n) ? n : 0; };
+  function parseDay(s){ if(!s) return null; const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s); return m? new Date(+m[1], +m[2]-1, +m[3]) : null; }
+  function startOfToday(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+  const fmtLong = d => d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  const fmtShort = d => d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  function daysUntil(d){ return Math.round((d - startOfToday())/86400000); }
+  function emptyState(title, line){ return h('div',{class:'empty'}, h('strong',{text:title}), line); }
+  function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200); }
+  function setStatus(id, msg, kind){ const el=$(id); el.textContent=msg||''; el.className='status'+(kind?' '+kind:''); }
+
+  /* ---------- routing ---------- */
+  function go(view){
+    const v = 'dashboard';
+    $('v-dashboard').hidden = v === 'admin';
+    $('v-admin').hidden = v !== 'admin';
+    $('seg-dash').setAttribute('aria-pressed', String(v==='dashboard'));
+    $('seg-ent').setAttribute('aria-pressed', String(v==='ent'));
+    $('seg-admin').setAttribute('aria-pressed', String(v==='admin'));
+    if (v !== 'admin') aud = v === 'ent' ? 'ent' : 'pcp';
+    if (location.hash.slice(1) !== v) history.replaceState(null,'', v==='dashboard' ? location.pathname : '#'+v);
+    render();
+    if (v === 'admin') fillForms();
+    window.scrollTo(0,0);
+    if (v !== 'admin' && typeof fit === 'function') setTimeout(fit, 0);
+  }
+  const AUD = {
+    pcp: { org:'Bayou Kids Urgent Care (sample)', who:'Front Desk', whoOrg:'Bayou Kids Urgent Care', av:'BK', kind:'PCP dashboard', tab:'Compassio Dashboard',
+           campaign:'Team <b>training</b>', sponsor:'Your ENT partner', tag:'Local Champion', events:'Webinars &amp; screening days' },
+    ent: { org:'Coastal ENT Associates (sample)', who:'Dr. Dana Lee', whoOrg:'Coastal ENT Associates', av:'DL', kind:'ENT dashboard', tab:'Compassio ENT Dashboard',
+           campaign:'Clinics in <b>your area</b>', sponsor:'Your champion listing', tag:'Local Champion', events:'Your events &amp; screening days' }
+  };
+  function applyAud(){
+    const A = AUD[aud];
+    $('lbl-campaign').innerHTML = A.campaign; $('lbl-sponsor').innerHTML = A.sponsor; $('tag-sponsor').textContent = A.tag; $('lbl-events').innerHTML = A.events;
+      }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b){ e.preventDefault(); go(b.dataset.go); } });
+  window.addEventListener('hashchange', () => go(location.hash.slice(1)));
+
+  /* ---------- greeting ---------- */
+  (function(){
+    const now = new Date(), hr = now.getHours();
+    $('greet').textContent = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening');
+    $('today').textContent = now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  })();
+
+  /* ---------- render: member view ---------- */
+  function renderLetter(){
+    const out = $('letter-out'); out.replaceChildren();
+    const L = V().letter;
+    const author = (L && L.author && L.author.trim()) || 'Dr. LaCour';
+    $('letter-date').textContent = (L && L.updatedAt) ? fmtLong(new Date(L.updatedAt)) : '';
+    if (!L || !(L.body||'').trim()){
+      out.append(emptyState('No letter posted yet', "The latest note from Dr. LaCour will appear here."));
+      return;
+    }
+    const wrap = h('div',{style:'display:flex;flex-direction:column;gap:16px'});
+    if ((L.title||'').trim()) wrap.append(h('h2',{class:'letter-title',text:L.title.trim()}));
+    const body = h('div',{class:'letter-body'});
+    L.body.split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean).forEach(p => body.append(h('p',{text:p})));
+    wrap.append(body);
+    wrap.append(h('div',{class:'letter-sign'},
+      h('div',{class:'avatar',text:author.trim().charAt(0).toUpperCase()}),
+      h('div',null, h('div',{class:'who',text:author}), L.role ? h('div',{class:'role',text:L.role}) : null)
+    ));
+    out.append(wrap);
+    // at a glance: live counts from the other modules
+    const today = startOfToday();
+    const next = V().events.map(e=>parseDay(e.date)).filter(d=>d && d>=today).sort((a,b)=>a-b)[0];
+    const due30 = V().funding.length;
+    const recent = V().policy.map(p=>parseDay(p.date)).filter(d=>d && daysUntil(d)>=-30).length;
+    const tile = (big, small) => h('div',{class:'glance-tile'}, h('b',{class:'num',text:big}), h('span',{text:small}));
+    out.append(h('div',{class:'glance'},
+      tile(next ? (daysUntil(next)===0 ? 'Today' : daysUntil(next)+'d') : 'None', 'until the next webinar or screening'),
+      tile(String(due30), due30===1 ? 'resource ready to download' : 'resources ready to download'),
+      tile(V().campaign && V().campaign.goal ? (V().campaign.raised||0)+'/'+V().campaign.goal : '0', 'team members trained')));
+  }
+
+  function renderCampaign(){
+    const out = $('campaign-out'); out.replaceChildren();
+    const C = V().campaign;
+    if (!C || (!C.goal && !C.raised)){
+      out.append(aud==='ent' ? emptyState('No clinics yet', 'Clinics in your area that join the program will show here.') : emptyState('Training not started yet', 'Your team\u2019s progress through the Compassio course will show here.'));
+      return;
+    }
+    const goal = C.goal||0, done = Math.min(C.raised||0, goal||Infinity);
+    const pct = goal>0 ? Math.min(100, Math.round(done/goal*100)) : 0;
+    if (C.name) out.append(h('div',{style:'font-weight:700;margin-bottom:10px',text:C.name}));
+    out.append(h('div',{class:'raised num',text: goal ? done+' of '+goal : String(done)}));
+    out.append(h('div',{class:'goal-line num',text: aud==='ent' ? 'clinics live on the easyTymp' : 'team members trained'}));
+    const fill = h('i',{style:'width:0%'});
+    const bar = h('div',{class:'bar',role:'progressbar','aria-valuemin':'0','aria-valuemax':'100','aria-valuenow':String(pct),'aria-label':'Training progress'}, fill);
+    out.append(h('div',{style:'display:flex;flex-direction:column;gap:8px;margin-top:14px'}, bar,
+      h('div',{class:'bar-meta num'}, h('span',{class:'pct',text:pct+(aud==='ent'?'% live':'% trained')}), h('span',{text: goal>done ? (goal-done)+(aud==='ent'?' in conversation':' to go') : (aud==='ent'?'Every clinic live':'Whole team trained')}))));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ fill.style.width = pct+'%'; }));
+    if (C.note) out.append(h('div',{class:'milestone',style:'margin-top:14px'}, h('b',{text:'Latest'}), C.note));
+    if (C.updatedAt) out.append(h('div',{class:'updated',style:'margin-top:10px',text:'Updated '+fmtLong(new Date(C.updatedAt))}));
+  }
+
+  function renderSponsor(){
+    const out = $('sponsor-out'); out.replaceChildren();
+    if (aud === 'ent'){
+      const wrap = h('div',{style:'display:flex;flex-direction:column;gap:10px'});
+      wrap.append(h('div',{class:'sp-name',text:'Coastal ENT Associates (sample)'}));
+      wrap.append(h('div',{class:'sp-head',text:'You\u2019re the ENT partner on 6 clinic dashboards'}));
+      wrap.append(h('p',{class:'sp-body',text:'Every clinic in your area sees your practice, your locations and your referral line when they sign in.'}));
+      wrap.append(h('button',{class:'btn btn-green btn-sm',type:'button',onclick:()=>toast('Sample. Opens your champion listing to edit.'),text:'Update your listing'}));
+      out.append(wrap); return;
+    }
+    const S = V().sponsor;
+    if (!S || !(S.headline||S.name)){
+      out.append(emptyState('ENT partner coming soon', 'The Local Champion ENT practice for your area will appear here.'));
+      return;
+    }
+    const wrap = h('div',{style:'display:flex;flex-direction:column;gap:10px'});
+    if (S.name) wrap.append(h('div',{class:'sp-name',text:S.name}));
+    if (S.headline) wrap.append(h('div',{class:'sp-head',text:S.headline}));
+    if (S.body) wrap.append(h('p',{class:'sp-body',text:S.body}));
+    const url = safeUrl(S.url);
+    if (url) wrap.append(h('a',{class:'btn btn-green btn-sm',href:url,target:'_blank',rel:'noopener',text:S.cta||'Learn more'}));
+    else if (S.cta) wrap.append(h('button',{class:'btn btn-green btn-sm',type:'button','data-sample':'Opens a referral to this ENT practice in Referralogix.',text:S.cta}));
+    out.append(wrap);
+  }
+
+  function renderEvents(){
+    const out = $('events-out'); out.replaceChildren();
+    const today = startOfToday();
+    const items = V().events.map(e=>({...e,_d:parseDay(e.date)})).filter(e=>e._d && e._d>=today).sort((a,b)=>a._d-b._d).slice(0,5);
+    if (!items.length){ out.append(emptyState('Nothing scheduled', 'Live webinars and screening days will be listed here.')); return; }
+    const list = h('div',{class:'list'});
+    items.forEach(e=>{
+      const sub = [e.time, e.location].filter(Boolean).join(' · ');
+      list.append(h('div',{class:'row'},
+        h('div',{class:'dateblock'}, h('div',{class:'mo',text:e._d.toLocaleDateString('en-US',{month:'short'})}), h('div',{class:'dy num',text:String(e._d.getDate())})),
+        h('div',{class:'row-main'}, h('div',{class:'row-title',text:e.title}), sub ? h('div',{class:'row-sub',text:sub}) : null)));
+    });
+    out.append(list);
+    if (items.length > 2) out.append(h('button',{class:'more-link',type:'button','data-open':'1',text:'+ '+(items.length-2)+' more'}));
+  }
+
+  function duePill(d){
+    const n = daysUntil(d);
+    if (n < 0) return h('span',{class:'pill neutral',text:'Closed'});
+    if (n === 0) return h('span',{class:'pill crit',text:'Due today'});
+    if (n <= 7) return h('span',{class:'pill crit',text:'Due in '+n+(n===1?' day':' days')});
+    if (n <= 30) return h('span',{class:'pill warn',text:'Due in '+n+' days'});
+    return h('span',{class:'pill ok',text:'Due '+fmtShort(d)});
+  }
+
+  function renderFunding(){
+    const out = $('funding-out'); out.replaceChildren();
+    const items = [...V().funding].sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+    if (!items.length){ out.append(emptyState('No resources yet', 'Flyers, handouts and guides for your clinic will be here to download.')); return; }
+    const list = h('div',{class:'list'});
+    items.forEach(g=>{
+      const url = safeUrl(g.url);
+      const dl = url ? h('a',{class:'dl',href:url,target:'_blank',rel:'noopener',text:'Download'})
+                     : h('button',{class:'dl',type:'button',onclick:()=>toast('Sample resource. The real file goes here.'),text:'Download'});
+      list.append(h('div',{class:'row res'},
+        h('div',{class:'res-ic',text:(g.amount||'File').charAt(0).toUpperCase()}),
+        h('div',{class:'row-main'}, g.amount ? h('span',{class:'chip',text:g.amount}) : null, h('div',{class:'row-title',text:g.title}), g.source ? h('div',{class:'row-sub',text:g.source}) : null),
+        dl));
+    });
+    out.append(list);
+    if (items.length > 3) out.append(h('button',{class:'more-link',type:'button','data-open':'1',text:'+ '+(items.length-3)+' more'}));
+  }
+
+  function renderPolicy(){
+    const out = $('policy-out'); out.replaceChildren();
+    const items = V().policy.map(p=>({...p,_d:parseDay(p.date)})).sort((a,b)=>(b._d||0)-(a._d||0)).slice(0,4);
+    if (!items.length){ out.append(emptyState('Nothing posted yet', 'Plain-language summaries of the tympanometry research will post here.')); return; }
+    const list = h('div',{class:'list'});
+    items.forEach(p=>{
+      const url = safeUrl(p.url);
+      const meta = h('div',{class:'meta-line'}, p.tag ? h('span',{class:'chip',text:p.tag}) : null, p._d ? h('span',{class:'row-sub',text:fmtShort(p._d)}) : null);
+      list.append(h('div',{class:'row'},
+        h('div',{class:'row-main'}, meta, h('div',{class:'row-title',text:p.title}),
+          p.summary ? h('div',{class:'row-sub',text:p.summary}) : null,
+          url ? h('div',{class:'row-sub'}, h('a',{href:url,target:'_blank',rel:'noopener',text:'Read the source'})) : null)));
+    });
+    out.append(list);
+  }
+
+  /* ---------- render: admin lists ---------- */
+  function adminList(containerId, items, coll, line){
+    const box = $(containerId); box.replaceChildren();
+    if (!items.length){ box.append(h('div',{class:'row-sub',text:'Nothing added yet.'})); return; }
+    items.forEach(it=>{
+      box.append(h('div',{class:'item'},
+        h('div',{class:'row-main'}, h('div',{class:'row-title',text:it.title||'(untitled)'}), h('div',{class:'row-sub',text:line(it)})),
+        h('button',{class:'del',type:'button',onclick:()=>removeItem(coll,it.id,it.title)}, 'Remove')));
+    });
+  }
+  function renderAdminLists(){
+    const byDate = (a,b)=>String(a.date||'').localeCompare(String(b.date||''));
+    adminList('events-admin', [...E().events].sort(byDate), 'events', e=>[e.date && fmtShort(parseDay(e.date)), e.time, e.location].filter(Boolean).join(' · '));
+    adminList('funding-admin', [...E().funding], 'funding', g=>[g.amount, g.source].filter(Boolean).join(' · '));
+    adminList('policy-admin', [...E().policy].sort(byDate).reverse(), 'policy', p=>[p.tag, p.date && fmtShort(parseDay(p.date))].filter(Boolean).join(' · '));
+  }
+
+  function render(){ applyAud(); renderLetter(); renderCampaign(); renderSponsor(); renderEvents(); renderFunding(); renderPolicy(); renderAdminLists(); }
+
+  /* ---------- admin: which dashboard is being edited ---------- */
+  document.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', () => {
+    edit = b.dataset.edit;
+    document.querySelectorAll('[data-edit]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    dirty.campaign = dirty.sponsor = dirty.letter = false;
+    const ent = edit === 'ent';
+    $('sp-panel').hidden = ent;
+    document.querySelector('#f-campaign').closest('.panel').querySelector('h2').textContent = ent ? 'Clinics in their area' : 'Team training';
+    document.querySelector('#f-campaign').closest('.panel').querySelector('.hint').textContent = ent ? 'Clinics near this ENT that are live on the easyTymp, out of all clinics in the program there. Filled in automatically later.' : 'How many of this clinic\u2019s team have finished the Compassio course. Fed automatically from the LMS later.';
+    document.querySelector('label[for="c-name"]').textContent = ent ? 'Heading' : 'Course';
+    document.querySelector('label[for="c-raised"]').textContent = ent ? 'Clinics live' : 'Team members trained';
+    document.querySelector('label[for="c-goal"]').textContent = ent ? 'Clinics in the area' : 'Team size';
+    ['s-campaign','s-sponsor','s-letter','s-event','s-fund','s-policy'].forEach(id => setStatus(id,''));
+    fillForms(); renderAdminLists();
+  }));
+
+  /* ---------- admin forms ---------- */
+  const dirty = {campaign:false, sponsor:false, letter:false};
+  [['f-campaign','campaign'],['f-sponsor','sponsor'],['f-letter','letter']].forEach(([f,k])=>$(f).addEventListener('input',()=>{dirty[k]=true;}));
+  function fillForms(){
+    const C=E().campaign||{}, S=E().sponsor||{}, L=E().letter||{};
+    if (!dirty.campaign){ $('c-name').value=C.name||''; $('c-raised').value=C.raised?String(C.raised):''; $('c-goal').value=C.goal?String(C.goal):''; $('c-note').value=C.note||''; }
+    if (!dirty.sponsor){ $('sp-name').value=S.name||''; $('sp-cta').value=S.cta||''; $('sp-head').value=S.headline||''; $('sp-body').value=S.body||''; $('sp-url').value=S.url||''; }
+    if (!dirty.letter){ $('l-title').value=L.title||''; $('l-body').value=L.body||''; $('l-author').value=L.author||''; $('l-role').value=L.role||''; }
+  }
+
+  function guard(statusId){
+    if (!db){ setStatus(statusId,'Saving is not available in this view.','bad'); return false; }
+    if (canWrite === false){ setStatus(statusId,'You have view-only access. Ask the owner for Editor access to make changes.','bad'); return false; }
+    return true;
+  }
+  async function attempt(statusId, fn, okMsg){
+    setStatus(statusId,'Saving…');
+    try{ await fn(); setStatus(statusId,okMsg,'good'); toast(okMsg); return true; }
+    catch(err){
+      const code = err && err.code;
+      if (code === 'invalid_argument'){ canWrite = false; showReadOnly(); setStatus(statusId,'This account can view the dashboard but cannot change it.','bad'); }
+      else if (code === 'unavailable'){ setStatus(statusId,'Connection hiccup. Try saving again in a moment.','bad'); }
+      else setStatus(statusId,'Could not save. Check your connection and try again.','bad');
+      return false;
+    }
+  }
+
+  $('f-campaign').addEventListener('submit', async e=>{
+    e.preventDefault(); if(!guard('s-campaign')) return;
+    const raised = toNum($('c-raised').value), goal = toNum($('c-goal').value);
+    if (!goal && !raised){ setStatus('s-campaign','Enter the number trained or the team size.','bad'); return; }
+    const ok = await attempt('s-campaign', ()=>db.doc(P('campaign')).set({ name:$('c-name').value.trim(), raised, goal, note:$('c-note').value.trim(), updatedAt:new Date().toISOString() }), 'Training updated');
+    if (ok) dirty.campaign=false;
+  });
+
+  $('f-sponsor').addEventListener('submit', async e=>{
+    e.preventDefault(); if(!guard('s-sponsor')) return;
+    const url = $('sp-url').value.trim();
+    if (url && !safeUrl(url)){ setStatus('s-sponsor','The link needs to start with https://','bad'); return; }
+    if (!$('sp-head').value.trim() && !$('sp-name').value.trim()){ setStatus('s-sponsor','Add at least the practice name or a headline.','bad'); return; }
+    const ok = await attempt('s-sponsor', ()=>db.doc(P('sponsor')).set({ name:$('sp-name').value.trim(), cta:$('sp-cta').value.trim(), headline:$('sp-head').value.trim(), body:$('sp-body').value.trim(), url, updatedAt:new Date().toISOString() }), 'ENT partner saved');
+    if (ok) dirty.sponsor=false;
+  });
+  $('sp-clear').addEventListener('click', async ()=>{
+    if(!guard('s-sponsor')) return;
+    const ok = await attempt('s-sponsor', ()=>db.doc(P('sponsor')).delete(), 'ENT partner removed');
+    if (ok){ dirty.sponsor=false; fillForms(); }
+  });
+
+  $('f-letter').addEventListener('submit', async e=>{
+    e.preventDefault(); if(!guard('s-letter')) return;
+    if (!$('l-body').value.trim()){ setStatus('s-letter','The letter is empty.','bad'); return; }
+    const ok = await attempt('s-letter', ()=>db.doc(P('letter')).set({ title:$('l-title').value.trim(), body:$('l-body').value.trim(), author:$('l-author').value.trim(), role:$('l-role').value.trim(), updatedAt:new Date().toISOString() }), 'Letter published');
+    if (ok) dirty.letter=false;
+  });
+
+  function addForm(formId, statusId, coll, build, required, okMsg){
+    $(formId).addEventListener('submit', async e=>{
+      e.preventDefault(); if(!guard(statusId)) return;
+      const data = build(); const missing = required.filter(k=>!data[k]);
+      if (missing.length){ setStatus(statusId,'Add a '+missing.join(' and ')+' first.','bad'); return; }
+      if (data.url && !safeUrl(data.url)){ setStatus(statusId,'Links need to start with https://','bad'); return; }
+      const ok = await attempt(statusId, ()=>db.collection(C(coll)).add({...data, createdAt:new Date().toISOString()}), okMsg);
+      if (ok) $(formId).reset();
+    });
+  }
+  addForm('f-event','s-event','events', ()=>({ title:$('e-title').value.trim(), date:$('e-date').value, time:$('e-time').value.trim(), location:$('e-loc').value.trim() }), ['title','date'], 'Event added');
+  addForm('f-fund','s-fund','funding', ()=>({ title:$('g-title').value.trim(), amount:$('g-amt').value.trim(), source:$('g-src').value.trim(), url:$('g-url').value.trim() }), ['title'], 'Resource added');
+  addForm('f-policy','s-policy','policy', ()=>({ title:$('p-title').value.trim(), tag:$('p-tag').value.trim(), summary:$('p-sum').value.trim(), date:$('p-date').value || new Date().toISOString().slice(0,10), url:$('p-url').value.trim() }), ['title'], 'Update posted');
+
+  const pendingDel = {};
+  async function removeItem(coll, id, title){
+    const key = coll+'/'+id;
+    const statusId = coll==='events'?'s-event':coll==='funding'?'s-fund':'s-policy';
+    if (!pendingDel[key]){ pendingDel[key]=true; setStatus(statusId,'Click Remove again to delete "'+(title||'item')+'".'); setTimeout(()=>{ delete pendingDel[key]; },4000); return; }
+    delete pendingDel[key];
+    if(!guard(statusId)) return;
+    await attempt(statusId, ()=>db.collection(C(coll)).doc(id).delete(), 'Removed');
+  }
+
+  let resetArmed = false, resetTimer = null;
+  $('reset-btn').addEventListener('click', async ()=>{
+    if (!guard('s-reset')) return;
+    if (!resetArmed){
+      resetArmed = true; $('reset-btn').textContent = 'Click again to wipe everything';
+      setStatus('s-reset','This cannot be undone.','bad');
+      clearTimeout(resetTimer); resetTimer = setTimeout(()=>{ resetArmed=false; $('reset-btn').textContent='Reset everything'; setStatus('s-reset',''); },5000);
+      return;
+    }
+    clearTimeout(resetTimer); resetArmed = false; $('reset-btn').textContent = 'Reset everything';
+    const ok = await attempt('s-reset', async ()=>{
+      for (const p of ['letter','campaign','sponsor']) await db.doc(P(p)).delete();
+      for (const coll of ['events','funding','policy']){
+        for (const it of [...E()[coll]]) await db.collection(C(coll)).doc(it.id).delete();
+      }
+    }, 'Dashboard reset');
+    if (ok){
+      ['f-campaign','f-sponsor','f-letter','f-event','f-fund','f-policy'].forEach(f=>$(f).reset());
+      dirty.campaign = dirty.sponsor = dirty.letter = false;
+      ['s-campaign','s-sponsor','s-letter','s-event','s-fund','s-policy'].forEach(s=>setStatus(s,''));
+    }
+  });
+
+  function showReadOnly(){
+    const b=$('ro-banner'); b.hidden=false;
+    b.textContent = db ? 'You can view this panel, but only editors can publish changes.' : 'Live saving is not available in this view. Open the published dashboard to make changes.';
+  }
+
+  /* ---------- data wiring ---------- */
+  render();
+  go(location.hash.slice(1));
+
+  /* ---------- demo data: in-memory, nothing leaves this browser tab ---------- */
+  function iso(days){ const d=new Date(); d.setDate(d.getDate()+days); return d.toISOString().slice(0,10); }
+  const seedNow = new Date().toISOString();
+  const seed = {
+    docs: {
+      'content/letter': { title:'Welcome to the program', author:'Jeff LaCour, MD', role:'Otolaryngologist and Founder, Compassio Medical Education', updatedAt:seedNow,
+        body:'Thank you for bringing handheld tympanometry into your clinic. This dashboard is where you will find everything you need, every time you sign in.\n\nThis month, focus on one habit: run a tympanogram before you diagnose an ear infection. A normal Type A tracing means there is no middle ear fluid about 97% of the time, and that one reading will change more of your treatment plans than you expect.\n\nBring your questions and your tricky tracings to the next live webinar. My audiology partner and I will walk through them together.' },
+      'content/campaign': { name:'Tympanometry for Primary Care', raised:7, goal:9, note:'Two MAs finished the competency check-off this week', updatedAt:seedNow },
+      'ent/letter': { title:'Thank you for championing ear care locally', author:'Jeff LaCour, MD', role:'Otolaryngologist and Founder, Compassio Medical Education', updatedAt:seedNow,
+        body:'As the Local Champion, you are the ENT the clinics around you are trained to call. This dashboard shows how that network is growing and what is coming up.\n\nThis month, three clinics in your area finished training. Expect better referrals from them: the tympanogram attached, urgent sudden hearing loss flagged inside the two-week window and kids with long-standing fluid sent to you sooner.\n\nYour next screening day is coming up. The flyer and sign-up page are ready in Resources.' },
+      'ent/campaign': { name:'Clinics on the easyTymp near you', raised:6, goal:9, note:'Harbor Family Medicine booked a demo this week', updatedAt:seedNow },
+      'content/sponsor': { name:'Coastal ENT Associates (sample)', headline:'Send a referral with the tympanogram attached', body:'Urgent sudden hearing loss seen within two weeks.', cta:'Send a referral', url:'', updatedAt:seedNow }
+    },
+    cols: {
+      ent_events: [ {id:'x1',title:'Lunch-and-learn: Gulf Coast Pediatrics team',date:iso(8),time:'12:00 PM',location:'Their office, 12 providers and MAs'},
+                    {id:'x2',title:'Kids\u2019 Hearing and Ear Screening Day (you host)',date:iso(17),time:'9:00 AM to 1:00 PM',location:'Bayou Elementary gym'},
+                    {id:'x3',title:'Co-host: live webinar with Dr. LaCour',date:iso(34),time:'12:00 PM CT',location:'Virtual, open to every clinic in your area'} ],
+      ent_funding: [ {id:'y1',title:'Screening day flyer with your practice logo',amount:'Flyer',source:'Co-branded with Compassio. Print or share with schools.',createdAt:'2026-01-05'},
+                     {id:'y2',title:'Lunch-and-learn slide deck',amount:'Deck',source:'Dr. LaCour\u2019s 20-minute talk for primary care teams, with your practice on the title slide.',createdAt:'2026-01-04'},
+                     {id:'y3',title:'Referral pathway one-pager for your clinics',amount:'Guide',source:'When to refer, what to send and how urgent cases reach you inside two weeks.',createdAt:'2026-01-03'},
+                     {id:'y4',title:'Champion talking points',amount:'Guide',source:'The research in plain language, for parents, schools and clinic teams.',createdAt:'2026-01-02'} ],
+      events: [ {id:'e1',title:'Live webinar: reading Type B and Type C tracings',date:iso(6),time:'12:00 PM CT',location:'Virtual, with Dr. LaCour'},
+                {id:'e2',title:'Kids\u2019 Hearing and Ear Screening Day',date:iso(17),time:'9:00 AM to 1:00 PM',location:'Bayou Elementary gym'},
+                {id:'e3',title:'Office hours: billing tympanometry (CPT 92567)',date:iso(30),time:'1:00 PM CT',location:'Virtual'} ],
+      funding: [ {id:'g1',title:'Ear check flyer for your waiting room',amount:'Flyer',source:'Tells parents you now test ears with tympanometry. Add your logo and print.',createdAt:'2026-01-06'},
+                 {id:'g2',title:'Screening day kit',amount:'Kit',source:'Flyer, sign-up sheet and parent result cards for a school or daycare event.',createdAt:'2026-01-05'},
+                 {id:'g3',title:'Reading tympanograms: quick reference card',amount:'Guide',source:'Type A, B and C at a glance. Keep one at every exam station.',createdAt:'2026-01-04'},
+                 {id:'g4',title:'Parent handout: what your child\u2019s ear test means',amount:'Handout',source:'Plain-language results for families, in English and Spanish.',createdAt:'2026-01-03'},
+                 {id:'g5',title:'Billing tympanometry (CPT 92567) cheat sheet',amount:'Guide',source:'Documentation and coding tips for your billing team.',createdAt:'2026-01-02'},
+                 {id:'g6',title:'Urgent ENT referral checklist',amount:'Checklist',source:'When a normal tympanogram plus hearing loss means refer this week.',createdAt:'2026-01-01'} ],
+      policy: [ {id:'p1',title:'A normal tympanogram rules out middle ear fluid about 97% of the time',tag:'Pediatrics',date:iso(-3),summary:'Smith and Paradise, Pediatrics 2006: in 3,686 young children, fluid was found in only 2.7% of ears with a normal tracing and 80% of ears with a flat one.'},
+                {id:'p2',title:'Confidence is not accuracy',tag:'Antibiotics',date:iso(-10),summary:'Rosenfeld, 2002: clinicians felt highly certain in 90% of ear infection diagnoses, but only 70% were true infections, and 26% of antibiotic prescriptions were potentially unnecessary.'},
+                {id:'p3',title:'Flat tracings and tubes',tag:'Guideline',date:iso(-21),summary:'AAO-HNS tympanostomy tube guideline, 2022: a flat Type B tympanogram is associated with middle ear fluid in 85 to 100% of ears.'} ]
+    }
+  };
+  function memDB(seed){
+    const docs = JSON.parse(JSON.stringify(seed.docs)), cols = JSON.parse(JSON.stringify(seed.cols)), subs = [];
+    const fire = () => subs.forEach(f => f()); let n = 0;
+    return {
+      doc(path){
+        const [c, id] = path.split('/');
+        if (cols[c]) return { delete: async () => { cols[c] = cols[c].filter(x => x.id !== id); fire(); } };
+        return { set: async d => { docs[path] = d; fire(); }, delete: async () => { delete docs[path]; fire(); },
+          onSnapshot(cb){ const f = () => cb({ exists: !!docs[path], data: () => docs[path] }); subs.push(f); f(); } };
+      },
+      collection(c){
+        cols[c] = cols[c] || [];
+        return {
+          add: async d => { cols[c].push({ id: 'n' + (++n), ...d }); fire(); },
+          doc: id => ({ delete: async () => { cols[c] = cols[c].filter(x => x.id !== id); fire(); } }),
+          onSnapshot(cb){ const f = () => cb({ docs: cols[c].map(x => ({ id: x.id, data: () => { const { id, ...r } = x; return r; } })) }); subs.push(f); f(); }
+        };
+      }
+    };
+  }
+  function boot(){
+    db = memDB(seed); canWrite = true;
+    const docSub = (path, a, key) => db.doc(path).onSnapshot(s=>{ stores[a][key] = s.exists ? s.data() : null; render(); if(!$('v-admin').hidden) fillForms(); });
+    const colSub = (path, keys) => db.collection(path).onSnapshot(q=>{ const rows = q.docs.map(d=>Object.assign({id:d.id}, d.data())); keys.forEach(([a,k]) => { stores[a][k] = rows; }); render(); });
+    ['letter','campaign','sponsor'].forEach(k => { docSub('content/'+k,'pcp',k); docSub('ent/'+k,'ent',k); });
+    colSub('events',[['pcp','events']]); colSub('funding',[['pcp','funding']]);
+    colSub('ent_events',[['ent','events']]); colSub('ent_funding',[['ent','funding']]);
+    colSub('policy',[['pcp','policy'],['ent','policy']]);
+  }
+  boot();
+
+  /* ---------- fit every module on one screen; click a module to open it in full ---------- */
+  const grid = document.querySelector('#v-dashboard .grid'), page = $('v-dashboard');
+  const OUTS = { 'a-letter':'letter-out', 'a-campaign':'campaign-out', 'a-sponsor':'sponsor-out', 'a-events':'events-out', 'a-funding':'funding-out', 'a-policy':'policy-out' };
+  grid.querySelectorAll('.m').forEach(m => {
+    const key = Object.keys(OUTS).find(k => m.classList.contains(k)); if (!key) return;
+    $(OUTS[key]).classList.add('m-body');
+    m.classList.add('openable'); m.tabIndex = 0; m.setAttribute('role','button');
+    const head = m.querySelector('.m-head'); const open = h('span',{class:'m-open'},'Open ↗');
+    if (key === 'a-letter') head.querySelector('.letter-date').before(open); else head.append(open);
+    m.dataset.out = OUTS[key];
+  });
+  page.classList.add('fit'); grid.classList.add('fit');
+  function fit(){
+    // shrink the whole dashboard to fit the window instead of scrolling (wide screens only)
+    page.style.zoom = '';
+    if (window.innerWidth >= 1100 && !$('v-dashboard').hidden){
+      const top = page.getBoundingClientRect().top + window.scrollY;
+      const need = page.scrollHeight, avail = window.innerHeight - top;
+      if (need > avail) page.style.zoom = String(Math.max(0.6, Math.floor(avail / need * 1000) / 1000));
+    }
+    grid.querySelectorAll('.m.openable').forEach(m => { const b = $(m.dataset.out); m.classList.toggle('clipped', b.scrollHeight > b.clientHeight + 2); });
+  }
+  window.addEventListener('resize', fit);
+  new MutationObserver(() => requestAnimationFrame(fit)).observe(grid, { childList: true, subtree: true });
+  document.fonts && document.fonts.ready.then(fit);
+  setTimeout(fit, 0);
+  const dlg = $('mdlg');
+  function openModule(m){
+    const label = m.querySelector('.m-label').textContent;
+    $('mdlg-title').textContent = label;
+    const body = $('mdlg-body'); body.replaceChildren($(m.dataset.out).cloneNode(true));
+    body.firstChild.removeAttribute('id'); body.firstChild.classList.remove('m-body');
+    dlg.classList.toggle('sponsor', m.classList.contains('a-sponsor'));
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
+  }
+  grid.addEventListener('click', e => { const mb = e.target.closest('[data-open]'); if (mb){ openModule(mb.closest('.m')); return; } const m = e.target.closest('.m.openable'); if (!m || e.target.closest('a,button')) return; openModule(m); });
+  grid.addEventListener('keydown', e => { const m = e.target.closest('.m.openable'); if (m && (e.key === 'Enter' || e.key === ' ') && e.target === m){ e.preventDefault(); openModule(m); } });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-sample]'); if (b) toast('Sample. ' + b.dataset.sample); });
+  $('mdlg-x').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+})();
+</script>
+
+</body></html>

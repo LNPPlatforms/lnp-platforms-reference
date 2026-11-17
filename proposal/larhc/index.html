@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<script>if(/\/proposal\/larhc$/.test(location.pathname))location.replace(location.pathname+"/"+location.search+location.hash);</script>
+<title>GELP Strategies for the Louisiana Rural Health Collective</title>
+<meta name="description" content="A member program proposal from GELP Strategies for the Louisiana Rural Health Collective.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one long proposal page. Navy hero with the 5% promise, then the member ladder
+   (Google first, website second, with live template previews), then the Collective's revenue
+   share with a calculator, then add ons as fine print.
+   Palette: GELP navy, gold and steel on clean white and a soft blue-grey paper. */
+:root{
+  --navy:#1A2A52; --navy-2:#14213E; --navy-3:#24386B;
+  --gold:#C9A04A; --gold-soft:#F6EEDC; --gold-ink:#8A6A22;
+  --steel:#6E8AA8; --steel-soft:#E9EEF5;
+  --ink:#16213A; --muted:#55627A; --line:#DFE5EE;
+  --paper:#F5F7FB; --white:#FFFFFF;
+  --green:#1E7A4C; --green-soft:#E3F3EA;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--navy)}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;margin:0;text-wrap:balance;line-height:1.12}
+h1{font-size:clamp(2.4rem,5.2vw,4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:14px}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;font-size:1rem;text-decoration:none;padding:15px 24px;border-radius:10px;border:2px solid transparent;transition:transform .15s ease,background-color .15s ease;line-height:1.2}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:var(--navy-2)}
+.btn-gold:hover{background:#D8B25E}
+.btn-navy{background:var(--navy);color:#FFFFFF}
+.btn-navy:hover{background:var(--navy-3)}
+.btn-line{background:transparent;color:var(--navy);border-color:#C5D0DF}
+.btn-line:hover{background:var(--white)}
+.btn-line-light{background:transparent;color:#FFFFFF;border-color:rgba(255,255,255,.45)}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.arrow{width:18px;height:18px;flex:none}
+
+/* masthead */
+.mast{background:var(--white);border-bottom:1px solid var(--line)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:14px}
+.logos{display:flex;align-items:center;gap:20px}
+.logos .gelp{height:64px;width:auto}
+.logos .sep{width:1px;height:48px;background:var(--line)}
+.logos .rhc{height:58px;width:auto}
+.logos .rlx{height:40px;width:auto}
+.rlx-word{font-weight:800;color:#1D3A5F;font-size:1.1rem}
+.rhc-tile{display:inline-flex;align-items:center;background:#1A2A52;border-radius:10px;padding:6px 12px}
+.rhc-tile .rhc-word{color:#FFFFFF}
+.rhc-word{font-weight:800;color:var(--navy);font-size:1rem;line-height:1.2}
+.prep{font-size:.88rem;color:var(--muted)}
+
+/* hero */
+.hero{background:linear-gradient(180deg,#FFFFFF 0%,#EEF3FA 100%);color:var(--ink);overflow:hidden;position:relative;border-bottom:1px solid var(--line)}
+.hero::after{content:"";position:absolute;right:-160px;top:-160px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(201,160,74,.16) 0%,rgba(201,160,74,0) 70%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center;padding-block:72px 80px;position:relative;z-index:1}
+.hero h1{color:var(--navy)}
+.hero h1 em{font-style:italic;color:var(--gold-ink)}
+.hero .lead{font-size:1.2rem;color:var(--muted);margin-top:20px;max-width:30em}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.promise{display:flex;align-items:center;gap:18px;margin-top:34px;padding:16px 22px;background:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;text-decoration:none;color:var(--ink);max-width:30em;box-shadow:0 18px 40px -30px rgba(26,42,82,.4)}
+.promise .big{font-family:var(--f-display);font-size:3.4rem;line-height:.9;color:var(--gold);font-weight:600;flex:none}
+.promise .big small{font-size:.5em}
+.promise .ptext{font-weight:600;line-height:1.4}
+.promise .ptext span{display:block;color:var(--muted);font-weight:400;font-size:.92rem;margin-top:4px}
+.proof{margin:0;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 34px 70px -40px rgba(26,42,82,.45);min-width:0}
+.proof-head{display:grid;gap:2px;margin-bottom:18px}
+.proof-tag{justify-self:start;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green);background:var(--green-soft);padding:4px 10px;border-radius:999px;margin-bottom:8px}
+.proof-head b{font-size:1.15rem;color:var(--navy)}
+.proof-head small{color:var(--muted);font-size:.88rem}
+.proof-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.proof-tabs button{font:inherit;text-align:left;background:var(--paper);border:1.5px solid transparent;border-radius:14px;padding:10px 12px;cursor:pointer;color:var(--ink);min-width:0}
+.proof-tabs button b{display:block;font-family:var(--f-display);font-size:1.8rem;line-height:1.05;color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+.proof-tabs button span{display:block;font-size:.8rem;color:var(--muted);font-weight:600}
+.proof-tabs button[aria-selected="true"]{background:var(--white);border-color:var(--gold);box-shadow:0 8px 20px -14px rgba(138,106,34,.6)}
+.proof-tabs button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.proof-chart{width:100%;height:auto;display:block;margin-top:14px}
+.proof-chart .grid line{stroke:#E3E8F0;stroke-width:1}
+.proof-chart text{font-family:var(--f-body);font-size:12px;fill:#6B7891}
+.proof-chart .dots circle{fill:#FFFFFF;stroke:#1A2A52;stroke-width:2.5}
+.proof-chart .dots circle:last-child{fill:var(--gold);stroke:var(--gold)}
+.proof-chart .val{font-weight:700;fill:#1A2A52}
+.proof-wins{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.proof-wins div{background:var(--gold-soft);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center}
+.proof-wins b{font-family:var(--f-display);font-size:1.9rem;line-height:1;color:var(--gold-ink);font-weight:600;flex:none}
+.proof-wins span{font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.3}
+
+/* section scaffolding */
+.sec{padding-block:clamp(64px,8vw,104px)}
+.sec-white{background:var(--white)}
+.sec-head{display:grid;gap:14px;max-width:46em;margin-bottom:44px}
+.sec-head p{font-size:1.1rem;color:var(--muted)}
+.part{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--steel-soft);padding:7px 14px;border-radius:999px;margin-bottom:6px;justify-self:start}
+.part b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#FFFFFF;font-size:.75rem;letter-spacing:0}
+
+/* package cards */
+.pkg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card .tag{font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:4px}
+.price .amt{font-family:var(--f-display);font-size:3rem;line-height:1;color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+.price .per{color:var(--muted);font-weight:600}
+.price-note{font-size:.95rem;color:var(--muted)}
+.checks{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:.98rem}
+.checks svg{flex:none;margin-top:4px;color:var(--green)}
+.total{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--steel-soft);border-radius:16px;padding:18px 24px}
+.total span{color:var(--muted);font-weight:600}
+.total b{font-family:var(--f-display);font-size:1.6rem;color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* live previews */
+.preview{margin-top:44px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:center}
+.preview-copy h3{margin-bottom:12px}
+.preview-copy p{color:var(--muted)}
+.modules{list-style:none;margin:20px 0 26px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.modules li{display:flex;gap:10px;align-items:center;font-weight:600;font-size:.96rem}
+.modules li i{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+.browser{border-radius:16px;background:#E4E9F1;padding:10px;box-shadow:0 30px 60px -30px rgba(20,33,62,.45);min-width:0}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:2px 6px 10px}
+.browser-bar i{width:10px;height:10px;border-radius:50%;background:#C3CCD9}
+.browser-bar span{margin-left:10px;font-size:.75rem;color:var(--muted);background:#F4F6FA;border-radius:6px;padding:3px 10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.frame{position:relative;width:100%;overflow:hidden;border-radius:8px;background:#FFFFFF}
+.frame iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;pointer-events:none}
+.frame a.cover{position:absolute;inset:0;z-index:2}
+
+/* revenue share */
+.share{margin-top:56px;background:var(--navy);color:#E9EEF7;border-radius:26px;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:40px;position:relative;overflow:hidden}
+.share::before{content:"";position:absolute;left:-120px;top:-120px;width:320px;height:320px;border-radius:50%;background:rgba(201,160,74,.10)}
+.share > *{position:relative;min-width:0}
+.share h3{color:#FFFFFF;font-size:clamp(1.6rem,3vw,2.2rem)}
+.share .eyebrow{color:var(--gold)}
+.share p{color:#C9D3E6;margin-top:12px}
+.calc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:24px}
+.calc-row{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.calc-row label{font-size:.95rem;color:#DCE3F0}
+.calc-row label small{display:block;color:#9FB0CB;font-size:.82rem}
+.calc-row input{width:100%;font:inherit;font-weight:700;text-align:center;font-variant-numeric:tabular-nums;background:#FFFFFF;color:var(--navy);border:0;border-radius:10px;padding:10px 8px}
+.calc-out{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.calc-out div{background:rgba(255,255,255,.06);border-radius:14px;padding:14px 16px}
+.calc-out span{display:block;font-size:.8rem;color:#9FB0CB;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.calc-out b{display:block;font-family:var(--f-display);font-size:1.7rem;color:#FFFFFF;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+.calc-out .hl{background:var(--gold);}
+.calc-out .hl span{color:var(--navy-2)}
+.calc-out .hl b{color:var(--navy-2)}
+.calc-note{font-size:.82rem;color:#9FB0CB;margin-top:14px}
+.cta-row{margin-top:40px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+
+/* member ladder */
+.ladder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch}
+.rung{position:relative}
+.rung.first{border:2px solid var(--gold);box-shadow:0 24px 50px -32px rgba(138,106,34,.55)}
+.rung .badge{align-self:flex-start;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--gold-soft);color:var(--gold-ink)}
+.rung.second .badge{background:var(--steel-soft);color:var(--navy)}
+.step{display:flex;align-items:center;gap:12px}
+.step b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#FFFFFF;font-family:var(--f-display);font-size:1.2rem;flex:none}
+.rung.first .step b{background:var(--gold);color:var(--navy-2)}
+.was{color:var(--gold-ink);font-size:.82rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.strike{font-family:var(--f-display);font-size:1.9rem;color:#8C97AA;font-weight:500;margin-right:4px}
+.price-note b{color:var(--navy)}
+.price-note s{color:#8C97AA}
+.was s{color:#8C97AA}
+.swap{background:var(--green-soft);color:var(--green);font-weight:700;border-radius:12px;padding:12px 14px;font-size:.95rem;display:flex;gap:10px;align-items:flex-start}
+.swap svg{flex:none;margin-top:3px}
+.connector{display:none}
+
+.templates{margin-top:56px}
+.tpl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:26px}
+.tpl{display:flex;flex-direction:column;gap:14px;min-width:0}
+.tpl-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tpl-meta h3{font-size:1.3rem}
+.tpl-meta p{color:var(--muted);font-size:.95rem}
+.tpl-link{font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.tpl-link:hover{text-decoration:underline}
+
+/* fine print */
+.fine{padding-block:56px 72px}
+.fine-box{border-top:2px solid var(--navy);padding-top:26px}
+.fine-box h2{font-size:1.5rem;margin-bottom:6px}
+.fine-list{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.fine-list li{min-width:0}
+.fine-list b{display:block;font-size:1rem;margin-bottom:4px}
+.fine-list p{color:var(--muted);font-size:.95rem}
+.fine-list .rec{display:inline-block;margin-top:6px;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink);background:var(--gold-soft);padding:3px 8px;border-radius:999px}
+.star{color:var(--gold-ink);font-weight:800}
+
+/* close + footer */
+.close{background:var(--white);border-top:1px solid var(--line)}
+.close .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:32px;align-items:center;padding-block:64px}
+.close p{color:var(--muted);margin-top:12px;font-size:1.08rem}
+.contact{font-weight:700;color:var(--navy);user-select:all}
+.foot{background:var(--navy-2);color:#B8C4DA;font-size:.9rem}
+.foot .wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding-block:28px;border-top:3px solid var(--gold)}
+.foot .mid{text-align:center}
+.foot .mid b{color:#FFFFFF;display:block}
+.foot .tile{justify-self:end;background:#FFFFFF;border-radius:12px;padding:6px 10px}
+.foot .tile img{height:44px;width:auto}
+.foot a{color:#FFFFFF}
+
+@media (max-width:920px){
+  .hero .wrap,.preview,.share,.close .wrap{grid-template-columns:1fr}
+  .pkg,.ladder,.tpl-grid{grid-template-columns:1fr}
+  .fine-list{grid-template-columns:1fr}
+  .foot .wrap{grid-template-columns:1fr;text-align:center}
+  .foot .mid{text-align:center}
+  .foot .tile{justify-self:center}
+}
+@media (max-width:560px){
+  .proof{padding:18px}.proof-tabs button b{font-size:1.4rem}.proof-wins{grid-template-columns:1fr}
+
+  .logos{gap:12px;flex-wrap:wrap}.logos .gelp{height:44px}.logos .rhc{height:34px}.logos .rlx{height:24px}.logos .sep{height:30px}
+  .modules{grid-template-columns:1fr}
+  .calc-out{grid-template-columns:1fr}
+  .calc-row{grid-template-columns:minmax(0,1fr) 84px}
+  .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="logos">
+      <img class="gelp" src="gelp-logo.webp" alt="GELP Strategies">
+      <span class="sep" aria-hidden="true"></span>
+      <img class="rhc" src="larhc-logo.png" alt="Louisiana Rural Health Collective">
+      <span class="sep" aria-hidden="true"></span>
+      <img class="rlx" src="rlx-logo.png" alt="Referralogix">
+    </div>
+    <div class="prep">Prepared for the Louisiana Rural Health Collective</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Grow your members. <em>Fund the Collective.</em></h1>
+      <p class="lead">Google and website programs for Louisiana's Rural Health Clinics, at Collective pricing.</p>
+      <div class="actions">
+        <a class="btn btn-navy" href="#members">See the programs <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="#collective">How the Collective earns</a>
+      </div>
+      <a class="promise" href="#collective">
+        <span class="big">5<small>%</small></span>
+        <span class="ptext">of every dollar members invest comes back to the Collective.<span>Setup fees included, starting with the first member.</span></span>
+      </a>
+    </div>
+    <figure class="proof" aria-label="Google results from a rural Louisiana practice">
+      <figcaption class="proof-head">
+        <span class="proof-tag">Real results</span>
+        <b>A rural Louisiana practice on Google</b>
+        <small>Business Profile performance, May to October 2026</small>
+      </figcaption>
+      <div class="proof-tabs" role="tablist" aria-label="Metric">
+        <button type="button" role="tab" aria-selected="true" data-k="calls"><b>630</b><span>Calls</span></button>
+        <button type="button" role="tab" aria-selected="false" data-k="dir"><b>194</b><span>Direction requests</span></button>
+        <button type="button" role="tab" aria-selected="false" data-k="all"><b>944</b><span>Total interactions</span></button>
+      </div>
+      <svg class="proof-chart" viewBox="0 0 520 190" role="img" aria-label="Monthly calls from the practice's Google profile, rising from zero in May to about 180 in September">
+        <defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A04A" stop-opacity=".35"/><stop offset="1" stop-color="#C9A04A" stop-opacity="0"/></linearGradient></defs>
+        <g class="grid"></g>
+        <path class="area" fill="url(#pg)"/>
+        <path class="line" fill="none" stroke="#1A2A52" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        <g class="dots"></g>
+        <g class="labels"></g>
+      </svg>
+      <div class="proof-wins">
+        <div><b>38%</b><span>average increase in new patients, year over year</span></div>
+        <div><b>#2</b><span>in local Google results, up from not listed in May</span></div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ PART 1: MEMBERS ============ -->
+<section class="sec sec-white" id="members">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="part"><b>1</b> For your members</span>
+      <h2>Two steps that bring new patients through the door</h2>
+      <p>Built for Rural Health Clinics across Louisiana. When someone nearby searches for a doctor, Google's map results decide who they call. That's why we start there.</p>
+    </div>
+
+    <div class="ladder">
+      <article class="card rung first">
+        <span class="badge">If you do one thing, do this</span>
+        <div class="step"><b>1</b><h3>Google Business Profile management</h3></div>
+        <div class="price"><span class="amt">$1,000</span><span class="per">/ month</span></div>
+        <p class="muted">In small towns, the Google profile is the fastest way to rank. It's what shows up on the map, with your hours, your reviews and a button to call.</p>
+        <ul class="checks">
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> Profile set up and kept accurate</li>
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> Regular posts written for your town</li>
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> Review requests so happy patients speak up</li>
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> Extra office locations at $350 / month each<span class="star">*</span></li>
+        </ul>
+      </article>
+      <article class="card rung second">
+        <span class="badge">Then add your website</span>
+        <div class="step"><b>2</b><h3>A welcoming practice website</h3></div>
+        <div class="price"><s class="strike">$179</s><span class="amt">$149</span><span class="per">/ month</span></div>
+        <p class="price-note">plus a one time setup of <s>$1,750</s> <b>$1,500</b></p>
+        <p class="was">Collective member pricing</p>
+        <div class="swap"><svg width="18" height="18"><use href="#i-check"/></svg><span>With Google management active, website hosting drops to just $49 / month.</span></div>
+        <ul class="checks">
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> Built from your logo, photos and providers</li>
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> Large, easy to read pages that work on any phone</li>
+          <li><svg width="18" height="18"><use href="#i-check"/></svg> 1 hour of support every month for updates</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="templates">
+      <p class="eyebrow">Pick a style</p>
+      <h3 style="font-size:clamp(1.5rem,2.6vw,2rem)">Two sample templates</h3>
+      <p class="muted" style="margin-top:6px">The full program includes 5 templates, all made for patients of every age.</p>
+      <div class="tpl-grid">
+        <div class="tpl">
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>Front Porch</span></div>
+            <div class="frame" data-w="1280" data-h="900">
+              <iframe src="templates/front-porch/index.html" title="Front Porch template preview" loading="lazy" tabindex="-1"></iframe>
+              <a class="cover" href="templates/front-porch/index.html" target="_blank" rel="noopener" aria-label="Open the Front Porch template"></a>
+            </div>
+          </div>
+          <div class="tpl-meta">
+            <div><h3>Front Porch</h3><p>Warm, sunny and homey.</p></div>
+            <a class="tpl-link" href="templates/front-porch/index.html" target="_blank" rel="noopener">View the live site <svg class="arrow"><use href="#i-out"/></svg></a>
+          </div>
+        </div>
+        <div class="tpl">
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>Clear Sky</span></div>
+            <div class="frame" data-w="1280" data-h="900">
+              <iframe src="templates/clear-sky/index.html" title="Clear Sky template preview" loading="lazy" tabindex="-1"></iframe>
+              <a class="cover" href="templates/clear-sky/index.html" target="_blank" rel="noopener" aria-label="Open the Clear Sky template"></a>
+            </div>
+          </div>
+          <div class="tpl-meta">
+            <div><h3>Clear Sky</h3><p>Airy, open and calm.</p></div>
+            <a class="tpl-link" href="templates/clear-sky/index.html" target="_blank" rel="noopener">View the live site <svg class="arrow"><use href="#i-out"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:18px;font-size:.92rem">Sample practice shown. Each member's site is built with their own name, colors, photos, providers and hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PART 2: THE COALITION ============ -->
+<section class="sec" id="collective">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="part"><b>2</b> For the Collective</span>
+      <h2>Your members grow, and the Collective earns</h2>
+      <p>The Collective gets 5% of everything members invest in these programs, from the first member on. The more members grow, the more comes back.</p>
+    </div>
+    <div class="share" id="share" style="margin-top:0">
+      <div>
+        <p class="eyebrow">Revenue share</p>
+        <h3>5% of member program revenue comes back to the Collective</h3>
+        <p>Every time a member signs up for Google or website services, 5% of what they pay GELP goes to the Collective, setup fees included. Try your own numbers.</p>
+        <p style="margin-top:18px;color:#9FB0CB;font-size:.92rem">Based on Collective member pricing.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-row"><label for="c-gbp">Members on Google management<small>$1,000 / month</small></label><input id="c-gbp" type="number" min="0" inputmode="numeric" value="10"></div>
+        <div class="calc-row"><label for="c-loc">Extra office locations on Google<small>$350 / month each</small></label><input id="c-loc" type="number" min="0" inputmode="numeric" value="6"></div>
+        <div class="calc-row"><label for="c-webg">Websites for members on Google<small>$49 / month, $1,500 setup</small></label><input id="c-webg" type="number" min="0" inputmode="numeric" value="5"></div>
+        <div class="calc-row"><label for="c-web">Website only members<small>$149 / month, $1,500 setup</small></label><input id="c-web" type="number" min="0" inputmode="numeric" value="2"></div>
+        <div class="calc-out" aria-live="polite">
+          <div><span>Member revenue / month</span><b id="o-rev">$0</b></div>
+          <div class="hl"><span>To the Collective / month</span><b id="o-mo">$0</b></div>
+          <div><span>To the Collective / year</span><b id="o-yr">$0</b></div>
+          <div><span>Plus one time, from setups</span><b id="o-setup">$0</b></div>
+        </div>
+        <p class="calc-note">Estimates for illustration. Actual amounts follow what members sign up for.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FINE PRINT ============ -->
+<section class="fine">
+  <div class="wrap">
+    <div class="fine-box">
+      <h2><span class="star">*</span> Options and add ons</h2>
+      <p class="muted">For members with more than one office or who want to do more.</p>
+      <ul class="fine-list">
+        <li><b>Extra office locations on Google</b><p>$350 / month for each location beyond the main office.</p></li>
+        <li><b>Locations on the website</b><p>A dedicated page for each office at $250 per location, so each Google profile links to its own page. Or one shared locations page for $250.</p><span class="rec">Recommended: page per office</span></li>
+        <li><b>Paid advertising</b><p>Search and social ad campaigns can be added on top of any plan. Options are tailored to each member.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <div>
+      <h2>Ready when the Collective is</h2>
+      <p>Once the Collective signs off, we open Collective pricing to members and start onboarding. The revenue share starts with the first member.</p>
+    </div>
+    <div style="display:grid;gap:14px;justify-items:start">
+      <a class="btn btn-gold" href="mailto:info@gelpstrategies.com?subject=Collective%20member%20program">Email us to get started <svg class="arrow"><use href="#i-arrow"/></svg></a>
+      <p class="muted" style="margin:0">Or write to <span class="contact">info@gelpstrategies.com</span></p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Prepared for the Louisiana Rural Health Collective</span>
+    <div class="mid"><b>GELP Strategies</b>Healthcare Marketing Specialists</div>
+    <span class="tile"><img src="gelp-logo.webp" alt="GELP Strategies"></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scale live previews to fit their frames
+  var frames = document.querySelectorAll('.frame');
+  function fit(){
+    frames.forEach(function(f){
+      var w = +f.dataset.w, h = +f.dataset.h, s = f.clientWidth / w;
+      f.style.height = Math.round(h * s) + 'px';
+      var ifr = f.querySelector('iframe');
+      ifr.style.width = w + 'px'; ifr.style.height = h + 'px'; ifr.style.transform = 'scale(' + s + ')';
+    });
+  }
+  window.addEventListener('resize', fit); fit();
+
+
+  // Hero proof chart (monthly values read from the practice's Google Business Profile charts)
+  var series = {
+    calls: { max: 200, step: 50, v: [0,118,141,147,181] },
+    dir:   { max: 80,  step: 20, v: [0,41,37,37,69] },
+    all:   { max: 320, step: 80, v: [0,205,175,182,305] }
+  };
+  var months = ['May','Jun','Jul','Aug','Sep'];
+  var svg = document.querySelector('.proof-chart');
+  var L = 40, R = 500, T = 18, B = 160;
+  function draw(k){
+    var d = series[k], NS = 'http://www.w3.org/2000/svg';
+    var x = function(i){ return L + i * (R - L) / (months.length - 1); };
+    var y = function(v){ return B - v / d.max * (B - T); };
+    var grid = svg.querySelector('.grid'), dots = svg.querySelector('.dots'), labels = svg.querySelector('.labels');
+    grid.innerHTML = ''; dots.innerHTML = ''; labels.innerHTML = '';
+    for (var g = 0; g <= d.max; g += d.step){
+      var ln = document.createElementNS(NS,'line'); ln.setAttribute('x1',L); ln.setAttribute('x2',R); ln.setAttribute('y1',y(g)); ln.setAttribute('y2',y(g)); grid.appendChild(ln);
+      var t = document.createElementNS(NS,'text'); t.setAttribute('x',L-8); t.setAttribute('y',y(g)+4); t.setAttribute('text-anchor','end'); t.textContent = g; grid.appendChild(t);
+    }
+    var pts = d.v.map(function(v,i){ return [x(i), y(v)]; });
+    var line = 'M' + pts.map(function(p){ return p[0].toFixed(1)+' '+p[1].toFixed(1); }).join(' L');
+    svg.querySelector('.line').setAttribute('d', line);
+    svg.querySelector('.area').setAttribute('d', line + ' L' + R + ' ' + B + ' L' + L + ' ' + B + ' Z');
+    pts.forEach(function(p,i){
+      var c = document.createElementNS(NS,'circle'); c.setAttribute('cx',p[0]); c.setAttribute('cy',p[1]); c.setAttribute('r',5); dots.appendChild(c);
+      var m = document.createElementNS(NS,'text'); m.setAttribute('x',p[0]); m.setAttribute('y',B+20); m.setAttribute('text-anchor','middle'); m.textContent = months[i]; labels.appendChild(m);
+    });
+    var last = pts[pts.length-1], vt = document.createElementNS(NS,'text');
+    vt.setAttribute('x', last[0]-10); vt.setAttribute('y', last[1]-12); vt.setAttribute('text-anchor','end'); vt.setAttribute('class','val'); vt.textContent = d.v[d.v.length-1] + ' in Sep';
+    labels.appendChild(vt);
+  }
+  document.querySelectorAll('.proof-tabs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.proof-tabs button').forEach(function(o){ o.setAttribute('aria-selected', o === b ? 'true' : 'false'); });
+      draw(b.dataset.k);
+    });
+  });
+  draw('calls');
+
+  // Revenue share calculator
+  var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+  var ids = ['c-gbp','c-loc','c-webg','c-web'];
+  function num(id){ var v = parseInt(document.getElementById(id).value, 10); return isFinite(v) && v > 0 ? v : 0; }
+  function calc(){
+    var gbp = num('c-gbp'), loc = num('c-loc'), webg = num('c-webg'), web = num('c-web');
+    var monthly = gbp * 1000 + loc * 350 + webg * 49 + web * 149;
+    var setups = (webg + web) * 1500;
+    document.getElementById('o-rev').textContent = money(monthly);
+    document.getElementById('o-mo').textContent = money(monthly * 0.05);
+    document.getElementById('o-yr').textContent = money(monthly * 0.05 * 12);
+    document.getElementById('o-setup').textContent = money(setups * 0.05);
+  }
+  ids.forEach(function(id){ document.getElementById(id).addEventListener('input', calc); });
+  calc();
+})();
+</script>
+</body>
+</html>

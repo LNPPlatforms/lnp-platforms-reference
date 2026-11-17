@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MAICO + Compassio Concept | GELP Strategies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+  <style>
+    :root {
+      --night: #160F2B; --night-2: #23173F; --purple: #55197F; --violet: #8A55C9; --blue: #1E5BAA; --sky: #6FA8F0;
+      --ink: #221838; --mute: #B9B2CC; --line: rgba(255,255,255,.12); --white: #FFFFFF; --gold: #F2C14E;
+      --display: "Lora", Georgia, serif; --body: "Poppins", "Segoe UI", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { font-family: var(--body); color: var(--white); background: var(--night); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+    .hero { position: relative; overflow: hidden; min-height: 100vh; display: flex; flex-direction: column;
+      background: radial-gradient(900px 600px at 82% 40%, rgba(30,91,170,.45), transparent 60%),
+                  radial-gradient(700px 500px at 10% 100%, rgba(85,25,127,.55), transparent 60%), var(--night); }
+
+    /* nav */
+    nav .wrap { display: flex; align-items: center; gap: 28px; min-height: 84px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .maico { font-weight: 700; font-size: 22px; letter-spacing: .14em; }
+    .plus { color: var(--mute); font-size: 20px; }
+    .brand img { height: 40px; width: auto; display: block; background: #fff; border-radius: 8px; padding: 4px 8px; }
+    .links { display: flex; gap: 26px; margin-left: auto; font-size: 14px; color: #DDD7EA; }
+    .links a:hover { color: #fff; }
+    .nav-cta { border: 1px solid rgba(255,255,255,.35); padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+
+    /* hero body */
+    .grid { flex: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding-block: 24px 40px; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+    .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--sky); }
+    h1 { font-family: var(--display); font-weight: 600; font-size: clamp(38px, 4.6vw, 62px); line-height: 1.06; letter-spacing: -.015em; margin: 16px 0 18px; }
+    h1 em { font-style: italic; color: var(--sky); }
+    .lede { font-size: 18px; line-height: 1.6; color: #D9D3E8; max-width: 560px; margin: 0 0 26px; }
+
+    .offer { display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; max-width: 560px; margin-bottom: 26px; }
+    .offer .tag { flex: none; background: var(--gold); color: var(--night); font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; }
+    .offer p { margin: 0; font-size: 14.5px; line-height: 1.5; color: #E7E2F2; }
+    .offer b { color: #fff; }
+
+    .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 15px 22px; border-radius: 10px; font-weight: 600; font-size: 15px; }
+    .btn.primary { background: linear-gradient(135deg, var(--blue), var(--violet)); box-shadow: 0 10px 30px rgba(30,91,170,.4); }
+    .btn.ghost { border: 1px solid rgba(255,255,255,.35); }
+    .fine { font-size: 12.5px; color: var(--mute); margin-top: 14px; }
+
+    /* device visual */
+    .visual { position: relative; height: 540px; }
+    .device { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-8deg); width: 230px; height: 440px;
+      background: linear-gradient(160deg, #F4F3F8, #C9C6D6); border-radius: 46px 46px 70px 70px; box-shadow: 0 40px 80px rgba(0,0,0,.55), inset 0 -8px 20px rgba(0,0,0,.12); }
+    .device .probe { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 46px; height: 90px; background: linear-gradient(#E9E7F0, #BDB9CB); border-radius: 24px 24px 8px 8px; }
+    .device .probe::before { content: ""; position: absolute; top: -18px; left: 50%; transform: translateX(-50%); width: 30px; height: 26px; border-radius: 50% 50% 40% 40%; background: var(--sky); opacity: .9; }
+    .screen { position: absolute; top: 40px; left: 22px; right: 22px; height: 210px; background: #0D1530; border-radius: 16px; padding: 14px; }
+    .screen .lbl { padding: 0 8px; white-space: nowrap; font-size: 10px; color: #8FA6CF; letter-spacing: .1em; display: flex; justify-content: space-between; }
+    .screen svg { display: block; width: 100%; height: 150px; margin-top: 6px; }
+    .keys { position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); display: flex; gap: 14px; }
+    .keys i { width: 40px; height: 40px; border-radius: 50%; background: #E3E1EA; box-shadow: inset 0 -3px 6px rgba(0,0,0,.18); }
+    .keys i:nth-child(2) { background: var(--blue); }
+
+    .float { position: absolute; background: #fff; color: var(--ink); border-radius: 14px; padding: 14px 16px; box-shadow: 0 20px 50px rgba(0,0,0,.35); font-size: 13px; line-height: 1.45; }
+    .float b { display: block; font-size: 14px; margin-bottom: 2px; }
+    .f1 { top: 40px; right: 0; width: 220px; }
+    .f2 { bottom: 54px; left: 0; width: 230px; }
+    .f3 { bottom: 0; right: 30px; width: 200px; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+    .kicker { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); }
+    .big { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--purple); line-height: 1; margin: 4px 0; }
+
+    /* proof strip */
+    .proof { border-top: 1px solid var(--line); background: rgba(0,0,0,.18); }
+    .proof .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-block: 20px; }
+    .proof div { font-size: 13.5px; color: #CFC8E0; line-height: 1.45; }
+    .proof strong { display: block; font-family: var(--display); font-size: 24px; color: #fff; font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .wrap { padding: 0 18px; }
+      .links, .nav-cta { display: none; }
+      nav .wrap { min-height: 68px; }
+      .brand img { height: 32px; }
+      .maico { font-size: 18px; }
+      .grid { grid-template-columns: 1fr; gap: 10px; padding-top: 10px; }
+      .lede { font-size: 16px; }
+      .visual { height: 380px; order: -1; margin-top: 70px; }
+      .device { width: 170px; height: 330px; }
+      .screen { height: 150px; top: 30px; left: 16px; right: 16px; }
+      .screen svg { height: 100px; }
+      .screen .lbl span:last-child { display: none; }
+      .keys { bottom: 50px; } .keys i { width: 30px; height: 30px; }
+      .f1 { top: 10px; width: 170px; font-size: 12px; } .f2 { bottom: 20px; width: 175px; font-size: 12px; } .f3 { display: none; }
+      .ctas .btn { flex: 1 1 100%; justify-content: center; }
+      .proof .wrap { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <nav><div class="wrap">
+      <a class="brand" href="#"><span class="maico">MAICO</span><span class="plus">+</span><img src="../compassio-logo.webp" alt="Compassio Medical Education"></a>
+      <div class="links"><a href="#">Why tympanometry</a><a href="#">The courses</a><a href="#">Meet Dr. LaCour</a><a href="#">For ENTs</a></div>
+      <a class="nav-cta" href="#">Get pricing</a>
+    </div></nav>
+
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">easyTymp + Compassio CME</span>
+        <h1>Know what's behind the eardrum <em>on the first visit.</em></h1>
+        <p class="lede">Ear pain is one of the top reasons patients walk into urgent care and primary care. A MAICO easyTymp and Dr. LaCour's training help you confirm fluid, treat with confidence and prescribe fewer antibiotics.</p>
+        <div class="offer">
+          <span class="tag">Included</span>
+          <p><b>Two free CME seats with every tympanometer.</b> Beyond the Prescription plus ENT Pearls and Mastery of the Ear, a $1,196 value.</p>
+        </div>
+        <div class="ctas">
+          <a class="btn primary" href="#">Get pricing from your local distributor →</a>
+          <a class="btn ghost" href="#">Watch a sample lesson</a>
+        </div>
+        <p class="fine">Takes 30 seconds. A MAICO distributor in your state follows up.</p>
+      </div>
+
+      <div class="visual" aria-hidden="true">
+        <div class="device">
+          <div class="probe"></div>
+          <div class="screen">
+            <div class="lbl"><span>RIGHT EAR</span><span>TYPE A</span></div>
+            <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+              <g stroke="rgba(143,166,207,.18)" stroke-width="1">
+                <line x1="0" y1="30" x2="200" y2="30"/><line x1="0" y1="75" x2="200" y2="75"/><line x1="0" y1="120" x2="200" y2="120"/>
+                <line x1="100" y1="0" x2="100" y2="150"/>
+              </g>
+              <path d="M0 132 C60 130 78 118 90 70 C96 38 104 38 110 70 C122 118 140 130 200 132" fill="none" stroke="#6FA8F0" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M0 136 C60 134 140 134 200 136" fill="none" stroke="#C9A3F2" stroke-width="2.5" stroke-dasharray="5 5"/>
+            </svg>
+          </div>
+          <div class="keys"><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="float f1"><b><span class="dot" style="background:#6FA8F0"></span>Type A: normal</b>Peak present. Middle ear is clear, so skip the antibiotic.</div>
+        <div class="float f2"><b><span class="dot" style="background:#C9A3F2"></span>Type B: flat line</b>Fluid behind the eardrum. Treat or recheck with proof, not a guess.</div>
+        <div class="float f3"><span class="kicker">CME hours</span><div class="big">7.5</div>ACCME across both courses</div>
+      </div>
+    </div>
+
+    <div class="proof"><div class="wrap">
+      <div><strong>#1</strong>ENT complaints as a reason for urgent care visits</div>
+      <div><strong>2 seats</strong>Included free with each easyTymp</div>
+      <div><strong>Dr. Jeffrey LaCour</strong>ENT and founder of Compassio</div>
+      <div><strong>Rural clinic proof</strong>Family Healthcare of Bedico: first-visit diagnoses, fewer antibiotics and referrals</div>
+    </div></div>
+  </section>
+</body>
+</html>

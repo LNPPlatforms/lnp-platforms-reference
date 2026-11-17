@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grow Your Practice | GELP Strategies</title>
+<link rel="icon" type="image/png" href="../assets/gelp-logo.png">
+<meta name="description" content="Find out how many patients are looking for you and not finding you. Get a free visibility report for your practice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #1A2A52; background: #ffffff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; }
+p, h1, h2, h3, ul { margin: 0; padding: 0; }
+
+/* Hidden for now (RLX). Delete this rule to bring RLX back. */
+.gp-rlx { display: none !important; }
+
+/* ===== HEADER ===== */
+#gelp-header { background: #ffffff; border-bottom: 1px solid #E3E7EF; width: 100%; position: relative; z-index: 50; }
+#gelp-header .gh-bar { max-width: 1180px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+#gelp-header .gh-logo img { display: block; height: 66px; width: auto; }
+#gelp-header .gh-nav { display: flex; align-items: center; gap: 28px; }
+#gelp-header a.gh-link { font-size: 15px; font-weight: 600; color: #1A2A52; padding: 6px 0; white-space: nowrap; border-bottom: 2px solid transparent; transition: border-color .15s ease; }
+#gelp-header a.gh-link:hover, #gelp-header a.gh-link:focus { border-bottom-color: #C9A04A; }
+#gelp-header a.gh-cta { display: inline-flex; align-items: center; gap: 8px; background-color: #C9A04A; color: #14213E; font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: 10px; white-space: nowrap; transition: background-color .15s ease; }
+#gelp-header a.gh-cta:hover, #gelp-header a.gh-cta:focus { background-color: #D6B263; }
+#gelp-header a.gh-login { display: inline-flex; align-items: center; font-weight: 700; font-size: 15px; color: #1A2A52; padding: 10px 18px; border: 2px solid #1A2A52; border-radius: 10px; margin-left: -8px; white-space: nowrap; transition: background-color .15s ease, color .15s ease; }
+#gelp-header a.gh-login:hover, #gelp-header a.gh-login:focus { background-color: #1A2A52; color: #ffffff; }
+#gelp-header .gh-toggle { display: none; background: none; border: 0; cursor: pointer; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 8px; }
+#gelp-header .gh-toggle span, #gelp-header .gh-toggle span::before, #gelp-header .gh-toggle span::after { display: block; width: 22px; height: 2px; background: #1A2A52; border-radius: 2px; position: relative; transition: transform .2s ease, background .2s ease; }
+#gelp-header .gh-toggle span::before, #gelp-header .gh-toggle span::after { content: ""; position: absolute; left: 0; }
+#gelp-header .gh-toggle span::before { top: -7px; }
+#gelp-header .gh-toggle span::after { top: 7px; }
+#gelp-header.gh-open .gh-toggle span { background: transparent; }
+#gelp-header.gh-open .gh-toggle span::before { transform: translateY(7px) rotate(45deg); }
+#gelp-header.gh-open .gh-toggle span::after { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 1100px) {
+  #gelp-header .gh-bar { padding: 12px 16px; }
+  #gelp-header .gh-logo img { height: 50px; }
+  #gelp-header .gh-toggle { display: inline-flex; }
+  #gelp-header .gh-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: #ffffff; border-bottom: 1px solid #E3E7EF; box-shadow: 0 12px 24px rgba(26,42,82,.08); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 18px; }
+  #gelp-header.gh-open .gh-nav { display: flex; }
+  #gelp-header a.gh-link { padding: 14px 4px; border-bottom: 1px solid #EEF1F6; font-size: 16px; }
+  #gelp-header a.gh-login { justify-content: center; margin: 16px 0 0; padding: 13px 20px; font-size: 16px; }
+  #gelp-header a.gh-cta { justify-content: center; margin-top: 10px; padding: 14px 20px; font-size: 16px; }
+}
+
+/* ===== PAGE ===== */
+#gelp-home .gp-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+#gelp-home a.gp-btn { display: inline-flex; align-items: center; gap: 10px; background-color: #C9A04A; color: #14213E; font-weight: 700; font-size: 17px; padding: 16px 30px; border-radius: 10px; box-shadow: 0 8px 22px rgba(201,160,74,.28); transition: background-color .15s ease; }
+#gelp-home a.gp-btn:hover, #gelp-home a.gp-btn:focus { background-color: #D6B263; }
+#gelp-home .gp-rule { width: 64px; height: 3px; background: #C9A04A; margin-bottom: 26px; }
+
+/* Hero */
+#gelp-home .gp-hero { background: linear-gradient(120deg, #14213E 0%, #1A2A52 55%, #26406F 100%); color: #ffffff; padding: 88px 0; overflow: hidden; }
+#gelp-home .gp-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+#gelp-home .gp-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 56px; line-height: 1.1; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+#gelp-home .gp-hero h1 em { font-style: normal; color: #C9A04A; display: block; }
+#gelp-home .gp-hero-sub { font-size: 19px; color: #C7D0E2; margin-top: 22px; max-width: 520px; }
+#gelp-home .gp-hero .gp-btn { margin-top: 36px; }
+#gelp-home .gp-hub { width: 100%; max-width: 460px; height: auto; display: block; margin-left: auto; }
+
+/* Doors */
+#gelp-home .gp-doors { padding: 88px 0 72px; background: #ffffff; }
+#gelp-home .gp-doors-head { text-align: center; margin-bottom: 44px; }
+#gelp-home .gp-doors-head .gp-rule { margin: 0 auto 22px; }
+#gelp-home .gp-doors-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+#gelp-home a.gp-door { display: flex; flex-direction: column; background: #ffffff; border: 1px solid #E3E7EF; border-top: 4px solid #C9A04A; border-radius: 14px; padding: 30px 26px 26px; box-shadow: 0 6px 20px rgba(26,42,82,.06); color: #1A2A52; transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease; }
+#gelp-home a.gp-door:hover, #gelp-home a.gp-door:focus { box-shadow: 0 14px 34px rgba(26,42,82,.12); border-color: #CBD3E1; border-top-color: #C9A04A; transform: translateY(-2px); }
+#gelp-home .gp-icon { width: 64px; height: 64px; border-radius: 16px; background: #EEF2F8; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+#gelp-home .gp-icon svg { width: 36px; height: 36px; }
+#gelp-home .gp-door h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 25px; font-weight: 700; color: #1A2A52; line-height: 1.2; }
+#gelp-home .gp-door p { font-size: 15.5px; color: #4A5672; margin-top: 12px; flex-grow: 1; }
+#gelp-home .gp-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 14.5px; font-weight: 700; color: #1A2A52; border-bottom: 2px solid #C9A04A; align-self: flex-start; padding-bottom: 2px; }
+#gelp-home .gp-door p.gp-label, #gelp-home .gp-label { flex-grow: 0; margin-top: 0; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #B48A35; margin-bottom: 6px; }
+#gelp-home .gp-h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 40px; line-height: 1.15; font-weight: 700; color: #1A2A52; }
+#gelp-home .gp-lede { font-size: 17px; color: #4A5672; margin-top: 14px; max-width: 640px; }
+#gelp-home .gp-doors-head .gp-lede { margin-left: auto; margin-right: auto; }
+
+/* Healthcare strip */
+#gelp-home .gp-hc { padding: 0 0 80px; background: #ffffff; }
+#gelp-home a.gp-hc-band { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #F7F8FB; border: 1px solid #E3E7EF; border-left: 5px solid #C9A04A; border-radius: 14px; padding: 26px 32px; color: #1A2A52; transition: box-shadow .15s ease; }
+#gelp-home a.gp-hc-band:hover { box-shadow: 0 10px 26px rgba(26,42,82,.10); }
+#gelp-home .gp-hc-text b { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; }
+#gelp-home .gp-hc-text span { display: block; font-size: 15.5px; color: #4A5672; margin-top: 4px; }
+#gelp-home .gp-hc-go { flex-shrink: 0; font-weight: 700; font-size: 15px; border-bottom: 2px solid #C9A04A; padding-bottom: 2px; }
+
+/* Proof */
+#gelp-home .gp-proof { background: #EEF2F8; padding: 44px 0; }
+#gelp-home .gp-proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+#gelp-home a.gp-stat { display: flex; align-items: center; gap: 18px; color: #1A2A52; }
+#gelp-home .gp-stat b { font-family: 'Playfair Display', Georgia, serif; font-size: 58px; line-height: 1; white-space: nowrap; transition: color .15s ease; }
+#gelp-home .gp-stat span { font-size: 15px; color: #4A5672; line-height: 1.45; }
+#gelp-home .gp-stat sup { color: #B48A35; font-weight: 700; }
+#gelp-home a.gp-stat:hover b { color: #B48A35; }
+
+/* Difference */
+#gelp-home .gp-diff { padding: 84px 0; background: #ffffff; }
+#gelp-home .gp-diff-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 22px; margin-top: 40px; align-items: stretch; }
+#gelp-home .gp-col { border: 1px solid #E3E7EF; border-radius: 14px; padding: 28px; background: #F7F8FB; }
+#gelp-home .gp-col-label { font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #6E8AA8; }
+#gelp-home .gp-col-big { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #8A97B0; margin-top: 12px; line-height: 1.25; }
+#gelp-home .gp-col-gelp { background: #14213E; border-color: #14213E; border-top: 4px solid #C9A04A; box-shadow: 0 16px 36px rgba(20,33,62,.22); }
+#gelp-home .gp-col-gelp .gp-col-label { color: #C9A04A; }
+#gelp-home .gp-col-gelp ul { list-style: none; margin-top: 14px; }
+#gelp-home .gp-col-gelp li { position: relative; padding-left: 28px; margin-bottom: 10px; font-size: 16.5px; font-weight: 600; color: #ffffff; }
+#gelp-home .gp-col-gelp li::before { content: "\2713"; position: absolute; left: 0; top: 0; color: #C9A04A; font-weight: 800; }
+
+/* Close */
+#gelp-home .gp-close { background: linear-gradient(120deg, #14213E 0%, #1A2A52 60%, #26406F 100%); padding: 80px 0; text-align: center; }
+#gelp-home .gp-close .gp-rule { margin: 0 auto 24px; }
+#gelp-home .gp-close h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 42px; font-weight: 700; color: #ffffff; line-height: 1.15; }
+#gelp-home .gp-close-sub { font-size: 17px; color: #C7D0E2; margin-top: 12px; }
+#gelp-home .gp-close .gp-btn { margin-top: 32px; }
+
+/* Fine print */
+#gelp-home .gp-fine { padding: 26px 0 30px; background: #ffffff; }
+#gelp-home .gp-fine p { font-size: 13px; color: #6E8AA8; margin-bottom: 6px; }
+#gelp-home .gp-fine span { color: #B48A35; font-weight: 700; margin-right: 4px; }
+
+/* ===== FOOTER ===== */
+#gelp-footer { background: #14213E; color: #C7D0E2; width: 100%; border-top: 3px solid #C9A04A; }
+#gelp-footer .gf-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+#gelp-footer .gf-main { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; padding: 56px 0 44px; align-items: start; }
+#gelp-footer .gf-logo img { display: block; height: 62px; width: auto; }
+#gelp-footer .gf-tag { font-size: 15px; margin-top: 16px; color: #C7D0E2; }
+#gelp-footer h4 { margin: 0 0 14px; font-size: 12.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #C9A04A; }
+#gelp-footer .gf-links a { display: block; font-size: 15.5px; font-weight: 600; color: #ffffff; margin-bottom: 10px; }
+#gelp-footer .gf-links a:hover, #gelp-footer .gf-links a:focus { color: #C9A04A; }
+#gelp-footer a.gf-cta { display: inline-flex; align-items: center; gap: 8px; background-color: #C9A04A; color: #14213E; font-weight: 700; font-size: 15px; padding: 13px 22px; border-radius: 10px; transition: background-color .15s ease; }
+#gelp-footer a.gf-cta:hover, #gelp-footer a.gf-cta:focus { background-color: #D6B263; }
+#gelp-footer a.gf-mail { display: inline-block; margin-top: 16px; font-size: 15.5px; font-weight: 600; color: #ffffff; }
+#gelp-footer a.gf-mail:hover, #gelp-footer a.gf-mail:focus { color: #C9A04A; }
+#gelp-footer .gf-bottom { border-top: 1px solid rgba(255,255,255,.12); padding: 20px 0 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 13.5px; }
+#gelp-footer .gf-legal { display: flex; gap: 22px; }
+#gelp-footer .gf-legal a { color: #C7D0E2; }
+#gelp-footer .gf-legal a:hover, #gelp-footer .gf-legal a:focus { color: #ffffff; }
+@media (max-width: 900px) { #gelp-footer .gf-main { grid-template-columns: 1fr 1fr; } #gelp-footer .gf-brand { grid-column: 1 / -1; } }
+@media (max-width: 640px) {
+  #gelp-footer .gf-wrap { padding: 0 16px; }
+  #gelp-footer .gf-main { grid-template-columns: 1fr; gap: 32px; padding: 44px 0 32px; }
+  #gelp-footer .gf-logo img { height: 52px; }
+  #gelp-footer a.gf-cta { width: 100%; justify-content: center; padding: 15px 22px; }
+  #gelp-footer .gf-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 1100px) {
+  #gelp-home .gp-doors-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 960px) {
+  #gelp-home .gp-hero-grid { grid-template-columns: 1fr; }
+  #gelp-home .gp-hub { margin: 8px auto 0; max-width: 380px; }
+  #gelp-home .gp-proof-grid { grid-template-columns: 1fr; max-width: 520px; gap: 18px; }
+  #gelp-home .gp-diff-grid { grid-template-columns: 1fr; max-width: 560px; }
+  #gelp-home a.gp-hc-band { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  #gelp-home .gp-wrap { padding: 0 16px; }
+  #gelp-home .gp-hero { padding: 56px 0 48px; }
+  #gelp-home .gp-hero h1 { font-size: 38px; }
+  #gelp-home .gp-hero-sub { font-size: 17px; }
+  #gelp-home .gp-hub { max-width: 280px; margin-top: 16px; }
+  #gelp-home .gp-doors-grid { grid-template-columns: 1fr; }
+  #gelp-home .gp-doors { padding: 56px 0 48px; }
+  #gelp-home .gp-hc { padding-bottom: 56px; }
+  #gelp-home .gp-close { padding: 56px 0; }
+  #gelp-home .gp-close h2 { font-size: 32px; }
+  #gelp-home .gp-diff { padding: 56px 0; }
+  #gelp-home .gp-h2 { font-size: 30px; }
+  #gelp-home .gp-stat b { font-size: 46px; }
+  #gelp-home a.gp-btn { width: 100%; justify-content: center; }
+}
+
+/* ===== MARKETING PAGE ===== */
+
+#gelp-mkt, #gelp-mkt * { box-sizing: border-box; margin: 0; padding: 0; }
+#gelp-mkt { font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #1A2A52; background: #ffffff; line-height: 1.55; -webkit-font-smoothing: antialiased; width: 100%; overflow-x: hidden; }
+#gelp-mkt a { text-decoration: none !important; }
+#gelp-mkt .gm-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+#gelp-mkt .gm-kicker { font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C9A04A; margin-bottom: 18px; }
+#gelp-mkt .gm-rule { width: 64px; height: 3px; background: #C9A04A; margin-bottom: 22px; }
+#gelp-mkt h2.gm-h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 40px; line-height: 1.15; font-weight: 700; color: #1A2A52; }
+#gelp-mkt .gm-lede { font-size: 17px; color: #4A5672; margin-top: 14px; max-width: 680px; }
+#gelp-mkt .gm-ast { color: #B48A35; font-weight: 700; font-size: .55em; margin-left: 2px; }
+
+/* Buttons */
+#gelp-mkt a.gm-btn, #gelp-mkt a.gm-btn:visited { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background-color: #C9A04A !important; color: #14213E !important; font-weight: 700; font-size: 17px; text-transform: none !important; padding: 16px 30px; border-radius: 10px; box-shadow: 0 8px 22px rgba(201,160,74,.28); transition: background-color .15s ease; }
+#gelp-mkt a.gm-btn:hover, #gelp-mkt a.gm-btn:focus { background-color: #D6B263 !important; color: #14213E !important; }
+
+/* Hero */
+#gelp-mkt .gm-hero { background: linear-gradient(120deg, #14213E 0%, #1A2A52 55%, #26406F 100%); color: #ffffff; padding: 84px 0; overflow: hidden; }
+#gelp-mkt .gm-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+#gelp-mkt .gm-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 50px; line-height: 1.12; font-weight: 700; color: #ffffff; }
+#gelp-mkt .gm-hero h1 em { font-style: normal; color: #C9A04A; }
+#gelp-mkt .gm-hero p { font-size: 17.5px; color: #C7D0E2; margin-top: 22px; max-width: 540px; line-height: 1.7; }
+#gelp-mkt .gm-hero .gm-btn { margin-top: 32px; }
+#gelp-mkt .gm-grid-art { width: 100%; max-width: 480px; display: block; margin-left: auto; }
+#gelp-mkt .gm-grid-cap { text-align: center; max-width: 480px; margin: 14px 0 0 auto; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8FA0BE; }
+#gelp-mkt .gm-cell { fill: #3A4E78; animation: gmLight 7s ease-in-out infinite; }
+@keyframes gmLight { 0%, 8% { fill: #3A4E78; } 22%, 72% { fill: #C9A04A; } 88%, 100% { fill: #3A4E78; } }
+#gelp-mkt .gm-pin { transform-box: fill-box; transform-origin: center bottom; animation: gmPin 7s ease-in-out infinite; }
+@keyframes gmPin { 0%, 6% { transform: translateY(0); } 12% { transform: translateY(-8px); } 18%, 100% { transform: translateY(0); } }
+
+/* Stat */
+#gelp-mkt .gm-stat { background: #ffffff; padding: 72px 0 24px; }
+#gelp-mkt .gm-stat-box { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; background: #F7F8FB; border: 1px solid #E3E7EF; border-left: 6px solid #C9A04A; border-radius: 16px; padding: 36px 44px; }
+#gelp-mkt .gm-num { font-family: 'Playfair Display', Georgia, serif; font-size: 110px; font-weight: 700; line-height: 1; color: #1A2A52; white-space: nowrap; }
+#gelp-mkt .gm-num span { color: #C9A04A; }
+#gelp-mkt .gm-stat-box h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 30px; line-height: 1.25; font-weight: 700; color: #1A2A52; max-width: none; }
+#gelp-mkt .gm-stat-box p { font-size: 16.5px; color: #4A5672; margin-top: 10px; max-width: none; text-wrap: balance; }
+
+/* Cycle */
+#gelp-mkt .gm-cycle { padding: 72px 0 84px; background: #ffffff; }
+#gelp-mkt .gm-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+#gelp-mkt .gm-card { background: #ffffff; border: 1px solid #E3E7EF; border-top: 4px solid #C9A04A; border-radius: 14px; padding: 30px 28px; box-shadow: 0 6px 20px rgba(26,42,82,.06); }
+#gelp-mkt .gm-icon { width: 54px; height: 54px; border-radius: 50%; background: #EEF1F7; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+#gelp-mkt .gm-icon svg { width: 26px; height: 26px; }
+#gelp-mkt .gm-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #1A2A52; line-height: 1.2; }
+#gelp-mkt .gm-card p { font-size: 16px; color: #4A5672; margin-top: 10px; }
+
+/* Reviews marquee */
+#gelp-mkt .gm-reviews { background: #EEF2F8; padding: 72px 0 64px; overflow: hidden; }
+#gelp-mkt .gm-sample { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: #6E8AA8; background: #ffffff; border: 1px solid #D6DFEC; border-radius: 999px; padding: 6px 14px; margin-top: 16px; }
+#gelp-mkt .gm-marquee { margin-top: 36px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+#gelp-mkt .gm-track { display: flex; gap: 20px; width: max-content; animation: gmScroll 60s linear infinite; }
+#gelp-mkt .gm-marquee:hover .gm-track { animation-play-state: paused; }
+@keyframes gmScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+#gelp-mkt .gm-review { width: 320px; flex-shrink: 0; background: #ffffff; border: 1px solid #E3E7EF; border-radius: 14px; padding: 22px 24px; box-shadow: 0 4px 14px rgba(26,42,82,.05); }
+#gelp-mkt .gm-stars { color: #C9A04A; font-size: 17px; letter-spacing: 2px; }
+#gelp-mkt .gm-review p { font-size: 15.5px; color: #26355C; margin-top: 10px; line-height: 1.6; }
+#gelp-mkt .gm-review span { display: block; font-size: 13.5px; font-weight: 700; color: #6E8AA8; margin-top: 12px; }
+
+/* Process */
+#gelp-mkt .gm-process { padding: 84px 0; background: #ffffff; }
+#gelp-mkt .gm-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+#gelp-mkt .gm-step { padding: 28px 24px 26px; border: 1px solid #E3E7EF; border-radius: 14px; background: #F7F8FB; }
+#gelp-mkt .gm-step-n { width: 40px; height: 40px; border-radius: 50%; background: #1A2A52; color: #C9A04A; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+#gelp-mkt .gm-step h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A2A52; line-height: 1.25; }
+#gelp-mkt .gm-step p { font-size: 15.5px; color: #4A5672; margin-top: 8px; }
+
+/* Promise */
+#gelp-mkt .gm-promise { padding: 0 0 84px; background: #ffffff; }
+#gelp-mkt .gm-promise-box { background: #14213E; border-radius: 16px; padding: 44px 48px; display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; color: #ffffff; }
+#gelp-mkt .gm-seal { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #C9A04A; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+#gelp-mkt .gm-seal b { font-family: 'Playfair Display', Georgia, serif; font-size: 42px; line-height: 1; color: #C9A04A; }
+#gelp-mkt .gm-seal span { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #ffffff; margin-top: 4px; }
+#gelp-mkt .gm-promise-box h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 32px; line-height: 1.2; font-weight: 700; color: #ffffff; }
+#gelp-mkt .gm-promise-box p { font-size: 17px; color: #C7D0E2; margin-top: 10px; }
+
+/* Report + form */
+#gelp-mkt .gm-report { padding: 84px 0; background: linear-gradient(120deg, #14213E 0%, #1A2A52 60%, #26406F 100%); color: #ffffff; scroll-margin-top: 10px; }
+#gelp-mkt .gm-report-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+#gelp-mkt .gm-report-head .gm-rule { margin: 0 auto 22px; }
+#gelp-mkt .gm-report-head h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 40px; line-height: 1.15; font-weight: 700; color: #ffffff; }
+#gelp-mkt .gm-report-head p { font-size: 17px; color: #C7D0E2; margin: 14px auto 0; max-width: 540px; }
+#gelp-mkt .gm-form { max-width: 640px; margin: 0 auto; }
+#gelp-mkt .gm-form-card { background: #ffffff; border-radius: 16px; border-top: 4px solid #C9A04A; padding: 32px 36px; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+@media (max-width: 640px) { #gelp-mkt .gm-form-card { padding: 24px 20px; } }
+
+/* Fine print */
+#gelp-mkt .gm-fine { padding: 30px 0 40px; background: #ffffff; }
+#gelp-mkt .gm-fine p { font-size: 13px; color: #6E8AA8; max-width: 900px; margin-bottom: 8px; line-height: 1.6; }
+#gelp-mkt .gm-fine span { color: #B48A35; font-weight: 700; margin-right: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #gelp-mkt .gm-cell, #gelp-mkt .gm-pin { animation: none; }
+  #gelp-mkt .gm-cell.on { fill: #C9A04A; }
+  #gelp-mkt .gm-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+  #gelp-mkt .gm-track .gm-dup { display: none; }
+  #gelp-mkt .gm-marquee { -webkit-mask-image: none; mask-image: none; }
+}
+@media (max-width: 1000px) {
+  #gelp-mkt .gm-hero-grid { grid-template-columns: 1fr; }
+  #gelp-mkt .gm-grid-art, #gelp-mkt .gm-grid-cap { margin-left: auto; margin-right: auto; max-width: 400px; }
+  #gelp-mkt .gm-cards { grid-template-columns: 1fr; max-width: 560px; }
+  #gelp-mkt .gm-steps { grid-template-columns: 1fr; max-width: 560px; }
+}
+@media (max-width: 640px) {
+  #gelp-mkt .gm-wrap { padding: 0 16px; }
+  #gelp-mkt .gm-hero, #gelp-mkt .gm-process, #gelp-mkt .gm-report { padding: 56px 0; }
+  #gelp-mkt .gm-hero h1 { font-size: 34px; }
+  #gelp-mkt h2.gm-h2, #gelp-mkt .gm-report-head h2 { font-size: 30px; }
+  #gelp-mkt a.gm-btn { width: 100%; }
+  #gelp-mkt .gm-grid-art { max-width: 300px; }
+  #gelp-mkt .gm-stat-box { grid-template-columns: 1fr; padding: 28px 22px; gap: 14px; }
+  #gelp-mkt .gm-num { font-size: 84px; }
+  #gelp-mkt .gm-stat-box h2 { font-size: 24px; }
+  #gelp-mkt .gm-br { display: none; }
+  #gelp-mkt .gm-steps { grid-template-columns: 1fr; }
+  #gelp-mkt .gm-promise { padding-bottom: 56px; }
+  #gelp-mkt .gm-promise-box { grid-template-columns: 1fr; padding: 30px 24px; gap: 20px; }
+  #gelp-mkt .gm-promise-box h2 { font-size: 26px; }
+  #gelp-mkt .gm-review { width: 270px; }
+}
+
+/* Booking popup */
+#gelp-book { position: fixed; inset: 0; z-index: 2147483000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(11,18,38,.72); font-family: 'Plus Jakarta Sans', Arial, sans-serif; }
+#gelp-book.gb-open { display: flex; }
+#gelp-book .gb-panel { position: relative; width: 100%; max-width: 920px; max-height: calc(100vh - 48px); background: #ffffff; border-radius: 16px; border-top: 4px solid #C9A04A; box-shadow: 0 30px 80px rgba(0,0,0,.35); display: flex; flex-direction: column; overflow: hidden; }
+#gelp-book .gb-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1px solid #E3E7EF; }
+#gelp-book .gb-title { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: #1A2A52; margin: 0; }
+#gelp-book .gb-close { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #EEF1F7; color: #1A2A52; font-size: 24px; line-height: 1; cursor: pointer; }
+#gelp-book .gb-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 4px 8px 8px; min-height: 300px; }
+#gelp-book iframe { display: block; width: 100%; height: 820px; border: 0; }
+@media (max-width: 640px) {
+  #gelp-book { padding: 0; }
+  #gelp-book .gb-panel { max-width: none; max-height: none; height: 100%; border-radius: 0; }
+}
+</style>
+</head>
+<body>
+
+<header id="gelp-header">
+  <div class="gh-bar">
+    <a class="gh-logo" href="/"><img src="../assets/gelp-logo.png" alt="GELP Strategies"></a>
+    <button class="gh-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="gh-nav"><span></span></button>
+    <nav class="gh-nav" id="gh-nav" aria-label="Main">
+      <a class="gh-link" href="/marketing">Marketing</a>
+      <a class="gh-link" href="/#bpo">Outsourcing</a>
+      <a class="gh-link" href="/#software">Software</a>
+      <a class="gh-link" href="/#ops">Operations</a>
+      <a class="gh-link gp-rlx" href="/rlx">Strengthen Your Relationships</a>
+      <a class="gh-link gp-rlx" href="/vendor">Reach More Clinics</a>
+      <a class="gh-login" href="https://app.gelpstrategies.com" target="_blank" rel="noopener">Login</a>
+      <a class="gh-cta" href="/chris">Schedule a Call <span>&rarr;</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="gelp-mkt">
+
+  <!-- HERO -->
+  <section class="gm-hero">
+    <div class="gm-wrap gm-hero-grid">
+      <div>
+        <p class="gm-kicker">Grow Your Practice</p>
+        <h1>Find out how many patients are looking for you <em>and not finding you.</em></h1>
+        <p>We'll run a free visibility report on your practice: how you show up when patients search, how your reviews stack up and where the clinic down the street is getting ahead.</p>
+        <a class="gm-btn" href="#report">Get My Free Report <span>&rarr;</span></a>
+      </div>
+      <div aria-hidden="true">
+        <svg class="gm-grid-art" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg"><g stroke="#2F4470" stroke-width="2" fill="none" opacity=".7"><path d="M0 150 C120 130 200 190 480 160"/><path d="M0 330 C140 300 260 360 480 320"/><path d="M140 0 C150 160 120 300 160 480"/><path d="M330 0 C310 140 360 320 320 480"/></g><circle class="gm-cell" cx="40.0" cy="40.0" r="15" style="animation-delay:0.93s"/><circle class="gm-cell" cx="40.0" cy="106.7" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="40.0" cy="173.3" r="15" style="animation-delay:0.70s"/><circle class="gm-cell" cx="40.0" cy="240.0" r="15" style="animation-delay:0.66s"/><circle class="gm-cell" cx="40.0" cy="306.7" r="15" style="animation-delay:0.70s"/><circle class="gm-cell" cx="40.0" cy="373.3" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="40.0" cy="440.0" r="15" style="animation-delay:0.93s"/><circle class="gm-cell" cx="106.7" cy="40.0" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="106.7" cy="106.7" r="15" style="animation-delay:0.62s"/><circle class="gm-cell on" cx="106.7" cy="173.3" r="15" style="animation-delay:0.49s"/><circle class="gm-cell on" cx="106.7" cy="240.0" r="15" style="animation-delay:0.44s"/><circle class="gm-cell on" cx="106.7" cy="306.7" r="15" style="animation-delay:0.49s"/><circle class="gm-cell" cx="106.7" cy="373.3" r="15" style="animation-delay:0.62s"/><circle class="gm-cell" cx="106.7" cy="440.0" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="173.3" cy="40.0" r="15" style="animation-delay:0.70s"/><circle class="gm-cell on" cx="173.3" cy="106.7" r="15" style="animation-delay:0.49s"/><circle class="gm-cell on" cx="173.3" cy="173.3" r="15" style="animation-delay:0.31s"/><circle class="gm-cell on" cx="173.3" cy="240.0" r="15" style="animation-delay:0.22s"/><circle class="gm-cell on" cx="173.3" cy="306.7" r="15" style="animation-delay:0.31s"/><circle class="gm-cell on" cx="173.3" cy="373.3" r="15" style="animation-delay:0.49s"/><circle class="gm-cell" cx="173.3" cy="440.0" r="15" style="animation-delay:0.70s"/><circle class="gm-cell" cx="240.0" cy="40.0" r="15" style="animation-delay:0.66s"/><circle class="gm-cell on" cx="240.0" cy="106.7" r="15" style="animation-delay:0.44s"/><circle class="gm-cell on" cx="240.0" cy="173.3" r="15" style="animation-delay:0.22s"/><circle class="gm-cell on" cx="240.0" cy="306.7" r="15" style="animation-delay:0.22s"/><circle class="gm-cell on" cx="240.0" cy="373.3" r="15" style="animation-delay:0.44s"/><circle class="gm-cell" cx="240.0" cy="440.0" r="15" style="animation-delay:0.66s"/><circle class="gm-cell" cx="306.7" cy="40.0" r="15" style="animation-delay:0.70s"/><circle class="gm-cell on" cx="306.7" cy="106.7" r="15" style="animation-delay:0.49s"/><circle class="gm-cell on" cx="306.7" cy="173.3" r="15" style="animation-delay:0.31s"/><circle class="gm-cell on" cx="306.7" cy="240.0" r="15" style="animation-delay:0.22s"/><circle class="gm-cell on" cx="306.7" cy="306.7" r="15" style="animation-delay:0.31s"/><circle class="gm-cell on" cx="306.7" cy="373.3" r="15" style="animation-delay:0.49s"/><circle class="gm-cell" cx="306.7" cy="440.0" r="15" style="animation-delay:0.70s"/><circle class="gm-cell" cx="373.3" cy="40.0" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="373.3" cy="106.7" r="15" style="animation-delay:0.62s"/><circle class="gm-cell on" cx="373.3" cy="173.3" r="15" style="animation-delay:0.49s"/><circle class="gm-cell on" cx="373.3" cy="240.0" r="15" style="animation-delay:0.44s"/><circle class="gm-cell on" cx="373.3" cy="306.7" r="15" style="animation-delay:0.49s"/><circle class="gm-cell" cx="373.3" cy="373.3" r="15" style="animation-delay:0.62s"/><circle class="gm-cell" cx="373.3" cy="440.0" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="440.0" cy="40.0" r="15" style="animation-delay:0.93s"/><circle class="gm-cell" cx="440.0" cy="106.7" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="440.0" cy="173.3" r="15" style="animation-delay:0.70s"/><circle class="gm-cell" cx="440.0" cy="240.0" r="15" style="animation-delay:0.66s"/><circle class="gm-cell" cx="440.0" cy="306.7" r="15" style="animation-delay:0.70s"/><circle class="gm-cell" cx="440.0" cy="373.3" r="15" style="animation-delay:0.79s"/><circle class="gm-cell" cx="440.0" cy="440.0" r="15" style="animation-delay:0.93s"/><g class="gm-pin"><circle cx="240.0" cy="240.0" r="34" fill="#C9A04A" opacity=".18"/><path d="M240.0 266.0 C236.0 254.0 218.0 242.0 218.0 228.0 A22 22 0 1 1 262.0 228.0 C262.0 242.0 244.0 254.0 240.0 266.0Z" fill="#C9A04A"/><path d="M234.0 228.0 h12 M240.0 222.0 v12" stroke="#14213E" stroke-width="3.2" stroke-linecap="round"/></g></svg>
+        <p class="gm-grid-cap">How visible are you across your area?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT -->
+  <section class="gm-stat">
+    <div class="gm-wrap">
+      <div class="gm-stat-box">
+        <div class="gm-num" aria-label="38 percent"><span class="gm-count" data-to="38">38</span><span>%</span></div>
+        <div>
+          <h2>More new patients, year over year,<br class="gm-br"> for a GELP client practice.<sup class="gm-ast">*</sup></h2>
+          <p>Better visibility, a stronger reputation and an easier path to booking add up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH CYCLE -->
+  <section class="gm-cycle">
+    <div class="gm-wrap">
+      <div class="gm-rule"></div>
+      <h2 class="gm-h2">The Clinic Growth Cycle</h2>
+      <p class="gm-lede">More patients walking through your door, feedback that builds your reputation and a reputation that attracts the patients you want to see.</p>
+      <div class="gm-cards">
+        <div class="gm-card">
+          <div class="gm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+          <h3>Reputation</h3>
+          <p>Your clinic shows up in search based on dozens of factors most providers have never heard of. We manage them so patients find you first.</p>
+        </div>
+        <div class="gm-card">
+          <div class="gm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></div>
+          <h3>Reviews &amp; Feedback</h3>
+          <p>We give every patient a feedback channel after their visit, so happy patients speak up and concerns reach you first.</p>
+        </div>
+        <div class="gm-card">
+          <div class="gm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg></div>
+          <h3>Patient Access</h3>
+          <p>We make sure the path from "I need a doctor" to "I have an appointment" is as short as possible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE REVIEWS -->
+  <section class="gm-reviews">
+    <div class="gm-wrap">
+      <div class="gm-rule"></div>
+      <h2 class="gm-h2">What patients say when your reputation works.</h2>
+      <p class="gm-sample">Sample reviews, shown for illustration</p>
+    </div>
+    <div class="gm-marquee">
+      <div class="gm-track">
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Found them on Google when I needed a new doctor. Booking online took two minutes."</p><span>Maria R.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Short wait, friendly front desk and the doctor actually listened."</p><span>James T.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"I was nervous switching providers, but the reviews were right."</p><span>Diane K.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Got a text after my visit asking how it went. Nice to be asked."</p><span>Tasha W.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Easy to find, easy to book and easy to get answers."</p><span>Robert M.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"They got me in the same week. That never happens."</p><span>Luis G.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Staff explained everything and followed up after. Felt like more than a number."</p><span>Karen B.</span></div>
+        <div class="gm-review"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Their listing had everything I needed: hours, photos and how to book."</p><span>Andre P.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Found them on Google when I needed a new doctor. Booking online took two minutes."</p><span>Maria R.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Short wait, friendly front desk and the doctor actually listened."</p><span>James T.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"I was nervous switching providers, but the reviews were right."</p><span>Diane K.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Got a text after my visit asking how it went. Nice to be asked."</p><span>Tasha W.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Easy to find, easy to book and easy to get answers."</p><span>Robert M.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"They got me in the same week. That never happens."</p><span>Luis G.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Staff explained everything and followed up after. Felt like more than a number."</p><span>Karen B.</span></div>
+        <div class="gm-review gm-dup" aria-hidden="true"><div class="gm-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Their listing had everything I needed: hours, photos and how to book."</p><span>Andre P.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="gm-process">
+    <div class="gm-wrap">
+      <div class="gm-rule"></div>
+      <h2 class="gm-h2">Simple from the start.</h2>
+      <div class="gm-steps">
+        <div class="gm-step"><div class="gm-step-n">1</div><h3>Strategy call</h3><p>We review where you are today, including your visibility report, talk through your goals and build the plan to get there.</p></div>
+        <div class="gm-step"><div class="gm-step-n">2</div><h3>Buildout</h3><p>We build everything according to the plan, without pulling your team away from patients.</p></div>
+        <div class="gm-step"><div class="gm-step-n">3</div><h3>Rollout</h3><p>We roll it out, monitor the results and adjust to make sure your goals are met.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="gm-promise">
+    <div class="gm-wrap">
+      <div class="gm-promise-box">
+        <div class="gm-seal" aria-hidden="true"><b>90</b><span>Days</span></div>
+        <div>
+          <h2>Give us 90 days. You'll be glad you did.</h2>
+          <p>Real results take time. If we haven't shown you what we can do by day 90, that's on us. After that, there's no commitment. Cancel anytime with no exit fees.<sup class="gm-ast">**</sup></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORT FORM -->
+  <section class="gm-report" id="report">
+    <div class="gm-wrap">
+      <div class="gm-report-head">
+        <div class="gm-rule"></div>
+        <h2>Get your free visibility report.</h2>
+        <p>Tell us where to look. We'll run the numbers and walk you through what we find.</p>
+      </div>
+      <div class="gm-form">
+        <div class="gm-form-card" id="vis-form"></div>
+        <script src="https://app.gelpstrategies.com/forms/form.js" data-form="a8547710fa554185b006afc1963c3c73"
+          data-target="#vis-form" data-fields="name,email,phone"
+          data-extra="practice:Practice name,website:Practice website (if you have one),location:City and state"
+          data-button="Get My Free Report" data-color="#1A2A52"
+          data-success="Got it. We'll run your visibility report and reach out to walk you through it." async></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINE PRINT -->
+  <section class="gm-fine">
+    <div class="gm-wrap">
+      <p><span>*</span> Results from one client practice. Individual results vary.</p>
+      <p><span>**</span> Requires a 90-day initial commitment. After 90 days, service may be canceled at any time with 30 days' notice and no exit fee.</p>
+      <p>Reviews shown on this page are samples for illustration and do not represent actual patients or clients.</p>
+    </div>
+  </section>
+
+</main>
+
+
+<footer id="gelp-footer">
+  <div class="gf-wrap">
+    <div class="gf-main">
+      <div class="gf-brand">
+        <a class="gf-logo" href="/"><img src="../assets/gelp-logo-reverse.png" alt="GELP Strategies"></a>
+        <p class="gf-tag">You know your business. We handle the rest.</p>
+        <p class="gf-tag gp-rlx">Authorized Referralogix Dealer</p>
+      </div>
+      <div class="gf-links">
+        <h4>Explore</h4>
+        <a href="/marketing">Marketing</a>
+        <a href="/#bpo">Business Process Outsourcing</a>
+        <a href="/#software">Software &amp; Systems</a>
+        <a href="/#ops">Operations Consulting</a>
+        <a class="gp-rlx" href="/rlx">Strengthen Your Relationships</a>
+        <a class="gp-rlx" href="/vendor">Meet New Clinics</a>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <a class="gf-cta" href="/chris">Schedule a Call <span>&rarr;</span></a><br>
+        <a class="gf-mail" href="mailto:info@gelpstrategies.com">info@gelpstrategies.com</a>
+      </div>
+    </div>
+    <div class="gf-bottom">
+      <p>&copy; 2026 GELP Strategies, LLC. All rights reserved.</p>
+      <div class="gf-legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var h = document.getElementById('gelp-header');
+  var btn = h.querySelector('.gh-toggle');
+  btn.addEventListener('click', function () {
+    var open = h.classList.toggle('gh-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  h.querySelectorAll('.gh-nav a').forEach(function (a) {
+    a.addEventListener('click', function () { h.classList.remove('gh-open'); btn.setAttribute('aria-expanded', 'false'); });
+  });
+})();
+</script>
+<script>
+/* Schedule a Call popup. Still loads the GHL booking calendar until the CRM calendar is live.
+   To switch: change BOOKING_SRC to the CRM booking link. */
+(function () {
+  var BOOKING_SRC = 'https://links.gelpstrategies.com/widget/booking/8bQPftLoCrYZz9aSlSpQ';
+  var modal = null, lastFocus = null;
+  function build() {
+    modal = document.createElement('div');
+    modal.id = 'gelp-book';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Schedule a call with GELP Strategies');
+    modal.innerHTML = '<div class="gb-panel"><div class="gb-head"><p class="gb-title">Schedule a Call</p><button type="button" class="gb-close" aria-label="Close">&times;</button></div><div class="gb-body"><iframe src="' + BOOKING_SRC + '" allow="payment" title="Book a call with GELP Strategies"></iframe></div></div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    modal.querySelector('.gb-close').addEventListener('click', close);
+  }
+  function open() {
+    if (!modal) build();
+    lastFocus = document.activeElement;
+    modal.classList.add('gb-open');
+    document.documentElement.style.overflow = 'hidden';
+    modal.querySelector('.gb-close').focus();
+  }
+  function close() {
+    if (!modal) return;
+    modal.classList.remove('gb-open');
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal && modal.classList.contains('gb-open')) close(); });
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/^(https?:\/\/(www\.)?gelpstrategies\.com)?\/chris\/?(\?.*)?$/i.test(href)) { e.preventDefault(); open(); }
+  }, true);
+})();
+</script>
+<script>
+(function () {
+  var root = document.getElementById('gelp-mkt'); if (!root) return;
+  var el = root.querySelector('.gm-count'); if (!el) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var to = +el.getAttribute('data-to'); el.textContent = '0';
+  new IntersectionObserver(function (es, ob) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return; ob.disconnect();
+      var start = null, dur = 1600;
+      function step(t) { if (!start) start = t; var p = Math.min((t - start) / dur, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.5 }).observe(el);
+})();
+</script>
+</body>
+</html>

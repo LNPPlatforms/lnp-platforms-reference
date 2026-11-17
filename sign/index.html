@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Review and sign</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: #E9ECF1; color: #1d2433; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; --c: #1A2A52; }
+    .top { background: #fff; border-bottom: 3px solid var(--c); padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+    .top img { max-height: 40px; max-width: 200px; } .top b { font-size: 18px; color: var(--c); }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 16px 12px 120px; }
+    .card { background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 1px 3px rgba(20, 30, 50, .08); margin-bottom: 14px; }
+    h1 { margin: 0 0 6px; font-size: 22px; } h2 { margin: 0 0 8px; font-size: 18px; }
+    .muted { color: #5B6B8A; } .small { font-size: 13px; }
+    .msg { white-space: pre-wrap; margin: 10px 0 0; }
+    .btn { background: var(--c); color: #fff; border: 0; border-radius: 10px; padding: 12px 20px; font: inherit; font-weight: 700; cursor: pointer; min-height: 48px; }
+    .btn.ghost { background: #fff; color: var(--c); border: 1px solid #ccd3e0; }
+    .btn:disabled { opacity: .55; cursor: default; }
+    .linkish { background: none; border: 0; color: var(--c); text-decoration: underline; cursor: pointer; font: inherit; padding: 4px 0; }
+    label.chk { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0; cursor: pointer; }
+    label.chk input { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+    input[type=text], input[type=email], input[type=file], textarea, .code { font: inherit; padding: 10px 12px; border: 1px solid #ccd3e0; border-radius: 8px; background: #fff; width: 100%; }
+    .code { font-size: 28px; letter-spacing: 10px; text-align: center; max-width: 240px; font-variant-numeric: tabular-nums; }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .err { color: #B4412C; margin-top: 8px; min-height: 1em; }
+    .state { text-align: center; padding: 40px 10px; }
+    .state .big { font-size: 46px; line-height: 1; margin-bottom: 8px; }
+    .pages { margin-top: 6px; }
+    .ff { position: absolute; border: 2px solid var(--c); border-radius: 4px; background: rgba(255, 236, 153, .55); display: flex; align-items: center; justify-content: center; overflow: hidden; font-size: 12px; color: #1d2433; }
+    .ff.done { background: rgba(220, 240, 228, .6); border-color: #2E7D5B; }
+    .ff.locked { opacity: .65; }
+    .ff button { all: unset; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; text-align: center; }
+    .ff img { max-width: 100%; max-height: 100%; }
+    .ff input[type=text] { border: 0; padding: 0 3px; height: 100%; width: 100%; background: transparent; font-size: min(14px, 100%); border-radius: 0; }
+    .ff input[type=checkbox] { width: 80%; height: 80%; margin: 0; }
+    .ff .req { position: absolute; top: -1px; right: 2px; color: #B4412C; font-weight: 700; pointer-events: none; }
+    .ff.flash { animation: fl 1s 2; } @keyframes fl { 50% { box-shadow: 0 0 0 5px rgba(180, 65, 44, .45); } }
+    .bar { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid #DCE2EC; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); display: flex; gap: 10px; align-items: center; justify-content: center; z-index: 5; }
+    .bar .prog { flex: 1; max-width: 360px; font-size: 14px; color: #5B6B8A; }
+    dialog { border: 0; border-radius: 14px; padding: 18px; width: min(560px, 94vw); box-shadow: 0 10px 40px rgba(0, 0, 0, .3); }
+    dialog::backdrop { background: rgba(20, 30, 50, .45); }
+    .tabs { display: flex; gap: 6px; margin: 8px 0; } .tabs button { flex: 1; min-height: 40px; border: 1px solid #ccd3e0; background: #fff; border-radius: 8px; font: inherit; cursor: pointer; }
+    .tabs button.on { background: var(--c); color: #fff; border-color: var(--c); }
+    .pad { width: 100%; height: 180px; border: 1px dashed #9AA6BC; border-radius: 10px; touch-action: none; background: #fff; display: block; }
+    .typed { font: italic 44px "Segoe Script", "Brush Script MT", "Snell Roundhand", "Apple Chancery", cursive; min-height: 90px; display: flex; align-items: center; padding: 0 10px; border: 1px dashed #9AA6BC; border-radius: 10px; overflow: hidden; white-space: nowrap; }
+    .foot { text-align: center; color: #7C8AA6; font-size: 12px; margin-top: 18px; }
+    .hash { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; word-break: break-all; }
+    .res { border-left: 4px solid #2E7D5B; padding: 8px 12px; background: #F2FAF5; border-radius: 8px; margin: 10px 0; }
+    .res.bad { border-color: #B4412C; background: #FDF1EC; }
+  </style>
+</head>
+<body>
+  <header class="top" id="top"><b>Review and sign</b></header>
+  <div class="wrap" id="root"><div class="card state">Loading…</div></div>
+  <script type="module" src="./sign.js?v=20261116t"></script>
+</body>
+</html>

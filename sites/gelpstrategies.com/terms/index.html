@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service | GELP Strategies</title>
+<link rel="icon" type="image/png" href="../assets/gelp-logo.png">
+<meta name="description" content="GELP Strategies terms of service.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #1A2A52; background: #ffffff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; }
+p, h1, h2, h3, ul { margin: 0; padding: 0; }
+
+/* Hidden for now (RLX). Delete this rule to bring RLX back. */
+.gp-rlx { display: none !important; }
+
+/* ===== HEADER ===== */
+#gelp-header { background: #ffffff; border-bottom: 1px solid #E3E7EF; width: 100%; position: relative; z-index: 50; }
+#gelp-header .gh-bar { max-width: 1180px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+#gelp-header .gh-logo img { display: block; height: 66px; width: auto; }
+#gelp-header .gh-nav { display: flex; align-items: center; gap: 28px; }
+#gelp-header a.gh-link { font-size: 15px; font-weight: 600; color: #1A2A52; padding: 6px 0; white-space: nowrap; border-bottom: 2px solid transparent; transition: border-color .15s ease; }
+#gelp-header a.gh-link:hover, #gelp-header a.gh-link:focus { border-bottom-color: #C9A04A; }
+#gelp-header a.gh-cta { display: inline-flex; align-items: center; gap: 8px; background-color: #C9A04A; color: #14213E; font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: 10px; white-space: nowrap; transition: background-color .15s ease; }
+#gelp-header a.gh-cta:hover, #gelp-header a.gh-cta:focus { background-color: #D6B263; }
+#gelp-header a.gh-login { display: inline-flex; align-items: center; font-weight: 700; font-size: 15px; color: #1A2A52; padding: 10px 18px; border: 2px solid #1A2A52; border-radius: 10px; margin-left: -8px; white-space: nowrap; transition: background-color .15s ease, color .15s ease; }
+#gelp-header a.gh-login:hover, #gelp-header a.gh-login:focus { background-color: #1A2A52; color: #ffffff; }
+#gelp-header .gh-toggle { display: none; background: none; border: 0; cursor: pointer; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 8px; }
+#gelp-header .gh-toggle span, #gelp-header .gh-toggle span::before, #gelp-header .gh-toggle span::after { display: block; width: 22px; height: 2px; background: #1A2A52; border-radius: 2px; position: relative; transition: transform .2s ease, background .2s ease; }
+#gelp-header .gh-toggle span::before, #gelp-header .gh-toggle span::after { content: ""; position: absolute; left: 0; }
+#gelp-header .gh-toggle span::before { top: -7px; }
+#gelp-header .gh-toggle span::after { top: 7px; }
+#gelp-header.gh-open .gh-toggle span { background: transparent; }
+#gelp-header.gh-open .gh-toggle span::before { transform: translateY(7px) rotate(45deg); }
+#gelp-header.gh-open .gh-toggle span::after { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 1100px) {
+  #gelp-header .gh-bar { padding: 12px 16px; }
+  #gelp-header .gh-logo img { height: 50px; }
+  #gelp-header .gh-toggle { display: inline-flex; }
+  #gelp-header .gh-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: #ffffff; border-bottom: 1px solid #E3E7EF; box-shadow: 0 12px 24px rgba(26,42,82,.08); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 18px; }
+  #gelp-header.gh-open .gh-nav { display: flex; }
+  #gelp-header a.gh-link { padding: 14px 4px; border-bottom: 1px solid #EEF1F6; font-size: 16px; }
+  #gelp-header a.gh-login { justify-content: center; margin: 16px 0 0; padding: 13px 20px; font-size: 16px; }
+  #gelp-header a.gh-cta { justify-content: center; margin-top: 10px; padding: 14px 20px; font-size: 16px; }
+}
+
+/* ===== PAGE ===== */
+#gelp-home .gp-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+#gelp-home a.gp-btn { display: inline-flex; align-items: center; gap: 10px; background-color: #C9A04A; color: #14213E; font-weight: 700; font-size: 17px; padding: 16px 30px; border-radius: 10px; box-shadow: 0 8px 22px rgba(201,160,74,.28); transition: background-color .15s ease; }
+#gelp-home a.gp-btn:hover, #gelp-home a.gp-btn:focus { background-color: #D6B263; }
+#gelp-home .gp-rule { width: 64px; height: 3px; background: #C9A04A; margin-bottom: 26px; }
+
+/* Hero */
+#gelp-home .gp-hero { background: linear-gradient(120deg, #14213E 0%, #1A2A52 55%, #26406F 100%); color: #ffffff; padding: 88px 0; overflow: hidden; }
+#gelp-home .gp-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+#gelp-home .gp-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 56px; line-height: 1.1; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+#gelp-home .gp-hero h1 em { font-style: normal; color: #C9A04A; display: block; }
+#gelp-home .gp-hero-sub { font-size: 19px; color: #C7D0E2; margin-top: 22px; max-width: 520px; }
+#gelp-home .gp-hero .gp-btn { margin-top: 36px; }
+#gelp-home .gp-hub { width: 100%; max-width: 460px; height: auto; display: block; margin-left: auto; }
+
+/* Doors */
+#gelp-home .gp-doors { padding: 88px 0 72px; background: #ffffff; }
+#gelp-home .gp-doors-head { text-align: center; margin-bottom: 44px; }
+#gelp-home .gp-doors-head .gp-rule { margin: 0 auto 22px; }
+#gelp-home .gp-doors-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+#gelp-home a.gp-door { display: flex; flex-direction: column; background: #ffffff; border: 1px solid #E3E7EF; border-top: 4px solid #C9A04A; border-radius: 14px; padding: 30px 26px 26px; box-shadow: 0 6px 20px rgba(26,42,82,.06); color: #1A2A52; transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease; }
+#gelp-home a.gp-door:hover, #gelp-home a.gp-door:focus { box-shadow: 0 14px 34px rgba(26,42,82,.12); border-color: #CBD3E1; border-top-color: #C9A04A; transform: translateY(-2px); }
+#gelp-home .gp-icon { width: 64px; height: 64px; border-radius: 16px; background: #EEF2F8; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+#gelp-home .gp-icon svg { width: 36px; height: 36px; }
+#gelp-home .gp-door h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 25px; font-weight: 700; color: #1A2A52; line-height: 1.2; }
+#gelp-home .gp-door p { font-size: 15.5px; color: #4A5672; margin-top: 12px; flex-grow: 1; }
+#gelp-home .gp-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 14.5px; font-weight: 700; color: #1A2A52; border-bottom: 2px solid #C9A04A; align-self: flex-start; padding-bottom: 2px; }
+#gelp-home .gp-door p.gp-label, #gelp-home .gp-label { flex-grow: 0; margin-top: 0; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #B48A35; margin-bottom: 6px; }
+#gelp-home .gp-h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 40px; line-height: 1.15; font-weight: 700; color: #1A2A52; }
+#gelp-home .gp-lede { font-size: 17px; color: #4A5672; margin-top: 14px; max-width: 640px; }
+#gelp-home .gp-doors-head .gp-lede { margin-left: auto; margin-right: auto; }
+
+/* Healthcare strip */
+#gelp-home .gp-hc { padding: 0 0 80px; background: #ffffff; }
+#gelp-home a.gp-hc-band { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #F7F8FB; border: 1px solid #E3E7EF; border-left: 5px solid #C9A04A; border-radius: 14px; padding: 26px 32px; color: #1A2A52; transition: box-shadow .15s ease; }
+#gelp-home a.gp-hc-band:hover { box-shadow: 0 10px 26px rgba(26,42,82,.10); }
+#gelp-home .gp-hc-text b { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; }
+#gelp-home .gp-hc-text span { display: block; font-size: 15.5px; color: #4A5672; margin-top: 4px; }
+#gelp-home .gp-hc-go { flex-shrink: 0; font-weight: 700; font-size: 15px; border-bottom: 2px solid #C9A04A; padding-bottom: 2px; }
+
+/* Proof */
+#gelp-home .gp-proof { background: #EEF2F8; padding: 44px 0; }
+#gelp-home .gp-proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+#gelp-home a.gp-stat { display: flex; align-items: center; gap: 18px; color: #1A2A52; }
+#gelp-home .gp-stat b { font-family: 'Playfair Display', Georgia, serif; font-size: 58px; line-height: 1; white-space: nowrap; transition: color .15s ease; }
+#gelp-home .gp-stat span { font-size: 15px; color: #4A5672; line-height: 1.45; }
+#gelp-home .gp-stat sup { color: #B48A35; font-weight: 700; }
+#gelp-home a.gp-stat:hover b { color: #B48A35; }
+
+/* Difference */
+#gelp-home .gp-diff { padding: 84px 0; background: #ffffff; }
+#gelp-home .gp-diff-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 22px; margin-top: 40px; align-items: stretch; }
+#gelp-home .gp-col { border: 1px solid #E3E7EF; border-radius: 14px; padding: 28px; background: #F7F8FB; }
+#gelp-home .gp-col-label { font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #6E8AA8; }
+#gelp-home .gp-col-big { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #8A97B0; margin-top: 12px; line-height: 1.25; }
+#gelp-home .gp-col-gelp { background: #14213E; border-color: #14213E; border-top: 4px solid #C9A04A; box-shadow: 0 16px 36px rgba(20,33,62,.22); }
+#gelp-home .gp-col-gelp .gp-col-label { color: #C9A04A; }
+#gelp-home .gp-col-gelp ul { list-style: none; margin-top: 14px; }
+#gelp-home .gp-col-gelp li { position: relative; padding-left: 28px; margin-bottom: 10px; font-size: 16.5px; font-weight: 600; color: #ffffff; }
+#gelp-home .gp-col-gelp li::before { content: "\2713"; position: absolute; left: 0; top: 0; color: #C9A04A; font-weight: 800; }
+
+/* Close */
+#gelp-home .gp-close { background: linear-gradient(120deg, #14213E 0%, #1A2A52 60%, #26406F 100%); padding: 80px 0; text-align: center; }
+#gelp-home .gp-close .gp-rule { margin: 0 auto 24px; }
+#gelp-home .gp-close h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 42px; font-weight: 700; color: #ffffff; line-height: 1.15; }
+#gelp-home .gp-close-sub { font-size: 17px; color: #C7D0E2; margin-top: 12px; }
+#gelp-home .gp-close .gp-btn { margin-top: 32px; }
+
+/* Fine print */
+#gelp-home .gp-fine { padding: 26px 0 30px; background: #ffffff; }
+#gelp-home .gp-fine p { font-size: 13px; color: #6E8AA8; margin-bottom: 6px; }
+#gelp-home .gp-fine span { color: #B48A35; font-weight: 700; margin-right: 4px; }
+
+/* ===== FOOTER ===== */
+#gelp-footer { background: #14213E; color: #C7D0E2; width: 100%; border-top: 3px solid #C9A04A; }
+#gelp-footer .gf-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+#gelp-footer .gf-main { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; padding: 56px 0 44px; align-items: start; }
+#gelp-footer .gf-logo img { display: block; height: 62px; width: auto; }
+#gelp-footer .gf-tag { font-size: 15px; margin-top: 16px; color: #C7D0E2; }
+#gelp-footer h4 { margin: 0 0 14px; font-size: 12.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #C9A04A; }
+#gelp-footer .gf-links a { display: block; font-size: 15.5px; font-weight: 600; color: #ffffff; margin-bottom: 10px; }
+#gelp-footer .gf-links a:hover, #gelp-footer .gf-links a:focus { color: #C9A04A; }
+#gelp-footer a.gf-cta { display: inline-flex; align-items: center; gap: 8px; background-color: #C9A04A; color: #14213E; font-weight: 700; font-size: 15px; padding: 13px 22px; border-radius: 10px; transition: background-color .15s ease; }
+#gelp-footer a.gf-cta:hover, #gelp-footer a.gf-cta:focus { background-color: #D6B263; }
+#gelp-footer a.gf-mail { display: inline-block; margin-top: 16px; font-size: 15.5px; font-weight: 600; color: #ffffff; }
+#gelp-footer a.gf-mail:hover, #gelp-footer a.gf-mail:focus { color: #C9A04A; }
+#gelp-footer .gf-bottom { border-top: 1px solid rgba(255,255,255,.12); padding: 20px 0 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 13.5px; }
+#gelp-footer .gf-legal { display: flex; gap: 22px; }
+#gelp-footer .gf-legal a { color: #C7D0E2; }
+#gelp-footer .gf-legal a:hover, #gelp-footer .gf-legal a:focus { color: #ffffff; }
+@media (max-width: 900px) { #gelp-footer .gf-main { grid-template-columns: 1fr 1fr; } #gelp-footer .gf-brand { grid-column: 1 / -1; } }
+@media (max-width: 640px) {
+  #gelp-footer .gf-wrap { padding: 0 16px; }
+  #gelp-footer .gf-main { grid-template-columns: 1fr; gap: 32px; padding: 44px 0 32px; }
+  #gelp-footer .gf-logo img { height: 52px; }
+  #gelp-footer a.gf-cta { width: 100%; justify-content: center; padding: 15px 22px; }
+  #gelp-footer .gf-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 1100px) {
+  #gelp-home .gp-doors-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 960px) {
+  #gelp-home .gp-hero-grid { grid-template-columns: 1fr; }
+  #gelp-home .gp-hub { margin: 8px auto 0; max-width: 380px; }
+  #gelp-home .gp-proof-grid { grid-template-columns: 1fr; max-width: 520px; gap: 18px; }
+  #gelp-home .gp-diff-grid { grid-template-columns: 1fr; max-width: 560px; }
+  #gelp-home a.gp-hc-band { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  #gelp-home .gp-wrap { padding: 0 16px; }
+  #gelp-home .gp-hero { padding: 56px 0 48px; }
+  #gelp-home .gp-hero h1 { font-size: 38px; }
+  #gelp-home .gp-hero-sub { font-size: 17px; }
+  #gelp-home .gp-hub { max-width: 280px; margin-top: 16px; }
+  #gelp-home .gp-doors-grid { grid-template-columns: 1fr; }
+  #gelp-home .gp-doors { padding: 56px 0 48px; }
+  #gelp-home .gp-hc { padding-bottom: 56px; }
+  #gelp-home .gp-close { padding: 56px 0; }
+  #gelp-home .gp-close h2 { font-size: 32px; }
+  #gelp-home .gp-diff { padding: 56px 0; }
+  #gelp-home .gp-h2 { font-size: 30px; }
+  #gelp-home .gp-stat b { font-size: 46px; }
+  #gelp-home a.gp-btn { width: 100%; justify-content: center; }
+}
+
+/* ===== TERMS PAGE ===== */
+
+
+#gelp-terms { font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #26355C; background: #ffffff; line-height: 1.7; -webkit-font-smoothing: antialiased; width: 100%; }
+#gelp-terms a, #gelp-terms a:visited { color: #1A2A52 !important; text-decoration: underline; text-underline-offset: 3px; background: transparent !important; }
+#gelp-terms .gt-head { background: linear-gradient(120deg, #14213E 0%, #1A2A52 60%, #26406F 100%); padding: 64px 0 56px; }
+#gelp-terms .gt-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+#gelp-terms .gt-rule { width: 64px; height: 3px; background: #C9A04A; margin-bottom: 20px; }
+#gelp-terms h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 44px; line-height: 1.15; font-weight: 700; color: #ffffff; }
+#gelp-terms .gt-date { color: #C7D0E2; font-size: 15px; margin-top: 10px; }
+#gelp-terms .gt-body { padding: 56px 0 72px; }
+#gelp-terms h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #1A2A52; margin: 40px 0 10px; line-height: 1.3; }
+#gelp-terms h2:first-child { margin-top: 0; }
+#gelp-terms p { font-size: 16px; margin-bottom: 14px; }
+#gelp-terms ul { margin: 0 0 14px 22px; }
+#gelp-terms li { font-size: 16px; margin-bottom: 8px; }
+#gelp-terms .gt-caps { font-size: 14.5px; letter-spacing: .01em; }
+@media (max-width: 640px) {
+  #gelp-terms .gt-wrap { padding: 0 16px; }
+  #gelp-terms .gt-head { padding: 44px 0 40px; }
+  #gelp-terms h1 { font-size: 34px; }
+  #gelp-terms .gt-body { padding: 40px 0 56px; }
+  #gelp-terms h2 { font-size: 21px; }
+}
+
+/* When RLX comes back, delete .gp-rlx rule at top and this one */
+.gp-rlx-off { }
+
+/* Booking popup */
+#gelp-book { position: fixed; inset: 0; z-index: 2147483000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(11,18,38,.72); font-family: 'Plus Jakarta Sans', Arial, sans-serif; }
+#gelp-book.gb-open { display: flex; }
+#gelp-book .gb-panel { position: relative; width: 100%; max-width: 920px; max-height: calc(100vh - 48px); background: #ffffff; border-radius: 16px; border-top: 4px solid #C9A04A; box-shadow: 0 30px 80px rgba(0,0,0,.35); display: flex; flex-direction: column; overflow: hidden; }
+#gelp-book .gb-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1px solid #E3E7EF; }
+#gelp-book .gb-title { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: #1A2A52; margin: 0; }
+#gelp-book .gb-close { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #EEF1F7; color: #1A2A52; font-size: 24px; line-height: 1; cursor: pointer; }
+#gelp-book .gb-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 4px 8px 8px; min-height: 300px; }
+#gelp-book iframe { display: block; width: 100%; height: 820px; border: 0; }
+@media (max-width: 640px) {
+  #gelp-book { padding: 0; }
+  #gelp-book .gb-panel { max-width: none; max-height: none; height: 100%; border-radius: 0; }
+}
+</style>
+</head>
+<body>
+
+<header id="gelp-header">
+  <div class="gh-bar">
+    <a class="gh-logo" href="/"><img src="../assets/gelp-logo.png" alt="GELP Strategies"></a>
+    <button class="gh-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="gh-nav"><span></span></button>
+    <nav class="gh-nav" id="gh-nav" aria-label="Main">
+      <a class="gh-link" href="/marketing">Marketing</a>
+      <a class="gh-link" href="/#bpo">Outsourcing</a>
+      <a class="gh-link" href="/#software">Software</a>
+      <a class="gh-link" href="/#ops">Operations</a>
+      <a class="gh-link gp-rlx" href="/rlx">Strengthen Your Relationships</a>
+      <a class="gh-link gp-rlx" href="/vendor">Reach More Clinics</a>
+      <a class="gh-login" href="https://app.gelpstrategies.com" target="_blank" rel="noopener">Login</a>
+      <a class="gh-cta" href="/chris">Schedule a Call <span>&rarr;</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="gelp-terms">
+  <section class="gt-head">
+    <div class="gt-wrap">
+      <div class="gt-rule"></div>
+      <h1>Terms of Service</h1>
+      <p class="gt-date">Effective October 5, 2026</p>
+    </div>
+  </section>
+
+  <section class="gt-body">
+    <div class="gt-wrap">
+
+      <h2>1. Agreement to These Terms</h2>
+      <p>These Terms of Service ("Terms") govern your use of gelpstrategies.com and any related pages, forms, communications and services (together, the "Site" and "Services") provided by GELP Strategies, LLC ("GELP," "we," "us" or "our"). By using the Site or Services, you agree to these Terms. If you do not agree, please do not use the Site or Services.</p>
+
+      <h2>2. Our Services</h2>
+      <p>GELP provides marketing, business process outsourcing, software and operations consulting services to businesses, including healthcare organizations and the companies that serve them.<span class="gp-rlx"> GELP is an authorized dealer of Referralogix, a third-party healthcare communication platform.</span> The specific scope, pricing, terms and deliverables of any paid engagement are set out in a separate written agreement, proposal or order form. If anything in that agreement conflicts with these Terms, the agreement controls.</p>
+
+      <h2>3. Eligibility and Accounts</h2>
+      <p>You must be at least 18 years old and able to enter a binding agreement to use the Services. If you use the Services on behalf of a business, you represent that you are authorized to bind that business to these Terms. You are responsible for keeping any login credentials secure and for all activity under your account.</p>
+
+      <h2>4. No Patient Information</h2>
+      <p>The Site's forms and general communication channels are not designed to receive protected health information. Please do not submit patient names, medical records or other protected health information through the Site, our forms, email or text messages. Where an engagement requires access to such information, it will be handled under a separate written agreement that meets applicable legal requirements.</p>
+
+      <h2>5. No Medical, Legal or Financial Advice</h2>
+      <p>Content on the Site is provided for general business and informational purposes. It is not medical, legal, tax or financial advice, and it does not create any professional relationship. Healthcare organizations remain solely responsible for their clinical decisions, patient care, billing practices and regulatory compliance.</p>
+
+      <h2>6. Third-Party Platforms</h2>
+      <p>Some Services rely on platforms operated by third parties, including <span class="gp-rlx">Referralogix and </span>other software providers. Your use of those platforms may be subject to their own terms and policies. GELP is not responsible for the availability, performance or practices of third-party platforms, and we do not guarantee uninterrupted access to them.</p>
+
+      <h2>7. Results and Guarantees</h2>
+      <p>Marketing and network growth depend on many factors outside our control, including market conditions, competition and the participation of third parties. Except where a specific guarantee is stated in writing on the Site or in your agreement, GELP does not guarantee any particular result, number of patients, connections, leads or revenue. Any example results shown on the Site reflect specific circumstances and are not a promise of similar outcomes. Sample reviews and examples marked as illustrative are for demonstration purposes only.</p>
+      <p>Where the Site or your agreement states a specific guarantee, that guarantee applies only under the conditions described with it, and your sole remedy if it is not met is the refund or credit stated in that guarantee.</p>
+
+      <h2>8. Payments, Minimum Terms and Cancellation</h2>
+      <p>Fees, billing schedules, minimum terms and cancellation rights for paid Services are set out in your agreement or order form. Unless your agreement says otherwise, fees are billed in advance, are non-refundable except as expressly stated and may be updated with notice before your next billing period.</p>
+
+      <h2>9. Compliance and Compensation</h2>
+      <p>GELP is compensated for software, marketing and market development services. Compensation is not payment for patient referrals and is not based on the volume or value of federally reimbursable healthcare business. Each party remains responsible for its own compliance with applicable healthcare laws, including federal and state anti-kickback and self-referral laws.</p>
+
+      <h2>10. Text Messaging (SMS)</h2>
+      <p>By providing your mobile number and opting in, you agree to receive text messages from GELP related to your inquiry, appointments, account and services. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> at any time to opt out, and reply <strong>HELP</strong> for help. Consent to receive text messages is not a condition of purchase. Carriers are not liable for delayed or undelivered messages. For details on how we handle your information, including that text messaging opt-in data and consent are not shared with third parties, see our <a href="/privacy">Privacy Policy</a>.</p>
+
+      <h2>11. Acceptable Use</h2>
+      <p>You agree not to misuse the Site or Services, including by attempting to gain unauthorized access, interfering with their operation, submitting false or misleading information, sending unsolicited messages through our systems or using the Services for any unlawful purpose.</p>
+
+      <h2>12. Intellectual Property</h2>
+      <p>The Site and its content, including text, graphics, logos and design, are owned by GELP or its licensors and are protected by intellectual property laws. You may view and use the Site for your own business purposes, but you may not copy, modify, distribute or create derivative works from it without our written permission. <span class="gp-rlx">Referralogix and other third-party names and marks belong to their respective owners.</span><span class="gp-rlx-off">Third-party names and marks belong to their respective owners.</span></p>
+
+      <h2>13. Disclaimer of Warranties</h2>
+      <p class="gt-caps">THE SITE AND SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE." TO THE FULLEST EXTENT PERMITTED BY LAW, GELP DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT, EXCEPT AS EXPRESSLY STATED IN A WRITTEN AGREEMENT.</p>
+
+      <h2>14. Limitation of Liability</h2>
+      <p class="gt-caps">TO THE FULLEST EXTENT PERMITTED BY LAW, GELP WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR LOST PROFITS, REVENUE OR DATA. GELP'S TOTAL LIABILITY FOR ANY CLAIM RELATED TO THE SITE OR SERVICES WILL NOT EXCEED THE AMOUNT YOU PAID GELP FOR THE SERVICES GIVING RISE TO THE CLAIM IN THE THREE MONTHS BEFORE THE CLAIM AROSE.</p>
+
+      <h2>15. Indemnification</h2>
+      <p>You agree to defend and indemnify GELP against claims, losses and expenses, including reasonable attorneys' fees, arising from your misuse of the Site or Services, your violation of these Terms or your violation of any law or the rights of a third party.</p>
+
+      <h2>16. Termination</h2>
+      <p>We may suspend or end your access to the Site or Services if you violate these Terms. Termination of paid Services is governed by your agreement. Sections that by their nature should survive termination will survive, including those on intellectual property, disclaimers, limitation of liability and indemnification.</p>
+
+      <h2>17. Governing Law</h2>
+      <p>These Terms are governed by the laws of the State of Mississippi, without regard to its conflict of law rules. Any dispute will be brought in the state or federal courts located in Mississippi, and you consent to their jurisdiction.</p>
+
+      <h2>18. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. When we do, we will update the effective date above. Your continued use of the Site or Services after changes take effect means you accept the updated Terms.</p>
+
+      <h2>19. Contact Us</h2>
+      <p>Questions about these Terms can be sent to GELP Strategies, LLC at <a href="mailto:info@gelpstrategies.com">info@gelpstrategies.com</a> or by phone at <a href="tel:+16014410508">601-441-0508</a>.</p>
+
+    </div>
+  </section>
+</main>
+
+<footer id="gelp-footer">
+  <div class="gf-wrap">
+    <div class="gf-main">
+      <div class="gf-brand">
+        <a class="gf-logo" href="/"><img src="../assets/gelp-logo-reverse.png" alt="GELP Strategies"></a>
+        <p class="gf-tag">You know your business. We handle the rest.</p>
+        <p class="gf-tag gp-rlx">Authorized Referralogix Dealer</p>
+      </div>
+      <div class="gf-links">
+        <h4>Explore</h4>
+        <a href="/marketing">Marketing</a>
+        <a href="/#bpo">Business Process Outsourcing</a>
+        <a href="/#software">Software &amp; Systems</a>
+        <a href="/#ops">Operations Consulting</a>
+        <a class="gp-rlx" href="/rlx">Strengthen Your Relationships</a>
+        <a class="gp-rlx" href="/vendor">Meet New Clinics</a>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <a class="gf-cta" href="/chris">Schedule a Call <span>&rarr;</span></a><br>
+        <a class="gf-mail" href="mailto:info@gelpstrategies.com">info@gelpstrategies.com</a>
+      </div>
+    </div>
+    <div class="gf-bottom">
+      <p>&copy; 2026 GELP Strategies, LLC. All rights reserved.</p>
+      <div class="gf-legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var h = document.getElementById('gelp-header');
+  var btn = h.querySelector('.gh-toggle');
+  btn.addEventListener('click', function () {
+    var open = h.classList.toggle('gh-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  h.querySelectorAll('.gh-nav a').forEach(function (a) {
+    a.addEventListener('click', function () { h.classList.remove('gh-open'); btn.setAttribute('aria-expanded', 'false'); });
+  });
+})();
+</script>
+<script>
+/* Schedule a Call popup. Still loads the GHL booking calendar until the CRM calendar is live.
+   To switch: change BOOKING_SRC to the CRM booking link. */
+(function () {
+  var BOOKING_SRC = 'https://links.gelpstrategies.com/widget/booking/8bQPftLoCrYZz9aSlSpQ';
+  var modal = null, lastFocus = null;
+  function build() {
+    modal = document.createElement('div');
+    modal.id = 'gelp-book';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Schedule a call with GELP Strategies');
+    modal.innerHTML = '<div class="gb-panel"><div class="gb-head"><p class="gb-title">Schedule a Call</p><button type="button" class="gb-close" aria-label="Close">&times;</button></div><div class="gb-body"><iframe src="' + BOOKING_SRC + '" allow="payment" title="Book a call with GELP Strategies"></iframe></div></div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    modal.querySelector('.gb-close').addEventListener('click', close);
+  }
+  function open() {
+    if (!modal) build();
+    lastFocus = document.activeElement;
+    modal.classList.add('gb-open');
+    document.documentElement.style.overflow = 'hidden';
+    modal.querySelector('.gb-close').focus();
+  }
+  function close() {
+    if (!modal) return;
+    modal.classList.remove('gb-open');
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal && modal.classList.contains('gb-open')) close(); });
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/^(https?:\/\/(www\.)?gelpstrategies\.com)?\/chris\/?(\?.*)?$/i.test(href)) { e.preventDefault(); open(); }
+  }, true);
+})();
+</script>
+</body>
+</html>

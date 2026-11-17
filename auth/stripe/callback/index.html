@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Connecting Stripe…</title></head>
+<body style="font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;background:#F3F5F9;color:#1A2A52">
+  <!-- Stripe sends people back here after they sign in with an existing Stripe. The app finishes the link while signed
+       in (payments-connect "login_finish"), so this only hands the code and state over. -->
+  <p>Connecting Stripe…</p>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const keep = new URLSearchParams();
+    ['code', 'state', 'error', 'error_description'].forEach((k) => { if (q.get(k)) keep.set('so_' + k, q.get(k)); });
+    location.replace('/?stripe=1&' + keep.toString() + '#docsetup');
+  </script>
+</body>
+</html>

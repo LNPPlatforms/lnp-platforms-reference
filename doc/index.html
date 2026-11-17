@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Your document</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: #F3F5F9; color: #1d2433; font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 18px 14px 48px; }
+    .bar { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-bottom: 12px; }
+    .bar button, .bar a { background: #fff; border: 1px solid #ccd3e0; color: #1d2433; border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .state { text-align: center; color: #5B6B8A; padding: 60px 10px; }
+    .err { color: #B4412C; margin-top: 8px; text-align: right; }
+    .btn-link { background: none; border: 0; padding: 0; color: var(--brand, #1A2A52); text-decoration: underline; cursor: pointer; font: inherit; font-size: 13px; }
+    @media print { body { background: #fff; } .wrap { padding: 0; max-width: none; } .bar { display: none; } }
+  </style>
+  <style id="docCss"></style>
+</head>
+<body>
+  <div class="wrap"><div class="bar noprint" id="bar" hidden><button type="button" id="print">Print or save as PDF</button></div><div id="root"><div class="state">Loading…</div></div></div>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm';
+    import { SUPABASE_URL, SUPABASE_KEY } from '../config.js';
+    import { docHtml, fromProposal, money, DOC_CSS } from './layout.js?v=20261116t';
+
+    document.getElementById('docCss').textContent = DOC_CSS;
+    // signed-in team members (same browser as the CRM) can see drafts; customers see sent documents only
+    const sb = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
+    const qs = new URLSearchParams(location.search);
+    const token = (qs.get('t') || '').trim();
+    const root = document.getElementById('root');
+    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    let doc = null, note = '', busy = false;
+
+    async function load() {
+      if (token.length < 32) { root.innerHTML = '<div class="state">This link is missing its code. Check the link you were sent.</div>'; return; }
+      const { data, error } = await sb.rpc('doc_view', { p_token: token });
+      if (error) { root.innerHTML = '<div class="state">We couldn\'t load this right now. Refresh the page to try again.</div>'; return; }
+      if (!data) { root.innerHTML = '<div class="state">We couldn\'t find this. It may have been replaced by a newer one. Ask whoever sent it for a fresh link.</div>'; return; }
+      doc = data;
+      document.title = `${data.kind === 'proposal' ? data.title : 'Invoice ' + data.number} | ${data.brand?.name || ''}`;
+      draw();
+    }
+
+    function draw() {
+      const d = doc;
+      document.getElementById('bar').hidden = false;
+      if (d.kind === 'proposal') {
+        const p = fromProposal(d);
+        const acc = d.view?.accepted;
+        const accept = acc ? `<div class="doc-status">Accepted by ${esc(acc.name || '')} on ${esc(new Date(acc.at).toLocaleDateString())}</div>`
+          : d.status === 'sent' ? `<a class="doc-paybtn" href="../proposal/view/?t=${encodeURIComponent(token)}">Review, accept and sign</a>` : '';
+        root.innerHTML = docHtml(p, { acceptButton: accept });
+        return;
+      }
+      const showPay = d.pay && d.pay.method && Number(d.balance) > 0;
+      const status = d.status === 'paid' ? '<div class="doc-status">Paid in full. Thank you!</div>'
+        : d.status === 'void' ? '<div class="doc-status warn">This invoice was voided.</div>'
+        : d.status === 'draft' ? '<div class="doc-status warn noprint">Draft. Only your team can see this until it\'s sent.</div>' : '';
+      // autopay on a repeating invoice (083a): what's on file, and a way to save or change it
+      const ap = d.autopay && d.autopay.on && d.status !== 'void' && d.status !== 'draft' ? d.autopay : null;
+      const apNote = !ap ? '' : ap.failed ? `<div class="doc-desc" style="margin-top:8px">The automatic payment${ap.label ? ' with ' + esc(ap.label) : ''} didn't go through. Pay here, or update your card and we'll try again.</div>`
+        : ap.saved ? `<div class="doc-desc" style="margin-top:8px">${Number(d.balance) > 0 ? 'This will be charged automatically to ' : 'Automatic payments go to '}${esc(ap.label || 'your saved payment method')}.</div>`
+        : Number(d.balance) > 0 ? '<div class="doc-desc" style="margin-top:8px">Paying online also saves your card or bank for automatic payments on the next invoices. Stripe keeps it, not us.</div>' : '';
+      const cardBtn = ap && (ap.saved || Number(d.balance) <= 0) ? `<div style="margin-top:8px"><button type="button" class="btn-link" id="card" ${busy ? 'disabled' : ''}>${ap.saved ? 'Update the card or bank on file' : 'Save a card or bank for automatic payments'}</button></div>` : '';
+      const pay = (showPay && !(ap && ap.saved && !ap.failed) ? `<button type="button" class="doc-paybtn" id="pay" ${busy ? 'disabled' : ''}>${busy ? 'One moment…' : 'Pay ' + money(d.balance)}</button>
+        ${d.pay.method === 'link' ? '<div class="doc-desc" style="margin-top:6px">Opens the payment page. Type in the amount if it asks.</div>' : ''}` : '') + apNote + cardBtn + (note ? `<div class="err">${esc(note)}</div>` : '');
+      root.innerHTML = docHtml(d, { payButton: pay, status });
+      const b = document.getElementById('pay');
+      if (b) b.onclick = startPay;
+      const cb = document.getElementById('card');
+      if (cb) cb.onclick = () => startPay('card');
+    }
+
+    async function startPay(action) {
+      if (busy) return;
+      busy = true; note = ''; draw();
+      try {
+        const { data, error } = await sb.functions.invoke('invoice-pay', { body: { token, action: action === 'card' ? 'card' : 'start' } });
+        if (error || !data) throw new Error('We couldn\'t start the payment. Try again in a minute.');
+        if (data.url) { location.href = data.url; return; }
+        if (data.paid) { await load(); return; }
+        throw new Error(data.error || 'We couldn\'t start the payment.');
+      } catch (e) { note = e.message; }
+      busy = false; draw();
+    }
+
+    document.getElementById('print').onclick = () => window.print();
+    await load();
+    // back from Stripe: check the payment, then show the new balance
+    if (qs.get('paid') === '1' && doc?.kind === 'invoice' && (doc.status !== 'paid' || (doc.autopay?.on && !doc.autopay.saved))) {
+      root.insertAdjacentHTML('afterbegin', '<div class="state">Checking your payment…</div>');
+      for (let i = 0; i < 5; i++) {
+        const { data } = await sb.functions.invoke('invoice-pay', { body: { token, action: 'status' } });
+        if (data?.pay_status) break;
+        await new Promise((r) => setTimeout(r, 2000));
+      }
+      await load();
+    } else if (qs.get('card') === '1' && doc?.autopay?.on) startPay('card');
+    else if (qs.get('pay') === '1' && doc?.pay?.method && Number(doc.balance) > 0) startPay();
+  </script>
+</body>
+</html>

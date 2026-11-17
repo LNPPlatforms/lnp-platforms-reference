@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Get Pricing and a Demo | MAICO easyTymp + Compassio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../funnel.css?v=20261116t">
+</head>
+<body class="dark" style="min-height:100vh">
+  <div class="ribbon">Concept mockup for partner review. Nothing on this form is sent anywhere.</div>
+  <nav><div class="wrap">
+    <a class="brand" href="../"><span class="maico">MAICO</span><span class="plus">+</span><img src="../../../compassio-logo.webp" alt="Compassio Medical Education"></a>
+  </div></nav>
+  <div class="wrap hero"><div class="grid" style="align-items:start">
+    <div>
+      <span class="eyebrow">Pricing and demo</span>
+      <h1 style="font-size:clamp(32px,3.8vw,48px)">See the easyTymp and <em>your clinic's numbers</em>.</h1>
+      <p class="lede">Two quick steps. Then pick a time for a short call where we show the device, walk through what it pays your clinic and answer questions.</p>
+      <ul class="list" style="color:#D9D3E8">
+        <li style="color:#D9D3E8">$10,000 all in for the device and training, with a monthly option for training</li>
+        <li style="color:#D9D3E8">Your team trained by Compassio Medical Education</li>
+        <li style="color:#D9D3E8">Help checking what your payers pay for tympanometry</li>
+      </ul>
+    </div>
+    <div class="formcard">
+      <div class="progress"><span class="on" id="p1"></span><span id="p2"></span></div>
+      <form id="f" novalidate>
+        <div id="s1">
+          <h3 style="margin-bottom:12px">About your clinic</h3>
+          <div style="display:grid;gap:14px">
+            <label>Clinic or practice name<input name="organization" autocomplete="organization" required></label>
+            <div>
+              <span style="font-size:14px;font-weight:600;display:block;margin-bottom:6px">Type of practice</span>
+              <div class="chips">
+                <label><input type="radio" name="type" value="Urgent care"> Urgent care</label>
+                <label><input type="radio" name="type" value="Pediatrics"> Pediatrics</label>
+                <label><input type="radio" name="type" value="Family medicine"> Family medicine</label>
+                <label><input type="radio" name="type" value="Rural health clinic"> Rural health clinic</label>
+                <label><input type="radio" name="type" value="Other"> Other</label>
+              </div>
+            </div>
+            <div class="pair">
+              <label>Number of providers<select name="providers"><option>1 to 2</option><option>3 to 5</option><option>6 to 10</option><option>More than 10</option></select></label>
+              <label>Locations<select name="locations"><option>1</option><option>2 to 3</option><option>4 or more</option></select></label>
+            </div>
+            <div class="pair">
+              <label>City<input name="city" autocomplete="address-level2"></label>
+              <label>State<input name="state" autocomplete="address-level1" maxlength="2" placeholder="LA"></label>
+            </div>
+            <p class="err" id="e1" hidden></p>
+            <button type="button" class="btn primary big" id="next">Continue</button>
+          </div>
+        </div>
+        <div id="s2" hidden>
+          <h3 style="margin-bottom:12px">Who should we talk to?</h3>
+          <div style="display:grid;gap:14px">
+            <div class="pair">
+              <label>Your name<input name="name" autocomplete="name" required></label>
+              <label>Your role<select name="role"><option>Physician</option><option>NP or PA</option><option>Practice manager</option><option>Owner</option><option>Other</option></select></label>
+            </div>
+            <div class="pair">
+              <label>Email<input name="email" type="email" autocomplete="email"></label>
+              <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+            </div>
+            <label>Anything we should know? (optional)<textarea name="message" placeholder="How you handle ear complaints today, timing, questions"></textarea></label>
+            <label class="agree"><input type="checkbox" id="agree"> <span>I agree to share my information with the Compassio coalition (Compassio Medical Education, E3 and MAICO).</span></label>
+            <p class="fine">By submitting, you agree that your information will be shared with the Compassio coalition, which is Compassio Medical Education, E3 (the US distributor) and MAICO (the manufacturer), so they can contact you about your request. Each of them may contact you by phone, text or email. Your information is not sold to anyone else.</p>
+            <p class="err" id="e2" hidden></p>
+            <button type="submit" class="btn primary big">Pick a time</button>
+            <button type="button" class="btn ghost" id="back" style="color:var(--ink);border-color:#CFC6E0">Back</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div></div>
+  <script>
+    (function () {
+      var f = document.getElementById('f'), $ = function (id) { return document.getElementById(id); };
+      function err(id, m) { var e = $(id); e.textContent = m; e.hidden = !m; }
+      $('next').onclick = function () {
+        if (!f.organization.value.trim()) return err('e1', 'Add your clinic or practice name.');
+        if (!f.querySelector('[name=type]:checked')) return err('e1', 'Pick the type of practice.');
+        err('e1', ''); $('s1').hidden = true; $('s2').hidden = false; $('p2').classList.add('on'); f.name.focus();
+      };
+      $('back').onclick = function () { $('s2').hidden = true; $('s1').hidden = false; $('p2').classList.remove('on'); };
+      f.onsubmit = function (e) {
+        e.preventDefault();
+        if (!f.name.value.trim()) return err('e2', 'Add your name.');
+        if (!f.email.value.trim() && !f.phone.value.trim()) return err('e2', 'Add an email or phone number so we can reach you.');
+        if (!$('agree').checked) return err('e2', 'Please tick the box to agree to how your information is shared.');
+        try { sessionStorage.setItem('tympLead', JSON.stringify({ name: f.name.value.trim().split(' ')[0], org: f.organization.value.trim() })); } catch (x) {}
+        location.href = '../thanks/';
+      };
+    })();
+  </script>
+</body>
+</html>

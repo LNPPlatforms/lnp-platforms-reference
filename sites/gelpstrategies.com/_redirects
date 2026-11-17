@@ -1,0 +1,8 @@
+# GELP Strategies site redirects (Cloudflare Pages)
+# QR codes on printed leave-behinds point to /call
+/call        /chris   301
+/call/       /chris   301
+# RLX pages hidden for now. Remove these two lines to bring them back.
+/rlx         /        302
+/vendor      /        302
+/rlxvendor   /        302

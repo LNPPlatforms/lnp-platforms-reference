@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MAICO + Compassio: ROI Calculator | GELP Strategies</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../base.css">
+  <style>
+    .grid { grid-template-columns: .9fr 1.1fr; }
+    .calc { padding: 24px 26px; }
+    .calc-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .calc-head h3 { margin: 4px 0 0; font-size: 18px; }
+    .toggle { display: inline-flex; background: var(--paper); border-radius: 10px; padding: 4px; flex: none; }
+    .toggle button { border: 0; background: none; font: 600 13px var(--body); color: var(--ink-2); padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+    .toggle button.on { background: var(--purple); color: #fff; }
+    .row { margin-bottom: 14px; }
+    .row label { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 500; margin-bottom: 6px; }
+    .row label output { font-weight: 700; color: var(--purple); }
+    input[type=range] { width: 100%; accent-color: var(--purple); margin: 0; }
+    .out { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .out div { background: var(--paper); border-radius: 12px; padding: 12px 14px; }
+    .out span { display: block; font-size: 11.5px; color: var(--ink-2); line-height: 1.35; }
+    .out b { display: block; font-family: var(--display); font-size: 24px; color: var(--ink); margin-top: 4px; }
+    .out .big { background: var(--purple); }
+    .out .big span { color: #E3D6F2; } .out .big b { color: #fff; }
+    .bar { margin-top: 14px; height: 12px; border-radius: 99px; background: var(--paper); overflow: hidden; display: flex; }
+    .bar i { display: block; height: 100%; }
+    .bar-legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-2); margin-top: 6px; }
+    .note { font-size: 11.5px; color: var(--ink-2); margin: 12px 0 0; line-height: 1.5; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .out { grid-template-columns: 1fr 1fr; } .out .big { grid-column: 1 / -1; } .calc-head { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <nav><div class="wrap">
+      <a class="brand" href="#"><span class="maico">MAICO</span><span class="plus">+</span><img src="../../compassio-logo.webp" alt="Compassio Medical Education"></a>
+      <div class="links"><a href="#">Why tympanometry</a><a href="#">The courses</a><a href="#">Meet Dr. LaCour</a><a href="#">For ENTs</a></div>
+      <a class="nav-cta" href="#">Get pricing</a>
+    </div></nav>
+
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">Run your numbers</span>
+        <h1>See what an easyTymp <em>earns your practice.</em></h1>
+        <p class="lede">Move the sliders to match your clinic. Billed tests cover the payment. Community screening days bring in new families who stay with your practice.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#">Email me this estimate →</a>
+          <a class="btn ghost" href="#">Talk to a distributor</a>
+        </div>
+        <p class="fine">Includes two free CME seats with Dr. Jeffrey LaCour, a $1,196 value.</p>
+      </div>
+
+      <div class="card calc">
+        <div class="calc-head">
+          <div><span class="kicker">ROI estimate</span><h3>Your practice, per month</h3></div>
+          <div class="toggle" role="group" aria-label="Payment option">
+            <button type="button" data-plan="fin" class="on">$150/mo</button>
+            <button type="button" data-plan="buy">$5,000 once</button>
+          </div>
+        </div>
+        <div class="row"><label for="tests">Billed tests per week <output id="o-tests"></output></label><input id="tests" type="range" min="0" max="30" value="5"></div>
+        <div class="row"><label for="days">Screening days per year <output id="o-days"></output></label><input id="days" type="range" min="0" max="12" value="4"></div>
+        <div class="row"><label for="newpts">New patients per screening day <output id="o-newpts"></output></label><input id="newpts" type="range" min="0" max="15" value="8"></div>
+        <div class="row"><label for="value">Yearly revenue per new patient <output id="o-value"></output></label><input id="value" type="range" min="0" max="1000" step="25" value="200"></div>
+
+        <div class="out">
+          <div><span>Brought in each month</span><b id="r-month"></b></div>
+          <div><span id="l-cost">Monthly payment</span><b id="r-cost"></b></div>
+          <div class="big"><span>3-year net after the device</span><b id="r-net"></b></div>
+        </div>
+        <div class="bar"><i id="b-cost" style="background:var(--blue)"></i><i id="b-tests" style="background:var(--sky)"></i><i id="b-pts" style="background:var(--gold)"></i></div>
+        <div class="bar-legend"><span id="r-pay"></span><span>Tests <b style="color:var(--sky)">■</b> New patients <b style="color:var(--gold)">■</b></span></div>
+        <p class="note">Estimate only. Uses about $21 per billed tympanometry test. Your payer mix, screening rules and patient value will vary.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const PER_TEST = 21, FIN_MONTH = 150, FIN_TOTAL = 5900, CASH = 5000;
+    let plan = 'fin';
+    const $ = (id) => document.getElementById(id);
+    const usd = (n) => '$' + Math.round(n).toLocaleString('en-US');
+    function calc() {
+      const t = +$('tests').value, d = +$('days').value, n = +$('newpts').value, v = +$('value').value;
+      $('o-tests').textContent = t; $('o-days').textContent = d; $('o-newpts').textContent = n; $('o-value').textContent = usd(v);
+      const fromTests = t * 52 / 12 * PER_TEST, fromPts = d * n * v / 12, month = fromTests + fromPts;
+      const total = plan === 'fin' ? FIN_TOTAL : CASH;
+      $('r-month').textContent = usd(month);
+      $('l-cost').textContent = plan === 'fin' ? 'Monthly payment' : 'Paid back in';
+      $('r-cost').textContent = plan === 'fin' ? usd(FIN_MONTH) : (month > 0 ? Math.ceil(CASH / month) + ' mo' : 'n/a');
+      const net = month * 36 - total;
+      $('r-net').textContent = (net < 0 ? '-' : '') + usd(Math.abs(net));
+      const scale = Math.max(month, FIN_MONTH);
+      $('b-cost').style.width = (plan === 'fin' ? Math.min(FIN_MONTH, month) / scale * 100 : 0) + '%';
+      const left = plan === 'fin' ? Math.max(month - FIN_MONTH, 0) : month;
+      $('b-tests').style.width = (left * (month ? fromTests / month : 0)) / scale * 100 + '%';
+      $('b-pts').style.width = (left * (month ? fromPts / month : 0)) / scale * 100 + '%';
+      $('r-pay').textContent = plan === 'fin'
+        ? (month >= FIN_MONTH ? 'Payment covered ' + (month / FIN_MONTH).toFixed(1) + 'x over' : 'Short ' + usd(FIN_MONTH - month) + ' a month')
+        : 'All revenue, device paid up front';
+    }
+    document.querySelectorAll('input[type=range]').forEach((el) => el.addEventListener('input', calc));
+    document.querySelectorAll('.toggle button').forEach((b) => b.addEventListener('click', () => {
+      plan = b.dataset.plan; document.querySelectorAll('.toggle button').forEach((x) => x.classList.toggle('on', x === b)); calc();
+    }));
+    calc();
+  </script>
+</body>
+</html>

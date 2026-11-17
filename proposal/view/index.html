@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#1A2A52">
+  <title>Your Proposal | GELP Strategies</title>
+  <link rel="icon" href="../../favicon.png" type="image/png">
+  <style>
+    :root {
+      --navy: #1A2A52; --navy-2: #2A3E6A; --gold: #B88D35; --gold-soft: #F5ECD8;
+      --bg: #F3F5F9; --card: #FFFFFF; --sunk: #F6F8FB; --line: #DCE2EC;
+      --text: #1A2A52; --soft: #5B6B8A; --muted: #7C8AA6;
+      --ok: #2F7A55; --ok-bg: #E3F3EA; --warn: #8A6100; --warn-bg: #FBF0D3; --bad: #B4412C; --bad-bg: #FBE4DE;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--bg); color: var(--text); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-text-size-adjust: 100%; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 20px max(16px, env(safe-area-inset-right)) 48px max(16px, env(safe-area-inset-left)); }
+    .doc { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 18px 40px -30px rgba(16,30,60,.45); }
+    .head { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; align-items: flex-start; border-bottom: 2px solid var(--gold); padding-bottom: 16px; }
+    .brands { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .brands img.gelp { height: 64px; width: auto; }
+    .brands .pf { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .brands img.client { height: 56px; max-width: 180px; object-fit: contain; border: 1px solid var(--line); border-radius: 6px; padding: 4px; background: #fff; }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; font-size: 26px; margin: 10px 0 0; line-height: 1.2; text-wrap: balance; }
+    .meta { font-size: 13px; color: var(--soft); text-align: right; }
+    .eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+    .bucket h2 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 4px; }
+    .line { border-top: 1px solid var(--line); padding: 12px 0; }
+    .line:first-of-type { border-top: 0; }
+    .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .row b { font-weight: 600; }
+    .row span { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    .line p { margin: 4px 0 0; font-size: 14px; color: var(--soft); }
+    .line .qty { font-size: 13px; color: var(--muted); }
+    .line .cust { color: var(--text); border-left: 2px solid var(--gold); padding-left: 9px; }
+    .line .note { font-size: 13px; font-style: italic; color: var(--muted); }
+    .line .est { font-size: 13px; color: var(--warn); font-weight: 600; }
+    .totals { background: var(--sunk); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px; font-variant-numeric: tabular-nums; }
+    .totals div { display: flex; justify-content: space-between; gap: 10px; }
+    .totals .big { font-family: Georgia, serif; font-size: 21px; font-weight: 600; }
+    .msg { border-radius: 10px; padding: 11px 14px; font-size: 14px; }
+    .msg.ok { background: var(--ok-bg); color: var(--ok); }
+    .msg.warn { background: var(--warn-bg); color: var(--warn); }
+    .msg.bad { background: var(--bad-bg); color: var(--bad); }
+    .accept { border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .accept h2 { margin: 0; font-size: 18px; }
+    .chk { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+    .chk input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--navy); }
+    label.fld { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--soft); font-weight: 600; }
+    input[type=text], input[type=email] { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); min-width: 0; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    button.primary { font: inherit; font-weight: 700; border: 0; border-radius: 9px; padding: 13px 18px; background: var(--navy); color: #fff; cursor: pointer; min-height: 48px; }
+    button.primary:disabled { opacity: .45; cursor: not-allowed; }
+    button.link { background: none; border: 0; padding: 0; color: var(--navy-2); text-decoration: underline; font: inherit; cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .terms { font-size: 13px; color: var(--soft); background: var(--sunk); border-radius: 8px; padding: 12px; }
+    .err { color: var(--bad); font-size: 14px; min-height: 1em; }
+    .mks { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+    .mks:empty { display: none; }
+    .mkimg { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; text-decoration: none; color: var(--text); background: #fff; }
+    .mkimg img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; background: var(--sunk); display: block; }
+    .mkimg span { font-size: 13px; padding: 8px 10px; font-weight: 600; }
+    .mklinks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .mkbtn { display: inline-flex; flex-direction: column; gap: 2px; padding: 10px 14px; border: 1.5px solid var(--navy); border-radius: 9px; color: var(--navy); font-weight: 700; font-size: 14px; text-decoration: none; }
+    .mkbtn small { font-weight: 400; color: var(--soft); }
+    .foot { font-size: 12px; color: var(--muted); text-align: center; }
+    .state { padding: 60px 20px; text-align: center; color: var(--soft); }
+    .live { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+    .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #3FBF7F; }
+    .phase { display: flex; flex-direction: column; gap: 14px; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+    .phase.now { border-color: var(--gold); box-shadow: inset 4px 0 0 var(--gold); }
+    .phhead { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+    .phhead h2 { margin: 0; font-family: Georgia, serif; font-size: 19px; font-weight: 600; }
+    .phhead .when { font-size: 13px; color: var(--soft); font-weight: 600; }
+    .phsum { font-size: 14px; color: var(--soft); border-top: 1px dashed var(--line); padding-top: 10px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .pname { margin: 2px 0 0; font-size: 17px; color: var(--soft); }
+    .phsum b { color: var(--text); font-variant-numeric: tabular-nums; }
+    .phdisc { font-size: 14px; color: var(--soft); display: flex; justify-content: space-between; gap: 10px; font-variant-numeric: tabular-nums; }
+    .phdisc.first { border-top: 1px dashed var(--line); padding-top: 10px; }
+    .phsum.nb { border-top: 0; padding-top: 6px; }
+    .phpick { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; color: var(--soft); font-weight: 600; }
+    .phpick select { font: inherit; font-size: 13px; padding: 5px 8px; border-radius: 7px; border: 1px solid #E2CFA4; background: var(--gold-soft); color: #6E5214; font-weight: 700; }
+    .planbar { position: sticky; top: 8px; z-index: 5; background: var(--navy); color: #fff; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 30px -16px rgba(16,30,60,.7); }
+    .planbar p { margin: 0; font-size: 14px; color: #DCE3F2; }
+    .planbar .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+    .planbar button { font: inherit; font-weight: 700; border-radius: 9px; padding: 10px 14px; cursor: pointer; min-height: 44px; }
+    .planbar .go { background: var(--gold); color: var(--navy); border: 0; }
+    .planbar .undo { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45); }
+    .tip { font-size: 13px; color: var(--soft); background: var(--sunk); border-radius: 10px; padding: 10px 12px; }
+    .totals .sub { font-size: 14px; color: var(--soft); }
+    @media (max-width: 560px) { .doc { padding: 18px; } .meta { text-align: left; } .grid2 { grid-template-columns: 1fr; } h1 { font-size: 22px; } }
+    @media print { body { background: #fff; } .accept, .live, .phpick, .planbar, .tip { display: none; } .doc { border: 0; box-shadow: none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap"><div id="root"><div class="state">Loading your proposal…</div></div></div>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm';
+    import { SUPABASE_URL, SUPABASE_KEY } from '../../config.js';
+
+    const sb = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+    const qs = new URLSearchParams(location.search);
+    const token = (location.hash.replace('#', '').trim() || qs.get('t') || '').trim();
+    const backFromPay = qs.get('paid') === '1';
+    // chat widget for the account that sent this proposal: questions land in that account's CRM Inbox,
+    // linked to this proposal's organization. Added once the proposal loads, so it knows whose account it is.
+    let chatAdded = false;
+    function addChat(d) {
+      if (chatAdded || window.top !== window || !d?.account) return;
+      chatAdded = true;
+      const cw = document.createElement('script'); cw.src = '../../chat/widget.js'; cw.async = true;
+      Object.assign(cw.dataset, { account: d.account, source: 'proposal', ref: token });
+      document.body.appendChild(cw);
+    }
+    let PAY_ENABLED = false;   // set from the proposal (pay_on): GELP's account, with the switch in Admin > Pricing on
+    let payTries = 0;
+    let PAY;               // payment state for an accepted proposal: undefined = not checked yet
+    const root = document.getElementById('root');
+    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const money = (n) => '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
+    const dateLong = (s) => new Date(s).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const GROUPS = [['rlx', 'Platform packages'], ['template', 'Template builds'], ['custom', 'Custom builds'], ['added', 'Additional services'], ['ongoing', 'Ongoing services']];
+
+    let last = '';         // last rendered data, to skip identical redraws
+    let edits = null;      // the client's phase plan while they rearrange: { lineKey: phase }, previewed live, not saved
+    let basePh = {};       // phase of each line as saved (the rep's plan, or the client's plan once sent)
+    let planErr = '';
+    let draft = { agree: false, name: '', email: '' };
+    let busy = false;
+
+    async function load() {
+      if (!token) { root.innerHTML = '<div class="state">This link is missing its proposal code. Check the link you were sent.</div>'; return; }
+      const { data, error } = edits ? await sb.rpc('proposal_view', { p_token: token, p_plan: edits })
+                                    : await sb.rpc('proposal_public', { p_token: token });
+      if (error) { if (!last) root.innerHTML = '<div class="state">We couldn\'t load this proposal right now. Refresh the page to try again.</div>'; return; }
+      if (!data) { root.innerHTML = '<div class="state">This proposal link isn\'t valid. Ask your GELP contact for a new one.</div>'; return; }
+      const sig = JSON.stringify(data);
+      if (sig === last) return;
+      last = sig;
+      PAY_ENABLED = !!data.pay_on;
+      trackView(data); addChat(data);
+      if (!edits) basePh = Object.fromEntries((data.quote?.lines || []).filter((l) => l.lk).map((l) => [l.lk, +l.ph || 1]));
+      render(data);
+      if (data.status === 'accepted' && PAY === undefined) { if (data.paid) { PAY = data.paid; render(data); } else if (PAY_ENABLED) checkPay(data); else { PAY = 'off'; render(data); } }
+    }
+
+    // Count one view per page load, from the client only: not the CRM preview (iframe) and not a browser signed in to the CRM.
+    let tracked = false;
+    function trackView(d) {
+      if (tracked || d.status === 'draft' || !d.version) return;
+      tracked = true;
+      let staff = window.top !== window;
+      try { staff = staff || Object.keys(localStorage).some((k) => /^sb-.*-auth-token$/.test(k) && localStorage.getItem(k)); } catch {}
+      if (!staff) sb.functions.invoke('proposal-view', { body: { token } }).catch(() => {});
+    }
+    const safeUrl = (u) => /^https:\/\//i.test(u || '');
+    function mkHTML(list) {
+      const ms = (list || []).filter((m) => safeUrl(m.url));
+      if (!ms.length) return '';
+      const imgs = ms.filter((m) => m.type === 'image'), rest = ms.filter((m) => m.type !== 'image');
+      return `<div class="mks">${imgs.map((m) => `<a class="mkimg" href="${esc(m.url)}" target="_blank" rel="noopener"><img src="${esc(m.url)}" alt="${esc(m.title || 'Mockup')}" loading="lazy"><span>${esc(m.title || 'Mockup')}</span></a>`).join('')}</div>
+        ${rest.length ? `<div class="mklinks">${rest.map((m) => `<a class="mkbtn" href="${esc(m.url)}" target="_blank" rel="noopener">${m.type === 'pdf' ? 'View mockup (PDF)' : 'Open interactive mockup'}${m.title ? `<small>${esc(m.title)}</small>` : ''}</a>`).join('')}</div>` : ''}`;
+    }
+
+    function phPick(l, n) {
+      if (!l.lk) return '';
+      const cur = +l.ph || 1;
+      return `<label class="phpick">Phase <select data-lk="${esc(l.lk)}" aria-label="Phase for ${esc(l.title)}">${Array.from({ length: Math.min(9, n + 1) }, (_, j) =>
+        `<option value="${j + 1}" ${cur === j + 1 ? 'selected' : ''}>${j + 1 > n ? 'Later (new phase)' : j === 0 ? '1 · now' : j + 1}</option>`).join('')}</select></label>`;
+    }
+    function lineHTML(l, n, canPlan) {
+      const price = [l.setup > 0 ? money(l.setup) + ' setup' : '', l.mo > 0 ? money(l.mo) + '/mo' : l.mo < 0 ? '-' + money(-l.mo) + '/mo' : (l.key === 'host' ? 'Included' : ''), l.wk > 0 ? money(l.wk) + '/week' : ''].filter(Boolean).join(' + ') + (l.trial > 0 ? ` · first ${l.trial} days free` : '');
+      return `<div class="line"><div class="row"><b>${esc(l.title)}${l.est ? ' *' : ''}</b><span>${price}</span></div>
+        ${l.qty ? `<p class="qty">${esc(l.qty)}</p>` : ''}
+        <p>${esc(l.desc)}</p>
+        ${l.sub ? `<p class="cust">${esc(l.sub)}</p>` : ''}
+        ${l.note ? `<p class="note">Note: ${esc(l.note)}</p>` : ''}
+        ${l.est ? '<p class="est">* Estimated, pending review by our development team</p>' : ''}
+        ${mkHTML(l.mockups)}
+        ${canPlan ? phPick(l, n) : ''}</div>`;
+    }
+
+    function render(d) {
+      const q = d.quote, accepted = d.status === 'accepted';
+      const phases = q.phases && q.phases.length ? q.phases : [{ n: 1, setup: q.setup, month: q.month }];
+      const n = phases.length, multi = n > 1, rep = esc(d.rep || 'us');
+      const trials = (q.lines || []).filter((l) => l.trial > 0 && (+l.ph || 1) === 1);
+      const trialText = trials.length ? `Free trial: ${trials.map((l) => `${esc(l.title)}, first ${l.trial} days free`).join('; ')}. Billing for ${trials.length > 1 ? 'those' : 'that'} starts automatically when the trial ends.` : '';
+      // due at signing is setup plus the first month or week of what isn't on a free trial (what Stripe checkout charges)
+      const p1 = (q.lines || []).filter((l) => (+l.ph || 1) === 1 && !(l.trial > 0)), off = 1 - (Number(q.month.pct) || 0) / 100;
+      const nowMo = Math.max(0, trials.length ? p1.reduce((a, l) => a + Number(l.mo || 0), 0) * off : Number(q.month.net) || 0);
+      const nowWk = Math.max(0, trials.length ? p1.reduce((a, l) => a + Number(l.wk || 0), 0) * off : (q.week && q.week.net > 0 ? q.week.net : 0));
+      const dueNow = Number(q.setup.net || 0) + nowMo + nowWk;
+      const firstText = [nowMo > 0 ? 'your first month' : '', nowWk > 0 ? 'your first week' : ''].filter(Boolean).join(' and ');
+      const canPlan = !accepted && !q.expired && q.lines.length > 0;
+      const pending = !accepted && d.client_plan && !edits;
+      const lockMonths = Number(q.lock_months) || 6;
+      const lockEnd = accepted && d.accepted ? new Date(new Date(d.accepted.at).setMonth(new Date(d.accepted.at).getMonth() + lockMonths)) : null;
+      const starts = d.phase_starts || {};
+      const groupsFor = (ls) => GROUPS.map(([k, t]) => {
+        const g = ls.filter((l) => l.bucket === k);
+        return g.length ? `<section class="bucket"><h2>${t}</h2>${g.map((l) => lineHTML(l, n, canPlan)).join('')}</section>` : '';
+      }).join('');
+      const phaseWhen = (ph) => ph.n === 1 ? (accepted ? 'Accepted' : 'Starts when you accept')
+        : accepted ? (starts[ph.n] ? 'Started ' + dateLong(starts[ph.n]) : 'Price-locked until ' + dateLong(lockEnd))
+        : `Price-locked ${lockMonths} month${lockMonths === 1 ? '' : 's'} after you accept${ph.target ? ' · target ' + esc(ph.target) : ''}`;
+      const groups = !multi ? groupsFor(q.lines) : phases.map((ph) => `<section class="phase ${ph.n === 1 ? 'now' : ''}">
+          <div class="phhead"><h2>Phase ${ph.n}${ph.n === 1 ? (accepted ? '' : ': now') : ''}</h2><span class="when">${phaseWhen(ph)}</span></div>
+          ${groupsFor(q.lines.filter((l) => (+l.ph || 1) === ph.n))}
+          ${ph.setup.disc > 0 ? `<div class="phdisc first"><span>Setup before discount</span><span>${money(ph.setup.gross)}</span></div><div class="phdisc"><span>Setup discount</span><span>-${money(ph.setup.disc)}</span></div>` : ''}
+          ${ph.month.disc > 0 ? `<div class="phdisc${ph.setup.disc > 0 ? '' : ' first'}"><span>Monthly before discount</span><span>${money(ph.month.gross)}/mo</span></div><div class="phdisc"><span>Monthly discount</span><span>-${money(ph.month.disc)}/mo</span></div>` : ''}
+          <div class="phsum${ph.setup.disc > 0 || ph.month.disc > 0 ? ' nb' : ''}"><span>Phase ${ph.n} ${ph.n === 1 ? 'total' : 'adds'}</span><span><b>${money(ph.setup.net)}</b> setup${ph.month.net ? ` · <b>${ph.month.net < 0 ? '-' : ''}${money(Math.abs(ph.month.net))}/mo</b>` : ''}${ph.week && ph.week.net > 0 ? ` · <b>${money(ph.week.net)}/week</b>` : ''}</span></div>
+          ${ph.n > 1 && ph.payback ? `<div class="msg bad">Phase ${ph.n} includes a ${ph.payback.term} month minimum term once it starts. If it's cancelled in that time, an early termination fee of ${money(ph.payback.fee)} applies.</div>` : ''}
+        </section>`).join('');
+      const later = phases.slice(1);
+      const laterSetup = later.reduce((a, x) => a + Number(x.setup.net || 0), 0);
+      let planBox = '';
+      if (edits) planBox = `<div class="planbar" role="region" aria-label="Your phase changes"><b>You're rearranging the phases.</b>
+          <p>Totals update as you go. Phase 1 is what you'd sign for now. Send this to ${rep} and you'll get an updated proposal to accept.</p>
+          ${planErr ? `<p style="color:#FFD2C6">${esc(planErr)}</p>` : ''}
+          <div class="btns"><button type="button" class="go" id="planSend">Send this plan to ${rep}</button><button type="button" class="undo" id="planUndo">Undo my changes</button></div></div>`;
+      else if (pending) planBox = `<div class="msg warn"><b>Your phase plan is with ${rep}.</b> You sent it ${esc(new Date(d.client_plan.at).toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' }))}. ${rep} will review it and send an updated proposal you can accept here. You can keep adjusting it below.
+          ${planErr ? `<div style="margin-top:6px;color:var(--bad)">${esc(planErr)}</div>` : ''}
+          <div style="margin-top:8px"><button type="button" class="link" id="planWithdraw">Withdraw my plan and go back to the original</button></div></div>`;
+      else if (canPlan) planBox = `<div class="tip">${multi ? 'This proposal is split into phases. ' : ''}Want to do some of this now and some later? Use the <b>Phase</b> menu on any item to move it. Totals update as you go, and you can send the plan to ${rep}.</div>`;
+      let acceptBox;
+      if (accepted) {
+        const a = d.accepted;
+        const who = `${esc(a.name)}${a.email ? ' (' + esc(a.email) + ')' : ''} accepted version ${a.version} on ${esc(new Date(a.at).toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' }))}.`;
+        // what bills now: the recurring lines that aren't on a free trial (the monthly discount applies to both)
+        const recur = [nowMo > 0 ? money(nowMo) + '/mo' : '', nowWk > 0 ? money(nowWk) + '/week' : ''].filter(Boolean).join(' and ');
+        const due = recur ? `${money(dueNow)} today (${q.setup.net > 0 ? 'setup plus ' : ''}${firstText}), then ${recur} after that`
+          : q.setup.net > 0 ? money(q.setup.net) + ' today' : 'Nothing is due today';
+        acceptBox = PAY === 'paid' ? `<div class="msg ok"><b>Accepted and paid. Thank you!</b> ${who} Your payment went through${recur || trials.length ? ' and your recurring billing is set up' : ''}. A receipt is on its way to your email, and your GELP contact will reach out with next steps.</div>`
+          : PAY === 'processing' ? `<div class="msg ok"><b>Accepted. Your bank payment is processing.</b> ${who} Bank transfers usually clear in a few business days. Nothing else is needed from you.</div>`
+          : PAY === undefined ? `<div class="msg ok"><b>Accepted.</b> ${who} ${backFromPay ? 'Confirming your payment…' : 'Checking payment…'}</div>`
+          : PAY === 'off' ? `<div class="msg ok"><b>Accepted.</b> ${who} Your GELP contact will follow up with next steps and your first invoice.</div>`
+          : `<div class="accept"><div class="msg ok" style="margin:0"><b>Accepted.</b> ${who}</div>
+              ${PAY === 'failed' ? '<div class="msg bad" style="margin:0">Your last payment didn\'t go through. You can try again below.</div>' : ''}
+              <h2>Complete your payment</h2><p style="margin:0">${due}. You'll pay on a secure Stripe page by card or bank account.</p>${trialText ? `<p style="margin:0;font-size:14px;color:var(--soft)">${trialText} Your card or bank account is saved now so there's nothing to do later.</p>` : ''}
+              <div class="err" id="payErr"></div>
+              <button class="primary" id="payBtn" type="button">Pay now</button></div>`;
+      } else if (edits || pending) {
+        acceptBox = '';
+      } else if (q.expired) {
+        acceptBox = `<div class="msg warn">This pricing was valid until ${esc(dateLong(d.expires_at))}. Ask your GELP contact for an updated proposal.</div>`;
+      } else if (q.dev_pending) {
+        acceptBox = `<div class="msg warn">Items marked with * are estimates. You'll be able to accept once our development team confirms them.</div>`;
+      } else if (!q.acceptable) {
+        acceptBox = `<div class="msg warn">We're still finalizing this proposal. It will update here automatically.</div>`;
+      } else {
+        acceptBox = `<div class="accept">
+          <h2>Accept this proposal</h2>
+          <label class="chk"><input type="checkbox" id="agree" ${draft.agree ? 'checked' : ''}> <span>I agree to this proposal and the <button type="button" class="link" id="termsBtn">terms of service</button>.</span></label>
+          ${multi ? `<p style="margin:0;font-size:14px;color:var(--soft)">Accepting covers Phase 1: ${money(dueNow)} due at signing${firstText ? ` (setup plus ${firstText})` : ''}${q.month.net ? `, then ${money(q.month.net)}/mo` : ''}${q.week && q.week.net > 0 ? ` and ${money(q.week.net)}/week` : ''}. ${n > 2 ? 'Phases 2 to ' + n + ' stay' : 'Phase 2 stays'} at these prices for ${lockMonths} month${lockMonths === 1 ? '' : 's'} after you accept and start only when you tell us you're ready.</p>` : ''}
+          <div class="terms" id="terms" hidden>${d.terms ? `<b>Terms of service.</b> ${esc(d.terms).replace(/\n/g, '<br>')}` : `<b>Terms of service.</b> Services are month to month and may be cancelled with 30 days written notice${q.payback ? `, subject to the ${q.payback.term} month minimum term and early termination fee stated above` : ''}. Setup fees are due at signing and are non-refundable once work begins. Monthly fees are billed in advance.${q.week && q.week.net > 0 ? ' Weekly fees are billed every week in advance, starting the day you pay.' : ''}${trials.length ? ' Free trial periods are stated next to each item; billing for those items starts when the trial ends unless you cancel before then.' : ''} Pricing in this proposal is valid until ${esc(dateLong(d.expires_at))}${multi ? `; prices for later phases are held for ${lockMonths} month${lockMonths === 1 ? '' : 's'} after acceptance` : ''}. RLX services are provided under the RLX user agreement, including the business associate agreement accepted at account creation.`}</div>
+          <div class="grid2">
+            <label class="fld" for="sigName">Your full name<input type="text" id="sigName" autocomplete="name" value="${esc(draft.name)}"></label>
+            <label class="fld" for="sigEmail">Email<input type="email" id="sigEmail" autocomplete="email" value="${esc(draft.email || d.contact_email || '')}"></label>
+          </div>
+          ${trialText ? `<p style="margin:0;font-size:14px;color:var(--soft)">${trialText}</p>` : ''}
+          <div class="err" id="err"></div>
+          <button class="primary" id="acceptBtn" type="button">${multi ? 'Accept Phase 1' : 'Accept proposal'}</button>
+          <small style="color:var(--muted)">Typing your name and accepting counts as your electronic signature. We record your name, email, the time and your connection details with the exact version you accepted.</small>
+        </div>`;
+      }
+      root.innerHTML = `<article class="doc">
+        <header class="head">
+          <div><div class="brands"><img class="gelp" src="gelp-logo.webp" alt="GELP Strategies">${d.logo ? `<span class="pf">Prepared for</span><img class="client" src="${esc(d.logo)}" alt="${esc(d.org)} logo">` : ''}</div>
+            <h1>${esc(d.org)}</h1>${d.name ? `<p class="pname">${esc(d.name)}</p>` : ''}</div>
+          <div class="meta">${d.contact_name ? esc(d.contact_name) + '<br>' : ''}${d.contact_email ? esc(d.contact_email) + '<br>' : ''}${accepted ? 'Accepted' : 'Pricing valid until ' + esc(dateLong(d.expires_at))}<br>${d.version ? 'Version ' + d.version : 'Draft'}${accepted ? '' : ' <span class="live">Live</span>'}</div>
+        </header>
+        ${planBox}
+        ${groups || '<p class="state" style="padding:20px">Your proposal will appear here as we build it together.</p>'}
+        ${mkHTML(d.mockups) ? `<section class="bucket"><h2>Mockups</h2>${mkHTML(d.mockups)}</section>` : ''}
+        ${d.note ? `<div class="msg warn">${esc(d.note)}</div>` : ''}
+        <div class="totals">
+          ${q.setup.disc > 0 ? `<div><span>Setup</span><span>${money(q.setup.gross)}</span></div><div><span>Setup discount</span><span>-${money(q.setup.disc)}</span></div>` : ''}
+          ${firstText ? `<div><span>Setup${q.setup.disc > 0 ? ' after discount' : ''}</span><span>${money(q.setup.net)}</span></div>${nowMo > 0 ? `<div><span>First month</span><span>${money(nowMo)}</span></div>` : ''}${nowWk > 0 ? `<div><span>First week</span><span>${money(nowWk)}</span></div>` : ''}` : ''}
+          <div class="big"><span>Due at signing</span><span>${money(dueNow)}</span></div>
+          ${q.month.disc > 0 ? `<div><span>Monthly</span><span>${money(q.month.gross)}</span></div><div><span>Monthly discount</span><span>-${money(q.month.disc)}</span></div>` : ''}
+          ${q.month.net > 0 || !(q.week && q.week.net > 0) ? `<div class="big"><span>${multi ? 'Monthly, Phase 1' : 'Monthly'}</span><span>${money(q.month.net)}</span></div>` : ''}
+          ${q.week && q.week.net > 0 ? `${q.week.disc > 0 ? `<div><span>Weekly</span><span>${money(q.week.gross)}</span></div><div><span>Weekly discount</span><span>-${money(q.week.disc)}</span></div>` : ''}
+          <div class="big"><span>${multi ? 'Weekly, Phase 1' : 'Weekly'}</span><span>${money(q.week.net)}</span></div>` : ''}
+          ${multi ? `<div class="sub"><span>Later phases, setup when each starts</span><span>${money(laterSetup)}</span></div>
+          <div class="sub"><span>Monthly once every phase is running</span><span>${money(q.plan?.month)}</span></div>${q.plan && q.plan.week > 0 ? `<div class="sub"><span>Weekly once every phase is running</span><span>${money(q.plan.week)}</span></div>` : ''}` : ''}
+        </div>
+        ${q.payback ? `<div class="msg bad">${multi ? 'Phase 1' : 'This proposal'} includes a ${q.payback.term} month minimum term. If service is cancelled within the first ${q.payback.term} months, an early termination fee of ${money(q.payback.fee)} applies.</div>` : ''}
+        ${acceptBox}
+        <p class="foot">GELP Strategies, an authorized RLX dealer · info@gelpstrategies.com · gelpstrategies.com</p>
+      </article>`;
+      bind();
+    }
+
+    async function checkPay(d) {
+      const { data, error } = await sb.functions.invoke('proposal-checkout', { body: { token, action: 'status' } });
+      PAY = error || data?.not_configured || data?.error ? 'off' : (data?.pay_status || 'due');
+      if (data?.pay_status === null && !error && !data?.not_configured) PAY = 'due';
+      render(d);
+      if (backFromPay && PAY === 'pending' && ++payTries < 10) setTimeout(() => { PAY = undefined; checkPay(d); }, 3000);
+    }
+    async function startPay(btn, errEl) {
+      if (btn) { btn.disabled = true; btn.textContent = 'Opening secure payment…'; }
+      const { data, error } = await sb.functions.invoke('proposal-checkout', { body: { token, action: 'start' } });
+      if (!error && data?.url) { location.href = data.url; return true; }
+      if (btn) { btn.disabled = false; btn.textContent = 'Pay now'; }
+      if (data?.paid || data?.nothing) { PAY = data.pay_status || 'paid'; last = ''; load(); return true; }
+      if (data?.not_configured) { PAY = 'off'; last = ''; load(); return false; }
+      if (errEl) errEl.textContent = (data && data.error) || 'We couldn\'t open the payment page. Refresh and try again.';
+      return false;
+    }
+
+    function bind() {
+      document.querySelectorAll('select[data-lk]').forEach((sel) => (sel.onchange = () => {
+        const cur = Object.fromEntries([...document.querySelectorAll('select[data-lk]')].map((x) => [x.dataset.lk, +x.value]));
+        const same = Object.keys(basePh).length === Object.keys(cur).length && Object.entries(cur).every(([k, v]) => basePh[k] === v);
+        edits = same ? null : cur; planErr = ''; last = ''; load();
+      }));
+      const ps = document.getElementById('planSend');
+      if (ps) ps.onclick = async () => {
+        ps.disabled = true; ps.textContent = 'Sending…'; busy = true;
+        const { data, error } = await sb.rpc('proposal_client_plan', { p_token: token, p_plan: edits });
+        busy = false;
+        if (error) { planErr = error.message; ps.disabled = false; last = ''; return load(); }
+        if (data?.saved) sb.functions.invoke('proposal-email', { body: { kind: 'plan', token } }).catch(() => {});
+        edits = null; planErr = ''; last = ''; load();
+      };
+      const pu = document.getElementById('planUndo');
+      if (pu) pu.onclick = () => { edits = null; planErr = ''; last = ''; load(); };
+      const pw = document.getElementById('planWithdraw');
+      if (pw) pw.onclick = async () => {
+        pw.disabled = true;
+        const { error } = await sb.rpc('proposal_client_plan', { p_token: token, p_plan: null });
+        planErr = error ? error.message : ''; last = ''; load();
+      };
+      const pb = document.getElementById('payBtn');
+      if (pb) pb.onclick = () => startPay(pb, document.getElementById('payErr'));
+      const ag = document.getElementById('agree'); if (!ag) return;
+      const nm = document.getElementById('sigName'), em = document.getElementById('sigEmail'), btn = document.getElementById('acceptBtn'), err = document.getElementById('err');
+      ag.onchange = () => (draft.agree = ag.checked);
+      nm.oninput = () => (draft.name = nm.value);
+      em.oninput = () => (draft.email = em.value);
+      document.getElementById('termsBtn').onclick = () => { const t = document.getElementById('terms'); t.hidden = !t.hidden; };
+      btn.onclick = async () => {
+        err.textContent = '';
+        if (!ag.checked) return (err.textContent = 'Check the box to agree to the proposal and terms.');
+        if (nm.value.trim().length < 3) return (err.textContent = 'Type your full name to accept.');
+        busy = true; btn.disabled = true; btn.textContent = 'Accepting…';
+        const { error } = await sb.rpc('proposal_accept', { p_token: token, p_name: nm.value.trim(), p_email: em.value.trim(), p_agree: true });
+        busy = false;
+        if (error) { btn.disabled = false; btn.textContent = 'Accept proposal'; err.textContent = error.message; return; }
+        sb.functions.invoke('proposal-email', { body: { kind: 'accepted', token } }).catch(() => {});
+        if (PAY_ENABLED) btn.textContent = 'Opening secure payment…';
+        if (PAY_ENABLED && await startPay(null, err)) return;
+        last = ''; load();
+      };
+    }
+
+    // Live: refresh while the page is open so the client sees changes as they're made.
+    const typing = () => ['sigName', 'sigEmail'].includes(document.activeElement?.id) || document.activeElement?.tagName === 'SELECT';
+    load();
+    setInterval(() => { if (!document.hidden && !busy && !typing() && !last.includes('"status":"accepted"')) load(); }, 2500);
+    window.addEventListener('message', (e) => { if (e.origin === location.origin && e.data === 'proposal:refresh' && !typing()) load(); });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) load(); });
+  </script>
+</body>
+</html>

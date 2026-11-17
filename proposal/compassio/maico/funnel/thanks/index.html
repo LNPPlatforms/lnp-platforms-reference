@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pick a Time | MAICO easyTymp + Compassio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../funnel.css?v=20261116t">
+</head>
+<body class="dark" style="min-height:100vh">
+  <div class="ribbon">Concept mockup for partner review. In the live version this step is the booking calendar.</div>
+  <nav><div class="wrap">
+    <a class="brand" href="../"><span class="maico">MAICO</span><span class="plus">+</span><img src="../../../compassio-logo.webp" alt="Compassio Medical Education"></a>
+  </div></nav>
+  <div class="wrap narrow" style="padding:20px 18px 70px">
+    <div class="formcard">
+      <div class="progress"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      <div id="pick">
+        <span class="eyebrow" style="color:var(--purple)">Last step</span>
+        <h2 id="hi" style="color:var(--ink)">Thanks. Which time works best?</h2>
+        <p style="color:var(--ink-2);margin:0">A 20-minute call with the team. We'll show the easyTymp, run your clinic's numbers and answer questions.</p>
+        <div class="times" id="times"></div>
+        <button class="btn primary big" id="book" disabled style="width:100%">Confirm my time</button>
+        <p class="fine" style="margin-top:12px">None of these work? <a href="#" id="other">See more times</a>.</p>
+      </div>
+      <div id="done" hidden>
+        <span class="eyebrow" style="color:var(--ok)">You're booked</span>
+        <h2 style="color:var(--ink)" id="when">See you then.</h2>
+        <p style="color:var(--ink-2)">A calendar invite and a short prep checklist are on the way. Have your typical number of ear complaints per day handy and we'll do the rest.</p>
+        <div class="panel" style="margin-top:18px">
+          <h3>While you wait</h3>
+          <ul class="list">
+            <li>Watch Dr. LaCour's 2-minute overview of why tympanometry matters.</li>
+            <li>Join the next live Compassio webinar on reading tympanograms.</li>
+            <li>Ask your local ENT about the program. Many already endorse it.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var name = ''; try { name = (JSON.parse(sessionStorage.getItem('tympLead') || '{}').name || ''); } catch (x) {}
+      if (name) document.getElementById('hi').textContent = 'Thanks, ' + name + '. Which time works best?';
+      var slots = [[10, 0], [14, 0], [11, 30]], out = [], d = new Date();
+      while (out.length < 3) { d.setDate(d.getDate() + 1); var w = d.getDay(); if (w > 0 && w < 6) out.push(new Date(d)); }
+      var box = document.getElementById('times'), pick = null;
+      box.innerHTML = out.map(function (day, i) {
+        var t = new Date(day); t.setHours(slots[i][0], slots[i][1], 0, 0);
+        return '<button type="button" data-i="' + i + '"><b>' + t.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) + '</b><small>' + t.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) + ' Central</small></button>';
+      }).join('');
+      box.querySelectorAll('button').forEach(function (b) {
+        b.onclick = function () { pick = b; box.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); }); document.getElementById('book').disabled = false; };
+      });
+      document.getElementById('book').onclick = function () {
+        if (!pick) return;
+        document.getElementById('when').textContent = 'See you ' + pick.querySelector('b').textContent + ' at ' + pick.querySelector('small').textContent + '.';
+        document.getElementById('pick').hidden = true; document.getElementById('done').hidden = false;
+      };
+      document.getElementById('other').onclick = function (e) { e.preventDefault(); e.target.parentNode.textContent = 'In the live version this opens the full booking calendar.'; };
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MAICO + Compassio: Pays for Itself | GELP Strategies</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../base.css">
+  <style>
+    .plans { display: grid; gap: 16px; }
+    .plan { padding: 22px 24px; display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; align-items: center; }
+    .plan h3 { margin: 6px 0 0; font-size: 17px; }
+    .plan p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.5; grid-column: 1; }
+    .price { grid-row: 1 / span 3; grid-column: 2; text-align: right; font-family: var(--display); font-weight: 700; font-size: 40px; color: var(--purple); line-height: 1; }
+    .price small { display: block; font-family: var(--body); font-size: 12px; font-weight: 500; color: var(--ink-2); margin-top: 6px; }
+    .plan.pick { outline: 3px solid var(--sky); }
+    .meter { padding: 22px 24px; }
+    .meter h3 { margin: 6px 0 14px; font-size: 16px; }
+    .dots { display: grid; grid-template-columns: repeat(20, 1fr); gap: 6px; }
+    .dots i { aspect-ratio: 1; border-radius: 50%; background: var(--gold); }
+    .dots i.pay { background: var(--blue); }
+    .legend { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink-2); margin-top: 12px; gap: 12px; }
+    .legend b { color: var(--ink); }
+    .sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <nav><div class="wrap">
+      <a class="brand" href="#"><span class="maico">MAICO</span><span class="plus">+</span><img src="../../compassio-logo.webp" alt="Compassio Medical Education"></a>
+      <div class="links"><a href="#">Why tympanometry</a><a href="#">The courses</a><a href="#">Meet Dr. LaCour</a><a href="#">For ENTs</a></div>
+      <a class="nav-cta" href="#">Get pricing</a>
+    </div></nav>
+
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">easyTymp for primary care</span>
+        <h1>Pays for itself at <em>two tests a week.</em></h1>
+        <p class="lede">Tympanometry is a billable test. At about $21 a test, seven tests a month covers your payment. Every test after that is revenue, and you get a clear answer on ear fluid at the first visit.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#">Get my quote →</a>
+          <a class="btn ghost" href="#">See the math</a>
+        </div>
+        <p class="fine">Both options include two free CME seats with Dr. Jeffrey LaCour, a $1,196 value.</p>
+      </div>
+
+      <div class="plans">
+        <div class="card plan">
+          <span class="kicker">Own it</span>
+          <h3>One payment, done</h3>
+          <p>Pays back in about 238 billed tests.</p>
+          <div class="price">$5,000<small>one time</small></div>
+        </div>
+        <div class="card plan pick">
+          <span class="kicker">Spread it out</span>
+          <h3>Low monthly payment</h3>
+          <p>36 months, $5,900 total. Covered by 7 tests a month.</p>
+          <div class="price">$150<small>per month</small></div>
+        </div>
+        <div class="card meter">
+          <span class="kicker">A month at 20 tests, about 5 a week</span>
+          <h3>7 tests make the payment. The rest is yours.</h3>
+          <div class="dots">
+            <i class="pay"></i><i class="pay"></i><i class="pay"></i><i class="pay"></i><i class="pay"></i><i class="pay"></i><i class="pay"></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="legend">
+            <span><span class="sw" style="background:var(--blue)"></span>7 tests: $150 payment</span>
+            <span><span class="sw" style="background:var(--gold)"></span><b>+$270</b> a month after</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof"><div class="wrap">
+      <div><strong>~$21</strong>Typical payment per billed tympanometry test</div>
+      <div><strong>7 a month</strong>Covers the $150 payment</div>
+      <div><strong>2 CME seats</strong>Included free, a $1,196 value</div>
+      <div><strong>First visit</strong>Confirm fluid before you prescribe</div>
+    </div></div>
+  </section>
+</body>
+</html>

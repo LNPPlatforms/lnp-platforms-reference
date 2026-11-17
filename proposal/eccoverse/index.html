@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<script>if(/\/proposal\/eccoverse$/.test(location.pathname))location.replace(location.pathname+"/"+location.search+location.hash);</script>
+<title>Eccoverse Launch | GELP Strategies</title>
+<meta name="description" content="Your Bossier launch with GELP Strategies and RLX.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<style>body{margin:0}</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a welcome-aboard launch page, not a pitch. Navy bands carry the story
+   (welcome, where you show up, your ads, Georgia, launch plan); the get started
+   block at the end holds the terms recap, checkout and partner agreement.
+   Single committed light theme, scoped under #ecl, no CSS variables (GELP Portal).
+   Palette: RLX navy #1D3A5F, deep #142A45, RLX green #00E600 (on navy only),
+   text green #0B7A2B, ink #18222F, paper #F2F5F8, white.
+   Type: Source Serif 4 (display), Libre Franklin (body), IBM Plex Mono (labels, numbers). */
+html,body{background:#F2F5F8;color:#18222F}
+#ecl{font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;color:#18222F;background:#F2F5F8}
+#ecl *{box-sizing:border-box}
+#ecl [hidden]{display:none!important}
+#ecl img{max-width:100%;height:auto;display:block}
+#ecl .wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#ecl .band{padding-block:68px}
+#ecl .navy{background:#1D3A5F;color:#E8EEF5}
+#ecl .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#0B7A2B;margin:0 0 12px;font-weight:500}
+#ecl .navy .eyebrow{color:#00E600}
+#ecl h1,#ecl h2,#ecl h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;text-wrap:balance;margin:0;line-height:1.15}
+#ecl h1{font-size:clamp(36px,5.6vw,60px);letter-spacing:-.01em}
+#ecl h2{font-size:clamp(26px,3.6vw,38px)}
+#ecl h3{font-size:20px}
+#ecl p{margin:0;max-width:64ch}
+#ecl .muted{color:#56637A}
+#ecl .navy .muted{color:#B9C7D8}
+#ecl .head{display:grid;gap:12px;margin-bottom:34px}
+
+/* masthead */
+#ecl .mast{background:#FFFFFF;border-bottom:1px solid #DCE3EC}
+#ecl .mast .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:14px}
+#ecl .logos{display:flex;align-items:center;gap:18px}
+#ecl .logos img{height:78px;width:auto}
+#ecl .logos .rlx-logo{height:48px}
+#ecl .logos .sep{width:1px;height:56px;background:#DCE3EC}
+#ecl .wordmark{font-weight:700;font-size:21px;color:#1D3A5F}
+#ecl .prep{font-size:13px;color:#56637A}
+
+/* hero */
+#ecl .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:60px 68px}
+#ecl .hero > *{min-width:0}
+#ecl .hero .sub{color:#CBD6E4;font-size:19px;margin-top:18px}
+#ecl .counter{border:1px solid #2F4E78;border-radius:6px;padding:24px;background:#142A45}
+#ecl .counter hr{border:0;border-top:1px dashed #2F4E78;margin:18px 0}
+#ecl .row{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#CBD6E4}
+#ecl .row b{color:#FFFFFF;font-weight:500;font-family:"IBM Plex Mono",monospace}
+#ecl .cascade{width:100%;height:auto;display:block}
+#ecl .cascade .ln{fill:none;stroke:#4F6E96;stroke-width:1.4}
+#ecl .cascade .ln.go{stroke:#00E600;stroke-opacity:.55}
+#ecl .cascade .nd{fill:#4F6E96;transition:fill .4s ease}
+#ecl .cascade .nd.on{fill:#FFFFFF}
+#ecl .cascade text{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:#CBD6E4}
+
+/* buttons */
+#ecl .btn{display:inline-flex;align-items:center;gap:10px;background:#00E600;color:#0F2238;font-weight:700;font-size:16px;text-decoration:none;padding:14px 22px;border-radius:6px;transition:background .15s ease,transform .15s ease;line-height:1.2}
+#ecl .btn:hover{background:#3BFF3B;transform:translateY(-1px)}
+#ecl .btn:focus-visible{outline:2px solid #FFFFFF;outline-offset:3px}
+#ecl .btn.dark{background:#1D3A5F;color:#FFFFFF}
+#ecl .btn.dark:hover{background:#142A45}
+#ecl .btn.dark:focus-visible{outline-color:#00B300}
+#ecl .btn-row{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+/* where you show up */
+#ecl .where{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:start}
+#ecl .where > *{min-width:0}
+#ecl figure{margin:0}
+#ecl .shot{background:#FFFFFF;border:1px solid #D5DCE6;border-radius:6px;padding:10px;box-shadow:0 18px 40px -26px rgba(29,58,95,.5)}
+#ecl .minitabs{display:flex;gap:6px;margin-bottom:10px}
+#ecl .mini{font:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:5px;border:1px solid #C3CFDD;background:#FFFFFF;color:#38465C;cursor:pointer}
+#ecl .mini[aria-pressed="true"]{background:#1D3A5F;border-color:#1D3A5F;color:#FFFFFF}
+#ecl .mini:focus-visible{outline:2px solid #00B300;outline-offset:2px}
+#ecl figcaption{margin-top:14px;font-size:14.5px;color:#38465C}
+#ecl figcaption b{display:block;color:#1D3A5F;font-size:16px;margin-bottom:2px}
+#ecl .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-left:6px;vertical-align:2px}
+#ecl .tag.live{background:#E3F7E6;color:#0B7A2B}
+#ecl .tag.future{background:#EEF1F5;color:#56637A}
+
+/* ads */
+#ecl .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+#ecl .tab{font:inherit;font-size:15px;font-weight:600;padding:10px 18px;border-radius:6px;border:1px solid #2F4E78;background:transparent;color:#CBD6E4;cursor:pointer}
+#ecl .tab[aria-selected="true"]{background:#00E600;border-color:#00E600;color:#0F2238}
+#ecl .tab:focus-visible{outline:2px solid #FFFFFF;outline-offset:2px}
+#ecl .adset{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+#ecl .adset > *{min-width:0}
+#ecl .adcol{display:grid;gap:18px}
+#ecl .adlabel{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#B9C7D8;margin-bottom:8px}
+#ecl .adimg{border-radius:4px;overflow:hidden;background:#FFFFFF}
+#ecl .banner-img{max-width:425px}
+#ecl .adnote{font-size:14.5px;color:#CBD6E4;margin-top:22px}
+#ecl .proofnote{margin-top:26px;border:1px solid #00E600;border-radius:6px;padding:16px 20px;background:#142A45;color:#CBD6E4;font-size:15px;max-width:820px}
+#ecl .proofnote b{color:#FFFFFF}
+#ecl .proofline{margin-top:12px;font-size:14.5px;color:#0B7A2B;font-weight:600}
+
+/* georgia */
+#ecl .ga{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+#ecl .ga > div{border-top:3px solid #1D3A5F;padding-top:16px;min-width:0}
+#ecl .ga > div:last-child{border-top-color:#0B7A2B}
+#ecl .ga .big{font-family:"IBM Plex Mono",monospace;font-size:34px;font-weight:500;color:#1D3A5F;line-height:1.1;margin-bottom:6px}
+#ecl .ga p{color:#38465C;margin-top:8px;font-size:15px}
+
+/* timeline */
+#ecl .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+#ecl .tl > div{border-top:3px solid #2F4E78;padding-top:14px;min-width:0}
+#ecl .tl > div.now{border-top-color:#00E600}
+#ecl .tl .when{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#00E600;margin-bottom:6px}
+#ecl .tl h3{color:#FFFFFF;font-size:19px}
+#ecl .tl ul{margin:10px 0 0;padding-left:18px;color:#CBD6E4;font-size:14.5px;display:grid;gap:6px}
+#ecl .goal{margin-top:30px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1px solid #2F4E78;border-radius:6px;padding:16px 20px;background:#142A45}
+#ecl .goal b{font-family:"IBM Plex Mono",monospace;color:#00E600;font-size:22px;font-weight:500}
+#ecl .goal span{color:#CBD6E4;font-size:15px}
+
+/* get started */
+#ecl .start{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:start}
+#ecl .start > *{min-width:0}
+#ecl .leftcol{display:grid;gap:22px;align-content:start}
+#ecl .vcard{background:#FFFFFF;border:1px solid #D5DCE6;border-radius:14px;padding:28px}
+#ecl .vtop{display:flex;align-items:center;gap:18px}
+#ecl .vicon{width:72px;height:72px;border-radius:50%;background:#E3F4E8;display:flex;align-items:center;justify-content:center;flex:none}
+#ecl .vicon svg{width:34px;height:34px}
+#ecl .vcard h3{font-family:"Libre Franklin",sans-serif;font-weight:700;font-size:28px;color:#1D3A5F;letter-spacing:-.01em}
+#ecl .vtag{color:#38465C;font-size:17px;margin-top:2px}
+#ecl .vprice{margin-top:18px;font-weight:800;font-size:56px;line-height:1;color:#0BA24A;letter-spacing:-.02em}
+#ecl .vprice small{font-size:20px;font-weight:700;letter-spacing:0}
+#ecl .vsetup{color:#56637A;font-size:15px;margin-top:10px}
+#ecl .vlist{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:14px}
+#ecl .vlist li{display:flex;gap:14px;align-items:flex-start;color:#38465C;font-size:16px;line-height:1.35}
+#ecl .vlist svg{width:22px;height:22px;flex:none}
+#ecl .terms{background:#FFFFFF;border:1px solid #D5DCE6;border-radius:6px;padding:24px}
+#ecl .terms h3{margin-bottom:14px}
+#ecl .terms dl{margin:0;display:grid;gap:0}
+#ecl .terms .t{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid #E3E8EF;align-items:baseline}
+#ecl .terms dt{font-size:14.5px;color:#38465C}
+#ecl .terms dt small{display:block;color:#6B7F98;font-size:12.5px;margin-top:2px}
+#ecl .terms dd{margin:0;font-family:"IBM Plex Mono",monospace;font-weight:500;color:#1D3A5F;white-space:nowrap}
+#ecl .terms dd.free{color:#0B7A2B}
+#ecl .terms .fine{font-size:13px;color:#56637A;margin-top:14px}
+#ecl .steps{display:grid;gap:22px}
+#ecl .step{background:#FFFFFF;border:1px solid #D5DCE6;border-radius:6px;padding:24px}
+#ecl .step .num{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#0B7A2B;margin-bottom:6px}
+#ecl .step p{color:#38465C;margin-top:8px}
+#ecl .formwrap{margin-top:18px;min-height:949px}
+#ecl .formwrap iframe{width:100%;height:949px;border:none;border-radius:8px}
+#ecl .formph{min-height:420px;border:2px dashed #C3CFDD;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;color:#56637A;padding:24px}
+#ecl .contact{margin-top:6px;font-size:14.5px;color:#38465C}
+#ecl .contact span{font-family:"IBM Plex Mono",monospace;user-select:all;color:#1D3A5F}
+#ecl .foot{border-top:1px solid #2F4E78;padding-block:20px;font-size:12.5px;color:#93A5BC;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+
+/* suggest a change: mark up an ad and send it to GELP */
+#ecl .adimg{position:relative}
+#ecl .sugbtn{font:inherit;font-size:13px;font-weight:600;margin-top:8px;padding:7px 12px;border-radius:5px;border:1px solid #4F6E96;background:transparent;color:#E8EEF5;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+#ecl .band .sugbtn{border-color:#C3CFDD;color:#1D3A5F;background:#FFFFFF}
+#ecl .sugbtn:hover{border-color:#00E600}
+#ecl .sugbtn:focus-visible{outline:2px solid #00B300;outline-offset:2px}
+#ecl .sugtab{position:fixed;right:0;top:46%;z-index:60;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;background:#00E600;color:#0F2238;font:700 14px "Libre Franklin",system-ui,sans-serif;border:0;border-radius:0 8px 8px 0;padding:14px 8px;cursor:pointer;box-shadow:0 6px 18px -8px rgba(0,0,0,.5);margin-right:env(safe-area-inset-right,0px)}
+#ecl .sugtab:focus-visible{outline:2px solid #1D3A5F;outline-offset:2px}
+#ecl .sugov{position:fixed;inset:0;z-index:200;background:rgba(15,23,42,.92);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#ecl .sugbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px max(14px,env(safe-area-inset-left,0px));background:#FFFFFF;color:#18222F}
+#ecl .sugbar b{font-size:15px;margin-right:6px}
+#ecl .sugseg{display:inline-flex;border:1px solid #C3CFDD;border-radius:6px;overflow:hidden}
+#ecl .sugseg button{font:inherit;font-size:13px;font-weight:600;border:0;background:#FFFFFF;color:#38465C;padding:8px 12px;cursor:pointer}
+#ecl .sugseg button+button{border-left:1px solid #C3CFDD}
+#ecl .sugseg button.on{background:#1D3A5F;color:#FFFFFF}
+#ecl .sugcol{display:flex;gap:6px}
+#ecl .sugcol button{width:26px;height:26px;border-radius:50%;border:2px solid #FFFFFF;box-shadow:0 0 0 1px #C3CFDD;cursor:pointer}
+#ecl .sugcol button.on{box-shadow:0 0 0 2px #1D3A5F}
+#ecl .sugsm{font:inherit;font-size:13px;font-weight:600;border:1px solid #C3CFDD;background:#FFFFFF;color:#1D3A5F;border-radius:6px;padding:8px 12px;cursor:pointer}
+#ecl .sugstage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:14px}
+#ecl .sugstage canvas{max-width:100%;max-height:100%;touch-action:none;cursor:crosshair;background:#FFFFFF;border-radius:6px}
+#ecl .sugform{background:#FFFFFF;color:#18222F;padding:14px max(14px,env(safe-area-inset-left,0px));display:grid;gap:10px}
+#ecl .sugform .rowf{display:grid;grid-template-columns:220px 1fr;gap:10px}
+#ecl .sugform input,#ecl .sugform textarea{font:inherit;font-size:15px;border:1px solid #C3CFDD;border-radius:6px;padding:10px 12px;width:100%;color:#18222F;background:#FFFFFF}
+#ecl .sugform textarea{min-height:64px;resize:vertical}
+#ecl .sugform .act{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#ecl .sugform .msg{font-size:14px;color:#56637A}
+#ecl .sugform .msg.err{color:#B42318}
+#ecl .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:210;background:#142A45;color:#FFFFFF;border:1px solid #00E600;border-radius:6px;padding:12px 18px;font-size:15px;max-width:calc(100vw - 32px)}
+@media (max-width:640px){#ecl .sugform .rowf{grid-template-columns:1fr}#ecl .sugtab{font-size:12px;padding:10px 6px}}
+@media (max-width:900px){
+  #ecl .hero,#ecl .where,#ecl .adset,#ecl .start{grid-template-columns:1fr}
+  #ecl .ga{grid-template-columns:1fr}
+  #ecl .tl{grid-template-columns:1fr 1fr}
+  #ecl .terms{position:static}
+  #ecl .band{padding-block:52px}
+}
+@media (max-width:520px){#ecl .tl{grid-template-columns:1fr}#ecl .logos img{height:56px}#ecl .logos .rlx-logo{height:34px}#ecl .logos .sep{height:40px}}
+@media (prefers-reduced-motion:reduce){#ecl *{transition:none!important}}
+</style>
+
+<div id="ecl">
+
+  <div class="mast">
+    <div class="wrap">
+      <div class="logos">
+        <img src="gelp-logo.webp" alt="GELP Strategies">
+        <span class="sep" aria-hidden="true"></span>
+        <img class="rlx-logo" src="rlx-logo.png" alt="Referralogix" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+        <span class="wordmark" hidden>Referralogix</span>
+      </div>
+      <div class="prep">Prepared for Eccoverse</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="navy">
+    <div class="wrap">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Welcome aboard</p>
+          <h1>Start with Bossier. Live next week.</h1>
+          <p class="sub">Here's your launch: where your ads run, what they look like, how Georgia works and the two steps to get started.</p>
+          <div class="btn-row"><a class="btn" href="#get-started">Get started <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="counter">
+          <svg class="cascade" id="cascade" viewBox="0 0 480 330" role="img" aria-label="Network diagram: Eccoverse connects to Bossier, which branches out to its referral offices and their networks"></svg>
+          <hr>
+          <div class="row"><span>Bossier faxes, Jul 1 to Oct 13:</span><b>4,241</b></div>
+          <div class="row"><span>Monthly average:</span><b>1,241</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE -->
+  <section class="band">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Where you'll show up</p>
+        <h2>On every Bossier fax, and inside Referralogix</h2>
+        <p class="muted">Your ad prints on the coversheet of every outbound Bossier fax, and that coversheet stays attached to the referral in the receiving office's EMR.</p>
+      </div>
+      <div class="where">
+        <figure>
+          <div class="minitabs" role="group" aria-label="Coversheet ad version"><button class="mini" type="button" data-v="1" aria-pressed="true">Version 1</button><button class="mini" type="button" data-v="2" aria-pressed="false">Version 2</button><button class="mini" type="button" data-v="3" aria-pressed="false">Version 3</button></div>
+          <div class="shot"><img id="cs1" src="proofs/r2/coversheet_1.webp" alt="Bossier fax coversheet with the Version 1 Eccoverse ad in the 7.4 by 3.7 inch ad space"><img id="cs2" src="proofs/r2/coversheet_2.webp" alt="Bossier fax coversheet with the Version 2 Eccoverse ad in the 7.4 by 3.7 inch ad space" hidden><img id="cs3" src="proofs/r2/coversheet_3.webp" alt="Bossier fax coversheet with the Version 3 Eccoverse ad in the 7.4 by 3.7 inch ad space" hidden></div>
+          <button type="button" class="sugbtn" id="sugCs" data-ad="Coversheet">✎ Suggest a change</button>
+          <figcaption><b>Bossier fax coversheet <span class="tag live">Live next week</span></b>Your 7.4 by 3.7 inch ad with a QR code and Bossier named as a client, on roughly 1,200 or more faxes a month.</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="https://assets.cdn.filesafe.space/O67JjxLakl6ZsAWOB8fF/media/6acd0e6a04c496731f34b697.png" alt="Eccoverse vendor profile inside Referralogix with rotating banner ads across the top"></div>
+          <figcaption><b>Inside Referralogix <span class="tag future">Potential future placement</span></b>A look at where this can go: a full Eccoverse profile inside Referralogix. Your rotating banner across the top of the dashboard is included free for the first month.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADS -->
+  <section class="navy band">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Your ads</p>
+        <h2>Your messages, side by side</h2>
+        <p class="muted">Each message runs as a fax ad to Bossier's network and as a banner in the dashboard. We'll track which ones get scanned and clicked, then put our weight behind the winner.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Ad messages">
+        <button class="tab" role="tab" id="tab1" aria-selected="true" aria-controls="set1">1: Auto-charting</button>
+        <button class="tab" role="tab" id="tab2" aria-selected="false" aria-controls="set2">2: Virtual agent</button>
+        <button class="tab" role="tab" id="tab3" aria-selected="false" aria-controls="set3">3: Incoming calls</button>
+      </div>
+      <div class="adset" id="set1" role="tabpanel" aria-labelledby="tab1">
+        <div class="adcol">
+          <div><div class="adlabel">Fax coversheet ad · Version 1</div><div class="adimg"><img src="proofs/r2/fax_1.webp" alt="Version 1 fax ad: What if your referrals were analyzed and auto-charted into your EMR?"></div><button type="button" class="sugbtn" data-ad="Fax ad, Version 1" data-img="proofs/r2/fax_1.webp">✎ Suggest a change</button></div>
+        </div>
+        <div class="adcol">
+          <div><div class="adlabel">Dashboard banner</div><div class="adimg banner-img"><img src="proofs/r2/banner_1.webp" alt="Banner 1: What if your referrals were analyzed and auto-charted into your EMR?"></div><button type="button" class="sugbtn" data-ad="Banner 1" data-img="proofs/r2/banner_1.webp">✎ Suggest a change</button></div>
+          <div><div class="adlabel">Banner dropdown</div><div class="adimg"><img src="proofs/r2/dropdown_1.webp" alt="Dropdown 1 with example charted referral and Contact Eccoverse button"></div><button type="button" class="sugbtn" data-ad="Dropdown 1" data-img="proofs/r2/dropdown_1.webp">✎ Suggest a change</button></div>
+        </div>
+      </div>
+      <div class="adset" id="set2" role="tabpanel" aria-labelledby="tab2" hidden>
+        <div class="adcol">
+          <div><div class="adlabel">Fax coversheet ad · Version 2</div><div class="adimg"><img src="proofs/r2/fax_2.webp" alt="Version 2 fax ad: What if a virtual agent closed the loop on every referral?"></div><button type="button" class="sugbtn" data-ad="Fax ad, Version 2" data-img="proofs/r2/fax_2.webp">✎ Suggest a change</button></div>
+        </div>
+        <div class="adcol">
+          <div><div class="adlabel">Dashboard banner</div><div class="adimg banner-img"><img src="proofs/r2/banner_2.webp" alt="Banner 2: What if a virtual agent closed the loop on every referral?"></div><button type="button" class="sugbtn" data-ad="Banner 2" data-img="proofs/r2/banner_2.webp">✎ Suggest a change</button></div>
+          <div><div class="adlabel">Banner dropdown</div><div class="adimg"><img src="proofs/r2/dropdown_2.webp" alt="Dropdown 2 with example agent follow-up and Contact Eccoverse button"></div><button type="button" class="sugbtn" data-ad="Dropdown 2" data-img="proofs/r2/dropdown_2.webp">✎ Suggest a change</button></div>
+        </div>
+      </div>
+      <div class="adset" id="set3" role="tabpanel" aria-labelledby="tab3" hidden>
+        <div class="adcol">
+          <div><div class="adlabel">Fax coversheet ad · Version 3</div><div class="adimg"><img src="proofs/r2/fax_3.webp" alt="Version 3 fax ad: What if a virtual agent handled all incoming calls and freed up your front desk?"></div><button type="button" class="sugbtn" data-ad="Fax ad, Version 3" data-img="proofs/r2/fax_3.webp">✎ Suggest a change</button></div>
+        </div>
+        <div class="adcol">
+          <div><div class="adlabel">Dashboard banner</div><div class="adimg banner-img"><img src="proofs/r2/banner_3.webp" alt="Banner 3: What if a virtual agent handled all incoming calls and freed up your front desk?"></div><button type="button" class="sugbtn" data-ad="Banner 3" data-img="proofs/r2/banner_3.webp">✎ Suggest a change</button></div>
+          <div><div class="adlabel">Banner dropdown</div><div class="adimg"><img src="proofs/r2/dropdown_3.webp" alt="Dropdown 3 with example answered call and Contact Eccoverse button"></div><button type="button" class="sugbtn" data-ad="Dropdown 3" data-img="proofs/r2/dropdown_3.webp">✎ Suggest a change</button></div>
+        </div>
+      </div>
+      <div class="proofnote"><b>Accepting your proposal approves these proofs.</b> The ads run as shown here. The QR code link and Lauren's quote drop into their marked spaces once you send them, without changing anything else. Any other change after you accept is a new proof for you to approve. Want something changed first? Tap <b>Suggest a change</b> under any ad, mark it up and send it to us.</div>
+    </div>
+  </section>
+
+  <!-- GEORGIA -->
+  <section class="band">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Growing together</p>
+        <h2>Georgia is next</h2>
+        <p class="muted">Bossier proves the model. Your Georgia practice is where we run it again, together.</p>
+      </div>
+      <div class="ga">
+        <div><div class="big">10%</div><h3>Back on anyone you bring</h3><p>Introduce an organization to GELP and Eccoverse earns 10% of the GELP revenue it brings, across everything GELP sells them.</p></div>
+        <div><div class="big">30 days</div><h3>Free on the Georgia network</h3><p>When your Georgia practice comes on, your ad runs on their network's fax coversheets free for the first 30 days.</p></div>
+        <div><div class="big">Next week</div><h3>Intro call</h3><p>We'll get on a call with your Georgia practice next week and walk them through Referralogix together.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="navy band">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Launch plan</p>
+        <h2>Live in Bossier next week</h2>
+      </div>
+      <div class="tl">
+        <div class="now"><div class="when">Today</div><h3>Get started</h3><ul><li>Accept your proposal, which approves your ad proofs</li><li>Sign the referral partner agreement</li></ul></div>
+        <div><div class="when">This week</div><h3>We'll need from you</h3><ul><li>Where the QR code should send people</li><li>Lauren's quote for the dropdowns</li><li>Your day-to-day contact</li></ul></div>
+        <div><div class="when">Next week</div><h3>Bossier goes live</h3><ul><li>Fax ads start once the QR link is in</li><li>Dashboard banner live, free for the first month</li></ul></div>
+        <div><div class="when">Every month</div><h3>Report and talk</h3><ul><li>Fax counts, scans and clicks by version</li><li>A standing call to sharpen the message</li></ul></div>
+      </div>
+      <div class="goal"><b>2 clients in 2 months</b><span>The target we agreed on as proof this works.</span></div>
+    </div>
+  </section>
+
+  <!-- GET STARTED -->
+  <section class="band" id="get-started">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Get started</p>
+        <h2>Two steps and you're in</h2>
+      </div>
+      <div class="start">
+        <div class="leftcol">
+        <div class="vcard">
+          <div class="vtop">
+            <div class="vicon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3.2" fill="#0BA24A"/><circle cx="5.5" cy="9" r="2.4" fill="#0BA24A"/><circle cx="18.5" cy="9" r="2.4" fill="#0BA24A"/><path d="M6.5 18.5c0-3.2 2.5-5.6 5.5-5.6s5.5 2.4 5.5 5.6z" fill="#0BA24A"/><path d="M1.5 18.5c0-2.5 1.8-4.4 4.1-4.4 1 0 1.9.3 2.6.9-1.2 1-2 2.4-2.2 3.5z" fill="#0BA24A"/><path d="M22.5 18.5c0-2.5-1.8-4.4-4.1-4.4-1 0-1.9.3-2.6.9 1.2 1 2 2.4 2.2 3.5z" fill="#0BA24A"/></svg></div>
+            <div><h3>Vendor Access</h3><div class="vtag">Connect and Communicate</div></div>
+          </div>
+          <div class="vprice">$499<small>/month</small></div>
+          <div class="vsetup">No setup fee</div>
+          <ul class="vlist">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0BA24A"/><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Branded clinic invitations</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0BA24A"/><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Referralogix directory listing</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0BA24A"/><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>RLXconnect secure communication</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0BA24A"/><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>HIPAA compliant with BAA</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0BA24A"/><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Month to month, cancel with 10 days' notice</li>
+          </ul>
+        </div>
+        <aside class="terms" aria-label="Your terms">
+          <h3>Your terms</h3>
+          <dl>
+            <div class="t"><dt>RLX Vendor Access<small>Starts when you accept</small></dt><dd>$499/mo</dd></div>
+            <div class="t"><dt>Bossier fax coversheet ads<small>Starts at go-live, proofs approved on accept</small></dt><dd>$200/wk</dd></div>
+            <div class="t"><dt>Dashboard banner<small>First month</small></dt><dd class="free">Free</dd></div>
+            <div class="t"><dt>Referral fee, both ways<small>Per the partner agreement</small></dt><dd>10%</dd></div>
+          </dl>
+          <p class="fine">Month to month. Cancel either with 10 days written notice to info@gelpstrategies.com.</p>
+        </aside>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">Step 1</div>
+            <h3>Review and accept your proposal</h3>
+            <p>Your proposal lays out both services, the terms and the free first month on the banner. One accept starts everything: RLX Vendor Access and the Bossier fax ads.</p>
+            <p class="proofline">Accepting also approves the ad proofs on this page.</p>
+            <div class="btn-row"><a class="btn dark" href="https://app.gelpstrategies.com/proposal/view/#853eddb16bb746fdb6f27eec4926ef8b73563c96421042fb87d7961665bb4666" target="_blank" rel="noopener">Open your proposal <span aria-hidden="true">→</span></a></div>
+          </div>
+          <div class="step">
+            <div class="num">Step 2</div>
+            <h3>Sign the referral partner agreement</h3>
+            <p>This is what pays you 10% on Georgia and anyone else you bring us. It opens in a new tab.</p>
+            <div class="btn-row"><a class="btn dark" href="https://links.gelpstrategies.com/documents/doc-form/6acfc458b761c05f8d850af8?locale=en-US" target="_blank" rel="noopener">Sign the agreement <span aria-hidden="true">→</span></a></div>
+          </div>
+          <p class="contact">Questions? Email David at <span>david@gelpstrategies.com</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="navy">
+    <div class="wrap">
+      <div class="foot"><span>GELP Strategies, an authorized Referralogix dealer</span><span>Fax figures are Bossier Family Medicine outbound totals through Referralogix.</span></div>
+    </div>
+  </section>
+  <button type="button" class="sugtab" id="sugTab">Suggest a change</button>
+</div>
+
+<script>
+(function(){
+  // ad message tabs (1-3) and coversheet versions (1-2)
+  var tabs=[1,2,3].map(function(n){return document.getElementById('tab'+n)}), sets=[1,2,3].map(function(n){return document.getElementById('set'+n)});
+  var cs=[1,2,3].map(function(n){return document.getElementById('cs'+n)}), minis=document.querySelectorAll('#ecl .mini');
+  function pick(n){ tabs.forEach(function(t,i){t.setAttribute('aria-selected',i===n-1?'true':'false'); sets[i].hidden=i!==n-1;}); cover(n); }
+  function cover(n){ cs.forEach(function(c,i){c.hidden=i!==n-1;}); Array.prototype.forEach.call(minis,function(m){m.setAttribute('aria-pressed',m.getAttribute('data-v')==String(n)?'true':'false');}); }
+  Array.prototype.forEach.call(minis,function(m){m.addEventListener('click',function(){pick(+m.getAttribute('data-v'));});});
+  tabs.forEach(function(t,i){ t.addEventListener('click',function(){pick(i+1)});
+    t.addEventListener('keydown',function(e){ var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(!d) return; var n=(i+d+3)%3; pick(n+1); tabs[n].focus(); }); });
+
+
+  // ---------- suggest a change: mark up an ad, add a note, send it to GELP ----------
+  var TOKEN='853eddb16bb746fdb6f27eec4926ef8b73563c96421042fb87d7961665bb4666';
+  var FN='https://stfnpzqymjlxpainmgoo.supabase.co/functions/v1/proposal-email', KEY='sb_publishable_4T9hanZ9uv4Q2ih59QwMjA_0nJv-P3m';
+  var root=document.getElementById('ecl');
+  function toast(msg){var d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.textContent=msg;root.appendChild(d);setTimeout(function(){d.remove();},5200);}
+  function savedName(){try{return localStorage.getItem('ecl-name')||'';}catch(e){return '';}}
+  function openSuggest(label,src){
+    var ov=document.createElement('div');ov.className='sugov';ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Suggest a change');
+    ov.innerHTML='<div class="sugbar"><b></b>'+(src?'<div class="sugseg" id="sgTool"><button type="button" data-t="pen" class="on">✎ Draw</button><button type="button" data-t="box">▢ Box</button><button type="button" data-t="arrow">➜ Arrow</button></div><div class="sugcol"><button type="button" data-c="#E5383B" class="on" style="background:#E5383B" aria-label="Red"></button><button type="button" data-c="#F4C430" style="background:#F4C430" aria-label="Yellow"></button><button type="button" data-c="#2E6FD8" style="background:#2E6FD8" aria-label="Blue"></button></div><button type="button" class="sugsm" id="sgUndo">Undo</button>':'')+'<span style="flex:1"></span><button type="button" class="sugsm" id="sgX">Cancel</button></div>'
+      +(src?'<div class="sugstage"><canvas id="sgCv" aria-label="Draw on the ad to show what to change"></canvas></div>':'<div class="sugstage" style="color:#CBD6E4;text-align:center">Tell us what you would change. To point at a spot, close this and tap Suggest a change under that ad.</div>')
+      +'<div class="sugform"><div class="rowf"><input id="sgName" type="text" autocomplete="name" placeholder="Your name" aria-label="Your name"><textarea id="sgNote" placeholder="What would you change?" aria-label="What would you change?"></textarea></div><div class="act"><button type="button" class="btn" id="sgSend">Send to GELP</button><span class="msg" id="sgMsg">Goes straight to the GELP team.</span></div></div>';
+    ov.querySelector('.sugbar b').textContent=label;
+    root.appendChild(ov); document.documentElement.style.overflow='hidden';
+    var nm=ov.querySelector('#sgName'); nm.value=savedName();
+    var cv=ov.querySelector('#sgCv'), g, img, marks=[], cur=null, tool='pen', color='#E5383B', lw=4;
+    function close(){ov.remove();document.documentElement.style.overflow='';document.removeEventListener('keydown',esc);}
+    function esc(e){if(e.key==='Escape')close();}
+    document.addEventListener('keydown',esc);
+    ov.querySelector('#sgX').onclick=close;
+    if(cv){
+      g=cv.getContext('2d'); img=new Image();
+      img.onload=function(){var k=Math.min(1,1700/img.naturalWidth);cv.width=Math.round(img.naturalWidth*k);cv.height=Math.round(img.naturalHeight*k);lw=Math.max(3,Math.round(cv.width/300));paint();};
+      img.src=src;
+      var arrow=function(a,b){var an=Math.atan2(b.y-a.y,b.x-a.x),h=lw*5;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.moveTo(b.x,b.y);g.lineTo(b.x-h*Math.cos(an-.45),b.y-h*Math.sin(an-.45));g.moveTo(b.x,b.y);g.lineTo(b.x-h*Math.cos(an+.45),b.y-h*Math.sin(an+.45));g.stroke();};
+      var paint=function(){g.fillStyle='#FFFFFF';g.fillRect(0,0,cv.width,cv.height);g.drawImage(img,0,0,cv.width,cv.height);
+        marks.concat(cur?[cur]:[]).forEach(function(m){g.strokeStyle=m.color;g.lineWidth=lw;g.lineCap=g.lineJoin='round';
+          if(m.t==='pen'){g.beginPath();m.pts.forEach(function(p,i){i?g.lineTo(p.x,p.y):g.moveTo(p.x,p.y);});g.stroke();}
+          else if(m.t==='box'){g.strokeRect(m.a.x,m.a.y,m.b.x-m.a.x,m.b.y-m.a.y);} else arrow(m.a,m.b);});};
+      var pt=function(e){var r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)*cv.width/r.width,y:(e.clientY-r.top)*cv.height/r.height};};
+      cv.onpointerdown=function(e){cv.setPointerCapture(e.pointerId);var p=pt(e);cur=tool==='pen'?{t:'pen',color:color,pts:[p]}:{t:tool,color:color,a:p,b:p};paint();};
+      cv.onpointermove=function(e){if(!cur)return;var p=pt(e);if(cur.t==='pen')cur.pts.push(p);else cur.b=p;paint();};
+      cv.onpointerup=cv.onpointercancel=function(){if(cur)marks.push(cur);cur=null;paint();};
+      Array.prototype.forEach.call(ov.querySelectorAll('#sgTool [data-t]'),function(b){b.onclick=function(){tool=b.getAttribute('data-t');Array.prototype.forEach.call(ov.querySelectorAll('#sgTool [data-t]'),function(x){x.classList.toggle('on',x===b);});};});
+      Array.prototype.forEach.call(ov.querySelectorAll('[data-c]'),function(b){b.onclick=function(){color=b.getAttribute('data-c');Array.prototype.forEach.call(ov.querySelectorAll('[data-c]'),function(x){x.classList.toggle('on',x===b);});};});
+      ov.querySelector('#sgUndo').onclick=function(){marks.pop();paint();};
+    }
+    ov.querySelector('#sgNote').focus();
+    ov.querySelector('#sgSend').onclick=function(){
+      var note=ov.querySelector('#sgNote').value.trim(), msg=ov.querySelector('#sgMsg'), btn=this;
+      if(!note&&!marks.length){msg.className='msg err';msg.textContent=cv?'Draw on the ad or write a note first.':'Write a few words first.';return;}
+      try{localStorage.setItem('ecl-name',nm.value.trim());}catch(e){}
+      var image=''; if(cv&&marks.length){image=cv.toDataURL('image/jpeg',.85).split(',')[1];}
+      btn.disabled=true;btn.textContent='Sending…';msg.className='msg';msg.textContent='';
+      fetch(FN,{method:'POST',headers:{'Content-Type':'application/json',apikey:KEY,Authorization:'Bearer '+KEY},
+        body:JSON.stringify({kind:'ad_feedback',token:TOKEN,ad:label,name:nm.value.trim(),note:note,image:image})})
+      .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+      .then(function(x){ if(!x.ok||!x.d.ok) throw new Error(x.d&&x.d.error||'Something went wrong'); close(); toast('Sent. We will update the proof and let you know.'); })
+      .catch(function(e){btn.disabled=false;btn.textContent='Send to GELP';msg.className='msg err';msg.textContent=(e.message||'That did not send')+'. You can also email david@gelpstrategies.com.';});
+    };
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#ecl .sugbtn[data-img]'),function(b){b.addEventListener('click',function(){openSuggest(b.getAttribute('data-ad'),b.getAttribute('data-img'));});});
+  var csb=document.getElementById('sugCs'); if(csb) csb.addEventListener('click',function(){var n=[1,2,3].filter(function(i){return !document.getElementById('cs'+i).hidden;})[0]||1;openSuggest('Coversheet, Version '+n,'proofs/r2/coversheet_'+n+'.webp');});
+  document.getElementById('sugTab').addEventListener('click',function(){openSuggest('General','');});
+
+  // hero network cascade
+  var svg=document.getElementById('cascade'); if(!svg) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seed=11, rnd=function(){seed=(seed*16807)%2147483647;return seed/2147483647};
+  var H=330, top=34, bot=H-18;
+  var E={x:28,y:H/2,r:9}, B={x:118,y:H/2,r:13};
+  var L1=[], L2=[], L3=[], n1=5, n2=3, n3=2;
+  for(var i=0;i<n1;i++) L1.push({x:225,y:top+(bot-top)*(i+.5)/n1,r:6,p:B,lv:1});
+  var total2=n1*n2; L1.forEach(function(p,i){for(var j=0;j<n2;j++){var k=i*n2+j;L2.push({x:340+(rnd()-.5)*14,y:top+(bot-top)*(k+.5)/total2,r:4.2,p:p,lv:2});}});
+  var total3=total2*n3; L2.forEach(function(p,i){for(var j=0;j<n3;j++){var k=i*n3+j;L3.push({x:448+(rnd()-.5)*16,y:top+(bot-top)*(k+.5)/total3,r:2.8,p:p,lv:3});}});
+  var ns='http://www.w3.org/2000/svg', lines=[], nodes=[];
+  function curve(a,b){var mx=(a.x+b.x)/2;return 'M'+a.x+','+a.y+' C'+mx+','+a.y+' '+mx+','+b.y+' '+b.x+','+b.y;}
+  function addLine(a,b,lv){var p=document.createElementNS(ns,'path');p.setAttribute('d',curve(a,b));p.setAttribute('class','ln');svg.appendChild(p);lines.push({el:p,lv:lv});}
+  addLine(E,B,0);
+  L1.concat(L2,L3).forEach(function(n){addLine(n.p,n,n.lv);});
+  function addNode(n,fill,cls){var c=document.createElementNS(ns,'circle');c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',n.r);c.setAttribute('class',cls||'nd');if(fill)c.setAttribute('fill',fill);svg.appendChild(c);return c;}
+  L1.concat(L2,L3).forEach(function(n){nodes.push({el:addNode(n),lv:n.lv});});
+  var ring=addNode({x:B.x,y:B.y,r:B.r+5},'none','ring');ring.setAttribute('stroke','#00E600');ring.setAttribute('stroke-width','1.5');ring.setAttribute('stroke-opacity','.5');
+  addNode(B,'#FFFFFF','bn'); addNode(E,'#00E600','en');
+  function label(x,y,t,anchor){var tx=document.createElementNS(ns,'text');tx.setAttribute('x',x);tx.setAttribute('y',y);if(anchor)tx.setAttribute('text-anchor',anchor);tx.textContent=t;svg.appendChild(tx);}
+  label(E.x-10,E.y-18,'Eccoverse'); label(B.x,B.y+34,'Bossier','middle'); label(225,18,'Offices','middle'); label(395,18,'Their networks','middle');
+  var DELAY=[0,450,1050,1700];
+  lines.forEach(function(l){
+    var len=l.el.getTotalLength(); l.el.style.strokeDasharray=len;
+    if(reduce){l.el.style.strokeDashoffset=0;l.el.classList.add('go');return;}
+    l.el.style.strokeDashoffset=len;
+    l.el.style.transition='stroke-dashoffset .65s ease-out '+(DELAY[l.lv]+Math.random()*180)+'ms, stroke .4s ease';
+  });
+  function run(){
+    lines.forEach(function(l){l.el.style.strokeDashoffset=0;l.el.classList.add('go');});
+    nodes.forEach(function(n){ if(reduce){n.el.classList.add('on');return;} setTimeout(function(){n.el.classList.add('on');},DELAY[n.lv]+600+Math.random()*200);});
+  }
+  if(reduce) run(); else requestAnimationFrame(function(){requestAnimationFrame(run);});
+})();
+</script>
+
+</body>
+</html>

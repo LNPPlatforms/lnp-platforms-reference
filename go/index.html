@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>One moment</title>
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; color: #222; display: flex; align-items: center; justify-content: center; min-height: 90vh; margin: 0; text-align: center; padding: 20px; }
+  .box { max-width: 420px; } a { color: #1A2A52; } button { font: inherit; padding: 10px 18px; border-radius: 8px; border: 0; background: #1A2A52; color: #fff; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="box" id="box"><p>One moment...</p></div>
+<script type="module">
+  // Tracked links and QR codes: /go/?s=<short name>[&p=<contact>]. Unsubscribe: /go/?u=<contact>.
+  import { SUPABASE_URL, SUPABASE_KEY } from '../config.js';
+  const q = new URLSearchParams(location.search);
+  const box = document.getElementById('box');
+  const rpc = (fn, body) => fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, { method: 'POST',
+    headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+    .then((r) => r.ok ? r.json() : null).catch(() => null);
+  const uuid = (v) => /^[0-9a-f-]{36}$/i.test(v || '') ? v : null;
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  if (q.get('u')) {
+    box.innerHTML = `<h2>Unsubscribe</h2><p>Stop getting automated emails from us?</p><button id="u">Unsubscribe</button>`;
+    document.getElementById('u').onclick = async () => {
+      const r = await rpc('email_unsubscribe', { p_person: uuid(q.get('u')) });
+      box.innerHTML = r && r.ok ? `<h2>You're unsubscribed</h2><p>You won't get automated emails from ${esc(r.account)} anymore.</p>` : '<p>That link didn\'t work. Reply to the email and we\'ll take you off the list.</p>';
+    };
+  } else {
+    const url = await rpc('link_hit', { p_slug: q.get('s') || '', p_person: uuid(q.get('p')), p_ref: document.referrer || null });
+    if (typeof url === 'string' && /^https?:\/\//.test(url)) location.replace(url);
+    else box.innerHTML = '<p>That link isn\'t active anymore.</p>';
+  }
+</script>
+</body>
+</html>

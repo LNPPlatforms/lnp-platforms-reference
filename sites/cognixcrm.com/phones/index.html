@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Your Phone System | Cognix CRM</title>
+<meta name="description" content="Pick your lines, texting, fax and desk phones and see your monthly price as you go. Every call lands on the customer's record in Cognix CRM.">
+<link rel="icon" href="/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<meta property="og:title" content="Build your phone system | Cognix CRM">
+<meta property="og:description" content="Lines, texting, fax and desk phones, priced as you pick them.">
+<meta property="og:image" content="https://cognixcrm.com/brand/og.png">
+<style>
+:root{--navy:#031C3D;--navy2:#0A2A55;--blue:#0753B6;--sky:#008FCE;--teal:#12B5AC;--orange:#F47700;--gold:#FFA21A;--slate:#415568;--ink:#0E2238;--muted:#5B6B7D;--bg:#F4F6F9;--card:#FFFFFF;--line:#DCE3EC;--field:#F7F9FC;--r:16px}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+header.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+header.top img{height:40px;width:auto;display:block}
+header.top nav{display:flex;gap:18px;align-items:center}
+header.top nav a{text-decoration:none;color:var(--slate);font-weight:600;font-size:15px}
+.hero{padding:40px 0 10px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.hero h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:6px 0 10px;color:var(--navy)}
+.hero p{margin:0;max-width:720px;color:var(--muted);font-size:17px}
+.perks{display:flex;flex-wrap:wrap;gap:8px 18px;margin:16px 0 0;padding:0;list-style:none;font-size:14px;color:var(--slate)}
+.perks li::before{content:"✓ ";color:var(--teal);font-weight:700}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start;margin:24px 0 40px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin:0 0 18px}
+.card h2{font-size:20px;margin:0 0 4px;color:var(--navy)}
+.card .sub{font-size:14px;color:var(--muted);margin:0 0 14px}
+.item{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+.item .what{flex:1;min-width:0}
+.item b{display:block;color:var(--navy)}
+.item small{display:block;color:var(--muted);font-size:13.5px}
+.price{font-weight:700;color:var(--blue);white-space:nowrap;font-size:14px}
+.step{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#fff;overflow:hidden}
+.step button{width:38px;height:38px;border:0;background:none;font:700 20px system-ui;color:var(--blue);cursor:pointer}
+.step button:hover{background:var(--field)}
+.step input{width:44px;border:0;text-align:center;font:700 16px system-ui;color:var(--navy);background:none;-moz-appearance:textfield}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none}
+.switch{position:relative;width:50px;height:28px;flex:none}
+.switch input{opacity:0;width:0;height:0}
+.switch span{position:absolute;inset:0;background:#C9D3E0;border-radius:999px;cursor:pointer;transition:.15s}
+.switch span::before{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.15s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch input:checked+span{background:var(--teal)}
+.switch input:checked+span::before{transform:translateX(22px)}
+.switch input:focus-visible+span{outline:2px solid var(--sky);outline-offset:2px}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:700px){.phones{grid-template-columns:1fr}}
+.phone{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;background:var(--field)}
+.phone .tier{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.phone b{font-size:18px;color:var(--navy)}
+.phone p{margin:0;font-size:13.5px;color:var(--muted);flex:1}
+.phone .prices{font-size:14px;color:var(--slate)}
+.phone .prices strong{color:var(--blue)}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.seg label{flex:1;text-align:center;padding:7px 0;font-size:14px;font-weight:600;color:var(--slate);cursor:pointer}
+.seg input{display:none}
+.seg input:checked+label{background:var(--blue);color:#fff}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;cursor:pointer}
+.check input{margin-top:4px;accent-color:var(--blue);width:16px;height:16px;flex:none}
+.note{font-size:13.5px;color:var(--muted);background:var(--field);border-radius:10px;padding:10px 12px;margin:12px 0 0}
+details.define{margin-top:10px;font-size:14px;color:var(--slate)}
+details.define summary{cursor:pointer;color:var(--blue);font-weight:600}
+details.define p{margin:8px 0 0}
+label.f{display:block;font-size:13px;font-weight:700;color:var(--slate);margin:12px 0 5px}
+input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--field);font:inherit;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--sky);background:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+.sum{position:sticky;top:88px}
+.sum .card{border-top:4px solid var(--orange)}
+.sum h2{margin-bottom:12px}
+.lines{list-style:none;margin:0;padding:0;font-size:14px}
+.lines li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.lines li span:last-child{white-space:nowrap;font-weight:600}
+.lines .empty{color:var(--muted);border:0}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px}
+.total b{font-size:28px;color:var(--navy)}
+.total small{color:var(--muted)}
+.once{display:flex;justify-content:space-between;margin-top:6px;font-size:15px;color:var(--slate)}
+.fine{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;width:100%}
+.btn.primary{background:linear-gradient(45deg,var(--orange),var(--gold));color:#2A1300;box-shadow:0 6px 18px rgba(244,119,0,.3)}
+.btn.primary:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--blue);margin-top:10px}
+.err{background:#FDECEC;border:1px solid #F3B4B4;color:#8A1C1C;border-radius:10px;padding:12px 14px;margin:12px 0 0;display:none}
+.done{text-align:center;padding:40px 24px}
+.done h2{font-size:26px}
+.hp{position:absolute;left:-5000px}
+.hide{display:none!important}
+footer{background:var(--navy);color:#C9D6E6;font-size:14px;padding:26px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+footer nav{margin-left:auto;display:flex;gap:20px}
+footer a{color:#C9D6E6;text-decoration:none}
+@media(max-width:900px){.sum{position:static}.mbar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 20px;display:flex;justify-content:space-between;align-items:center;z-index:30;box-shadow:0 -4px 14px rgba(0,0,0,.08)}.mbar b{font-size:20px;color:var(--navy)}body{padding-bottom:70px}}
+@media(min-width:901px){.mbar{display:none}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a href="/" aria-label="Cognix CRM home"><img src="/brand/logo-word.svg" alt="Cognix CRM" width="139" height="46"></a>
+  <nav aria-label="Main"><a href="/">Home</a><a href="https://app.cognixcrm.com">Sign in</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div id="builder">
+    <section class="hero">
+      <span class="eyebrow">Business phone system</span>
+      <h1>Build your phone system</h1>
+      <p>Pick what your team needs and watch the price add up as you go. Calls ring your team in Cognix CRM, on a desk phone or both, and every call lands on the customer's record.</p>
+      <ul class="perks">
+        <li>Keep your current numbers (moving them is free)</li>
+        <li>Unlimited calling</li>
+        <li>Voicemail on every line</li>
+        <li>Ring one person or the whole team at once</li>
+        <li>No long contract</li>
+      </ul>
+    </section>
+
+    <div class="grid">
+      <form id="build" novalidate>
+        <div class="card">
+          <h2>Phone lines</h2>
+          <p class="sub">A line is a phone number. Give each person their own direct line, and add a main line that rings the whole team at once. Every line counts, including the main one.</p>
+          <div class="item">
+            <div class="what"><b>Lines</b><small>Unlimited calling, voicemail and call logging on every line.</small></div>
+            <span class="price">$25/mo each</span>
+            <div class="step" data-step="lines"><button type="button" data-d="-1" aria-label="One fewer line">−</button><input type="number" id="lines" value="2" min="1" max="200" aria-label="Number of lines"><button type="button" data-d="1" aria-label="One more line">+</button></div>
+          </div>
+          <details class="define"><summary>Fair use policy</summary>
+            <p>Calling is unlimited for normal business use. Fair use is measured across your company, not by person or line: each line adds 3,000 minutes a month to a shared company total, inbound and outbound combined. Three lines share 9,000 minutes. Admins can track usage in Cognix CRM and are notified at 90%.</p></details>
+        </div>
+
+        <div class="card">
+          <h2>Add-ons</h2>
+          <p class="sub">Turn on what you need. You can change these any time.</p>
+          <div class="item">
+            <div class="what"><b>Call recording</b><small>Keep a copy of every call on the lines you choose, playable from the customer's record. Billed by the minute recorded.</small></div>
+            <span class="price">+1¢/min</span>
+            <label class="switch"><input type="checkbox" id="rec" aria-label="Call recording"><span></span></label>
+          </div>
+          <div class="item">
+            <div class="what"><b>Texting</b><small>Text customers from your business numbers, with every text saved on their record. One price for the whole company, any number of lines.</small></div>
+            <span class="price">$25/mo</span>
+            <label class="switch"><input type="checkbox" id="sms" aria-label="Texting"><span></span></label>
+          </div>
+          <div id="smsMore" class="hide">
+            <details class="define" open><summary>What's a text segment?</summary>
+              <p>Phone carriers count texts in segments, not messages. One segment is up to 160 letters, numbers and basic symbols. A longer text is split into more segments, and an emoji or special character drops the limit to 70 per segment, so one emoji can double the count. Cognix CRM shows a live counter as you type and warns you when an emoji raises it.</p>
+              <p>Texting includes 3,750 segments a month shared across your company, then 2¢ a segment. Carriers require a one-time registration of your business before texting turns on. We file it for you; approval usually takes a few days.</p></details>
+          </div>
+          <div class="item">
+            <div class="what"><b>Fax lines</b><small>Send and receive faxes in Cognix CRM. 1,000 pages a month per fax line, then 5¢ a page.</small></div>
+            <span class="price">$15/mo each</span>
+            <div class="step" data-step="fax"><button type="button" data-d="-1" aria-label="One fewer fax line">−</button><input type="number" id="fax" value="0" min="0" max="50" aria-label="Number of fax lines"><button type="button" data-d="1" aria-label="One more fax line">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Desk phones</h2>
+          <p class="sub">Optional. Your team can take every call in Cognix CRM on a computer with a headset. Add desk phones for anyone who wants one. Buy them outright, or rent and we handle setup and swaps.</p>
+          <div class="phones" id="phones"></div>
+          <div class="opts" style="margin-top:14px">
+            <label class="check"><input type="checkbox" id="setup" checked><span><b>Set up the phones I buy for me</b> ($25 each). We configure each phone and ship it ready to plug in. Rentals always include setup.</span></label>
+            <label class="check"><input type="checkbox" id="adapters"><span><b>Add power adapters to phones I buy</b> ($12.50 for the T31P, $17.50 for the T43U and T48U). Skip this if your network switch powers phones over the cable (PoE).</span></label>
+          </div>
+          <p class="note">Already have phones? Bring them. If they're a common business model, we'll walk you through setting them up at no charge.</p>
+        </div>
+
+        <div class="card" id="contact">
+          <h2>Where should we send your quote?</h2>
+          <p class="sub">We'll confirm the details, help you pick numbers and answer questions. Nothing is charged until you approve.</p>
+          <div class="row">
+            <div><label class="f" for="name">Your name *</label><input type="text" id="name" name="name" autocomplete="name"></div>
+            <div><label class="f" for="company">Company *</label><input type="text" id="company" name="company" autocomplete="organization"></div>
+          </div>
+          <div class="row">
+            <div><label class="f" for="email">Email *</label><input type="email" id="email" name="email" autocomplete="email"></div>
+            <div><label class="f" for="phone">Phone</label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+          </div>
+          <label class="f" for="port">Do you have numbers you want to keep?</label>
+          <select id="port" name="port"><option value="">Pick one</option><option>Yes, move my current numbers over</option><option>No, I need new numbers</option><option>Some of each</option></select>
+          <label class="f" for="area">Area code you'd like for new numbers</label><input type="text" id="area" name="area" inputmode="numeric" maxlength="3" placeholder="228">
+          <label class="f" for="notes">Anything else? (Who should ring on the main line, hours, how you take calls today)</label>
+          <textarea id="notes" name="notes"></textarea>
+          <input class="hp" type="text" id="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="err" id="err" role="alert"></div>
+        </div>
+      </form>
+
+      <aside class="sum" aria-label="Your system">
+        <div class="card">
+          <h2>Your system</h2>
+          <ul class="lines" id="sumLines"></ul>
+          <div class="total"><small>Monthly</small><b id="sumMonthly">$0</b></div>
+          <div class="once"><span>One time</span><span id="sumOnce">$0</span></div>
+          <p class="fine" id="sumUse"></p>
+          <p class="fine">*Subject to our fair use policy. Paying by card adds 3% + 30¢ to each payment. Pay by bank transfer to skip it. Taxes and regulatory fees, if any, are shown on your quote.</p>
+          <button type="button" class="btn primary" id="send" style="margin-top:14px">Get my quote</button>
+          <button type="button" class="btn ghost" id="toForm">Add my contact details</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div id="thanks" class="card done hide">
+    <h2>Got it. Your quote is on the way.</h2>
+    <p>We'll email you within one business day to confirm the details and pick your numbers. Nothing is charged until you approve.</p>
+    <p id="thanksSum" style="color:var(--muted)"></p>
+    <p><a class="btn primary" href="/" style="width:auto">Back to Cognix CRM</a></p>
+  </div>
+</main>
+
+<div class="mbar" id="mbar"><span><small style="color:var(--muted)">Monthly</small><br><b id="mMonthly">$0</b></span><span style="text-align:right"><small style="color:var(--muted)">One time</small><br><b id="mOnce" style="font-size:16px">$0</b></span></div>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> Cognix CRM</span>
+  <nav aria-label="Footer"><a href="https://app.cognixcrm.com">Sign in</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></footer>
+
+<script>
+// Phone system builder (Nov 16, 2026). Prices are the standard ones Chris set on Nov 13. Submitting posts to the Cognix
+// account's Contact form (same as the homepage demo form), so it lands as a lead with the whole build in the submission.
+const FORM_KEY = '61a762a27de140e99b59717888999443';
+const SB_URL = 'https://stfnpzqymjlxpainmgoo.supabase.co';
+const SB_KEY = 'sb_publishable_4T9hanZ9uv4Q2ih59QwMjA_0nJv-P3m';
+const PRICE = { line: 25, sms: 25, fax: 15, setup: 25 };
+const PHONES = [
+  { key: 't31p', name: 'Yealink T31P', tier: 'Basic', what: 'A simple, sturdy desk phone with a clear screen. Good for front desks and warehouses.', buy: 75, rent: 7, adapter: 12.5 },
+  { key: 't43u', name: 'Yealink T43U', tier: 'Most popular', what: 'A color screen and more line keys for people who juggle calls all day.', buy: 135, rent: 12, adapter: 17.5 },
+  { key: 't48u', name: 'Yealink T48U', tier: 'Touchscreen', what: 'A large color touchscreen for managers and anyone who transfers a lot of calls.', buy: 265, rent: 20, adapter: 17.5 },
+];
+const $ = (id) => document.getElementById(id);
+const money = (n) => '$' + (Math.round(n * 100) / 100).toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+$('yr').textContent = new Date().getFullYear();
+
+$('phones').innerHTML = PHONES.map((p) => `<div class="phone">
+  <span class="tier">${p.tier}</span><b>${p.name}</b><p>${p.what}</p>
+  <div class="prices">Buy <strong>${money(p.buy)}</strong> · Rent <strong>${money(p.rent)}/mo</strong></div>
+  <div class="seg" role="radiogroup" aria-label="${p.name}: buy or rent">
+    <input type="radio" name="${p.key}_how" id="${p.key}_buy" value="buy" checked><label for="${p.key}_buy">Buy</label>
+    <input type="radio" name="${p.key}_how" id="${p.key}_rent" value="rent"><label for="${p.key}_rent">Rent</label></div>
+  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;color:var(--slate);white-space:nowrap">How many</span>
+    <div class="step" data-step="${p.key}"><button type="button" data-d="-1" aria-label="One fewer ${p.name}">−</button><input type="number" id="${p.key}" value="0" min="0" max="200" aria-label="How many ${p.name}"><button type="button" data-d="1" aria-label="One more ${p.name}">+</button></div></div>
+</div>`).join('');
+
+document.querySelectorAll('[data-step]').forEach((s) => {
+  const inp = s.querySelector('input');
+  s.querySelectorAll('button').forEach((b) => (b.onclick = () => { inp.value = Math.max(+inp.min, Math.min(+inp.max, (parseInt(inp.value, 10) || 0) + +b.dataset.d)); calc(); }));
+  inp.oninput = calc;
+});
+document.querySelectorAll('#build input[type=checkbox], #build input[type=radio]').forEach((x) => (x.onchange = calc));
+const n = (id) => Math.max(0, parseInt($(id).value, 10) || 0);
+
+function build() {
+  const lines = Math.max(1, n('lines')), fax = n('fax'), sms = $('sms').checked, rec = $('rec').checked;
+  const monthly = [], once = [];
+  monthly.push([`${lines} phone line${lines === 1 ? '' : 's'}`, lines * PRICE.line]);
+  if (sms) monthly.push(['Texting', PRICE.sms]);
+  if (fax) monthly.push([`${fax} fax line${fax === 1 ? '' : 's'}`, fax * PRICE.fax]);
+  let bought = 0;
+  PHONES.forEach((p) => {
+    const q = n(p.key); if (!q) return;
+    const how = document.querySelector(`input[name=${p.key}_how]:checked`).value;
+    if (how === 'rent') monthly.push([`${q} × ${p.name} rental (setup included)`, q * p.rent]);
+    else {
+      once.push([`${q} × ${p.name}`, q * p.buy]); bought += q;
+      if ($('adapters').checked) once.push([`${q} × power adapter`, q * p.adapter]);
+    }
+  });
+  if (bought && $('setup').checked) once.push([`Setup for ${bought} phone${bought === 1 ? '' : 's'}`, bought * PRICE.setup]);
+  const sum = (a) => a.reduce((t, x) => t + x[1], 0);
+  return { lines, fax, sms, rec, monthly, once, m: sum(monthly), o: sum(once), pool: lines * 3000 };
+}
+function calc() {
+  const b = build();
+  $('lines').value = b.lines;
+  $('smsMore').classList.toggle('hide', !b.sms);
+  $('sumLines').innerHTML = [...b.monthly.map(([l, v]) => `<li><span>${esc(l)}</span><span>${money(v)}/mo</span></li>`), ...b.once.map(([l, v]) => `<li><span>${esc(l)}</span><span>${money(v)}</span></li>`)].join('');
+  $('sumMonthly').textContent = $('mMonthly').textContent = money(b.m);
+  $('sumOnce').textContent = $('mOnce').textContent = money(b.o);
+  $('sumUse').textContent = `Unlimited calling.*${b.rec ? ' Recording: 1¢ a recorded minute.' : ''}${b.sms ? ' 3,750 text segments a month, then 2¢ each.' : ''}${b.fax ? ` ${(b.fax * 1000).toLocaleString()} fax pages a month, then 5¢ each.` : ''}`;
+  return b;
+}
+calc();
+
+$('toForm').onclick = () => { $('contact').scrollIntoView({ behavior: 'smooth' }); setTimeout(() => $('name').focus(), 400); };
+const fail = (m) => { const e = $('err'); e.textContent = m; e.style.display = 'block'; $('contact').scrollIntoView({ behavior: 'smooth' }); };
+
+$('send').onclick = async () => {
+  $('err').style.display = 'none';
+  const v = (id) => $(id).value.trim();
+  if ($('website_hp').value) return;   // a bot filled the hidden field
+  if (!v('name') || !v('company') || !v('email')) return fail('Please add your name, company and email so we can send your quote.');
+  if (!/^\S+@\S+\.\S+$/.test(v('email'))) return fail('Please check your email address.');
+  const b = calc();
+  const quote = [...b.monthly.map(([l, x]) => `${l}: ${money(x)}/mo`), ...b.once.map(([l, x]) => `${l}: ${money(x)} one time`)];
+  const d = {
+    name: v('name'), company: v('company'), email: v('email'), phone: v('phone'),
+    message: `Phone system quote request\n\n${quote.join('\n')}\n\nMonthly: ${money(b.m)}\nOne time: ${money(b.o)}\nFair use minutes (company): ${b.pool}\nCall recording: ${b.rec ? 'Yes' : 'No'}\n\nKeep numbers: ${v('port') || 'Not said'}\nArea code for new numbers: ${v('area') || 'Not said'}\n\n${v('notes')}`.trim(),
+    interest: 'Phone system',
+  };
+  const btn = $('send'); btn.disabled = true; btn.textContent = 'Sending...';
+  try {
+    const r = await fetch(SB_URL + '/rest/v1/rpc/form_submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY },
+      body: JSON.stringify({ p_key: FORM_KEY, p_data: d, p_consent: false, p_page: location.href }),
+    });
+    const out = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(out.message || 'Something went wrong. Please try again.');
+    $('builder').classList.add('hide'); $('mbar').classList.add('hide'); $('thanks').classList.remove('hide');
+    $('thanksSum').textContent = `Your build: ${money(b.m)} a month${b.o ? ` and ${money(b.o)} one time` : ''}.`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (e) { fail(e.message || 'Something went wrong. Please try again.'); }
+  finally { btn.disabled = false; btn.textContent = 'Get my quote'; }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Get Started | Cognix CRM</title>
+<link rel="icon" href="/brand/favicon-32.png">
+<style>
+  :root{--navy:#031C3D;--blue:#0753B6;--bright:#008FCE;--teal:#12B5AC;--orange:#F47700;--slate:#415568;--line:#DCE2EC;--bg:#EAEAEA;--card:#FAFAFA;--field:#F5F5F5}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--navy);line-height:1.5}
+  header{background:#fff;border-bottom:3px solid var(--blue)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  header img{height:34px}
+  header span{font-size:13px;color:var(--slate)}
+  .hero{padding:36px 0 8px}
+  .hero h1{font-size:30px;margin:0 0 8px}
+  .hero p{margin:0;color:var(--slate);font-size:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin:18px 0}
+  .card h2{font-size:18px;margin:0 0 4px}
+  .card .sub{font-size:13px;color:var(--slate);margin:0 0 14px}
+  label{display:block;font-size:13px;font-weight:bold;color:var(--slate);margin:14px 0 6px}
+  label .opt{font-weight:normal;color:#7C8AA6}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--field);font:inherit;color:var(--navy)}
+  textarea{min-height:84px;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--bright);outline-offset:0;background:#fff}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  @media(max-width:600px){.row,.rep-row{grid-template-columns:1fr!important}.hero h1{font-size:25px}}
+  .choices{display:flex;flex-wrap:wrap;gap:8px}
+  .choices label{display:inline-flex;align-items:center;gap:8px;margin:0;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:normal;color:var(--navy);cursor:pointer}
+  .choices input{accent-color:var(--blue)}
+  .check{display:flex;gap:10px;align-items:flex-start;font-weight:normal;color:var(--navy)}
+  .check input{margin-top:4px;accent-color:var(--blue)}
+  .hide{display:none!important}
+  .note{font-size:13px;color:var(--slate);margin:6px 0 0}
+  .btn{display:inline-block;border:0;border-radius:8px;padding:14px 26px;font:bold 16px Arial,Helvetica,sans-serif;cursor:pointer;text-decoration:none}
+  .btn-main{background:var(--orange);color:#fff}
+  .btn-main:hover{background:#d96a00}
+  .btn-main:disabled{opacity:.6;cursor:wait}
+  .btn-alt{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+  .add{background:none;border:0;color:var(--blue);font:bold 14px Arial,Helvetica,sans-serif;cursor:pointer;padding:10px 0 0}
+  .rep{display:flex;flex-direction:column;gap:10px}
+  .rep-item{position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 44px 12px 12px}
+  .rep-row{display:grid;gap:10px}
+  .rep-item label{margin:0 0 4px}
+  .rep-item .x{position:absolute;top:8px;right:8px;width:28px;height:28px;border:0;background:none;color:var(--slate);font-size:20px;cursor:pointer;border-radius:6px}
+  .rep-item .x:hover{background:var(--field)}
+  .drop{display:block;border:2px dashed var(--line);border-radius:10px;background:#fff;padding:16px;text-align:center;cursor:pointer;font-weight:normal;color:var(--slate);margin-top:6px}
+  .drop:hover,.drop.over{border-color:var(--bright);background:#F4FAFE}
+  .drop b{color:var(--blue)}
+  .drop input{display:none}
+  .files{list-style:none;margin:8px 0 0;padding:0;font-size:13px}
+  .files li{display:flex;justify-content:space-between;gap:10px;padding:6px 10px;background:var(--field);border-radius:6px;margin-top:4px}
+  .files button{border:0;background:none;color:var(--slate);cursor:pointer}
+  .or{font-size:12px;color:#7C8AA6;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 0}
+  .err{background:#FDECEC;border:1px solid #F3B4B4;color:#8A1C1C;border-radius:8px;padding:12px 14px;margin:14px 0;display:none}
+  .done{text-align:center;padding:36px 24px}
+  .done h2{font-size:24px;margin:0 0 8px}
+  .done .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  footer{text-align:center;font-size:12px;color:var(--slate);padding:26px 0 40px}
+  .req{color:var(--orange)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="/brand/logo-word.svg" alt="Cognix CRM"><span>Project intake</span></div></header>
+
+<main class="wrap">
+  <div id="formView">
+    <div class="hero">
+      <h1>Let's get your page built</h1>
+      <p>Fill this out once for each page you need. If you have a main page plus separate pages for different brands or services, submit one form for each.</p>
+    </div>
+
+    <form id="intake" novalidate>
+      <div class="card">
+        <h2>About you</h2>
+        <p class="sub">So we know who to follow up with.</p>
+        <div class="row">
+          <div><label for="name">Your name <span class="req">*</span></label><input id="name" name="name" type="text" required autocomplete="name"></div>
+          <div><label for="company">Your company <span class="req">*</span></label><input id="company" name="company" type="text" required autocomplete="organization"></div>
+        </div>
+        <div class="row">
+          <div><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>This page</h2>
+        <label>What is the goal of this page? <span class="req">*</span></label>
+        <div class="choices">
+          <label><input type="radio" name="page_goal" value="Lead collection"> Lead collection</label>
+          <label><input type="radio" name="page_goal" value="Book an appointment"> Book an appointment</label>
+          <label><input type="radio" name="page_goal" value="Make a sale"> Make a sale</label>
+          <label><input type="radio" name="page_goal" value="Redirect"> Redirect</label>
+          <label><input type="radio" name="page_goal" value="Other"> Other</label>
+        </div>
+        <div id="goalOther" class="hide"><label for="page_goal_other">Tell us the goal</label><input id="page_goal_other" name="page_goal_other" type="text"></div>
+
+        <label for="brand_name">Business or brand name as it should appear on this page <span class="req">*</span></label>
+        <input id="brand_name" name="brand_name" type="text">
+        <label for="about">One or two sentences on who you are</label>
+        <textarea id="about" name="about"></textarea>
+        <label for="services">Services featured on this page</label>
+        <textarea id="services" name="services" placeholder="One per line"></textarea>
+        <label for="service_area">Service area</label>
+        <input id="service_area" name="service_area" type="text" placeholder="Cities, counties or a radius">
+        <div class="row">
+          <div><label for="page_phone">Phone shown on the page</label><input id="page_phone" name="page_phone" type="tel"></div>
+          <div><label for="page_email">Email shown on the page</label><input id="page_email" name="page_email" type="email"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Goal details</h2>
+        <p class="sub" id="goalHint">Pick a goal above and the right questions will show up here.</p>
+
+        <div data-goal="Lead collection" class="hide">
+          <label for="lead_recipient">Who should receive the leads? (name and email)</label>
+          <input id="lead_recipient" name="lead_recipient" type="text">
+          <label>What do you need from a new lead?</label>
+          <div class="choices">
+            <label><input type="checkbox" name="lead_fields" value="Name" checked> Name</label>
+            <label><input type="checkbox" name="lead_fields" value="Phone" checked> Phone</label>
+            <label><input type="checkbox" name="lead_fields" value="Email" checked> Email</label>
+            <label><input type="checkbox" name="lead_fields" value="Address"> Address</label>
+            <label><input type="checkbox" name="lead_fields" value="Service needed"> Service needed</label>
+            <label><input type="checkbox" name="lead_fields" value="Photos"> Photos</label>
+            <label><input type="checkbox" name="lead_fields" value="Notes"> Notes</label>
+          </div>
+          <label for="lead_disqualify">Anything that disqualifies a lead? <span class="opt">(optional)</span></label>
+          <input id="lead_disqualify" name="lead_disqualify" type="text" placeholder="For example: outside our service area">
+        </div>
+
+        <div data-goal="Book an appointment" class="hide">
+          <label for="appt_what">What's being booked, and with whom?</label>
+          <input id="appt_what" name="appt_what" type="text" placeholder="For example: free estimate with our sales lead">
+          <label>Is that calendar already set up in your Cognix CRM?</label>
+          <div class="choices">
+            <label><input type="radio" name="appt_calendar" value="Yes, it's set up"> Yes, it's set up</label>
+            <label><input type="radio" name="appt_calendar" value="No, please build it"> No, please build it</label>
+            <label><input type="radio" name="appt_calendar" value="Not sure"> Not sure</label>
+          </div>
+          <label for="appt_name">If it's set up, what's the calendar called? <span class="opt">(optional)</span></label>
+          <input id="appt_name" name="appt_name" type="text">
+        </div>
+
+        <div data-goal="Make a sale" class="hide">
+          <label>Products or services being sold</label>
+          <div class="rep" id="products"></div>
+          <button type="button" class="add" data-add="products">+ Add product</button>
+          <label for="sale_payment">Payment options</label>
+          <input id="sale_payment" name="sale_payment" type="text" placeholder="Card, bank, payment plan">
+          <p class="or">or</p>
+          <label>Upload a product list <span class="opt">(Excel, CSV or PDF)</span></label>
+          <label class="drop" data-section="products"><input type="file" multiple accept=".xlsx,.xls,.xlsm,.csv,.pdf,.docx"><span><b>Choose files</b> or drag them here</span></label>
+          <ul class="files" data-list="products"></ul>
+        </div>
+
+        <div data-goal="Redirect" class="hide">
+          <p class="note">Pages we're building need their own form. For anything we're <b>not</b> building, add each item and the link it should send people to.</p>
+          <label>Where each item should go</label>
+          <div class="rep" id="redirects"></div>
+          <button type="button" class="add" data-add="redirects">+ Add another</button>
+          <p class="or">or</p>
+          <label>Upload a list <span class="opt">(Excel or CSV)</span></label>
+          <label class="drop" data-section="redirects"><input type="file" multiple accept=".xlsx,.xls,.xlsm,.csv,.pdf,.docx"><span><b>Choose files</b> or drag them here</span></label>
+          <ul class="files" data-list="redirects"></ul>
+        </div>
+
+        <div id="chatBlock" class="hide">
+          <label>Website chat on this page</label>
+          <div class="choices">
+            <label><input type="radio" name="chat_mode" value="Live chat"> Live chat</label>
+            <label><input type="radio" name="chat_mode" value="Lead capture"> Lead capture</label>
+            <label><input type="radio" name="chat_mode" value="Not sure yet"> Not sure yet</label>
+          </div>
+          <div id="chatLive" class="hide">
+            <label for="chat_hours">Live chat hours, and who answers?</label>
+            <input id="chat_hours" name="chat_hours" type="text" placeholder="For example: weekdays 8 to 5, Jasmine">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Look and feel</h2>
+        <label>Do you have a full brand kit? (logo files, colors, fonts, brand guide)</label>
+        <div class="choices">
+          <label><input type="radio" name="brand_kit" value="Yes"> Yes</label>
+          <label><input type="radio" name="brand_kit" value="No"> No</label>
+        </div>
+        <div id="kitYes" class="hide">
+          <label>Upload your brand kit</label>
+          <label class="drop" data-section="brand_kit"><input type="file" multiple><span><b>Choose files</b> or drag them here. Zip files are fine.</span></label>
+          <ul class="files" data-list="brand_kit"></ul>
+          <label for="brand_kit_link">Or share a link to it</label>
+          <input id="brand_kit_link" name="brand_kit_link" type="url" placeholder="Google Drive, Dropbox or OneDrive link">
+        </div>
+        <div id="kitNo" class="hide">
+          <label>Upload your logo</label>
+          <label class="drop" data-section="logo"><input type="file" multiple accept="image/*,.svg,.ai,.eps,.pdf,.psd,.zip"><span><b>Choose files</b> or drag them here</span></label>
+          <ul class="files" data-list="logo"></ul>
+          <label for="logo_link">Or share a link to it</label>
+          <input id="logo_link" name="logo_link" type="url" placeholder="Google Drive, Dropbox or OneDrive link">
+          <label for="brand_colors">Brand colors, if you know them <span class="opt">(optional)</span></label>
+          <input id="brand_colors" name="brand_colors" type="text" placeholder="Color names or codes">
+        </div>
+
+        <label>Photos: crew, trucks, finished work, before and afters <span class="opt">(you can send these later)</span></label>
+        <label class="drop" data-section="photos"><input type="file" multiple accept="image/*,.heic,.heif,.zip"><span><b>Choose photos</b> or drag them here</span></label>
+        <ul class="files" data-list="photos"></ul>
+        <label for="photos_link">Or share a link to a folder</label>
+        <input id="photos_link" name="photos_link" type="url" placeholder="Google Drive, Dropbox or OneDrive link">
+        <p class="note">Up to 25 MB per file. If you share a link, set it so anyone with the link can view.</p>
+
+        <label for="credentials">Years in business, licenses, insurance or certifications to show</label>
+        <input id="credentials" name="credentials" type="text">
+        <label for="social">Social media links</label>
+        <textarea id="social" name="social" placeholder="One per line"></textarea>
+      </div>
+
+      <div class="card">
+        <h2>Reviews</h2>
+        <p class="sub">Add each review on its own so we can show them separately.</p>
+        <div class="rep" id="reviews"></div>
+        <button type="button" class="add" data-add="reviews">+ Add another review</button>
+        <label for="reviews_link">Or link to where your reviews live <span class="opt">(Google, Facebook)</span></label>
+        <input id="reviews_link" name="reviews_link" type="url">
+        <label class="check" style="margin-top:16px"><input type="checkbox" id="reviews_ok"> I confirm these are real customer reviews we're allowed to use.</label>
+        <p class="note">No reviews yet? Leave this blank. We'll hide that section until you have some.</p>
+      </div>
+
+      <div class="card">
+        <h2>Site-wide details</h2>
+        <label class="check"><input type="checkbox" id="skipSite"> I already answered these on another submission</label>
+        <div id="siteBlock">
+          <label for="domain">Domain for this page, and where it's registered</label>
+          <input id="domain" name="domain" type="text" placeholder="For example: yourbusiness.com, GoDaddy">
+          <label for="sites_liked">Two or three websites you like, and why</label>
+          <textarea id="sites_liked" name="sites_liked"></textarea>
+          <label for="must_include">Anything we must include or avoid</label>
+          <textarea id="must_include" name="must_include"></textarea>
+          <label>Privacy policy and terms</label>
+          <div class="choices">
+            <label><input type="radio" name="legal_pages" value="Use your standard templates"> Use your standard templates</label>
+            <label><input type="radio" name="legal_pages" value="We'll provide our own"> We'll provide our own</label>
+          </div>
+          <p class="note">Our templates aren't legal advice. We recommend having an attorney review them.</p>
+        </div>
+      </div>
+
+      <div class="err" id="err"></div>
+      <p style="margin:22px 0 6px"><button class="btn btn-main" type="submit" id="submitBtn">Submit</button></p>
+      <p class="note">Your information goes to Cognix CRM only, to build your project. It is not sold or shared.</p>
+    </form>
+  </div>
+
+</main>
+
+<footer>Cognix CRM</footer>
+
+<script>
+// ===== Fill these two in =====
+// Cognix account site form. Uses the main "Contact form" for now; swap in a dedicated intake form's key once one exists.
+const FORM_KEY = '61a762a27de140e99b59717888999443';
+// =============================
+const SB_URL = 'https://stfnpzqymjlxpainmgoo.supabase.co';
+const SB_KEY = 'sb_publishable_4T9hanZ9uv4Q2ih59QwMjA_0nJv-P3m';
+const MAX_FILE = 25 * 1024 * 1024;
+
+const f = document.getElementById('intake');
+const $ = (id) => document.getElementById(id);
+const show = (el, on) => el.classList.toggle('hide', !on);
+const picked = (n) => (f.querySelector(`input[name=${n}]:checked`) || {}).value || '';
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// ----- repeaters -----
+const REP = {
+  products: { cols: '2fr 1fr', fields: [['name', 'Product or service'], ['price', 'Price']], extra: ['desc', 'Short description (optional)'] },
+  redirects: { cols: '1fr 1fr', fields: [['item', 'Service or product'], ['link', 'Link (https://...)']] },
+  reviews: { cols: '1fr 1fr', area: ['text', 'Review'], fields: [['who', "Reviewer's name (optional)"], ['source', 'Where it was posted (optional)']] },
+};
+function addRow(kind) {
+  const c = REP[kind], box = $(kind), div = document.createElement('div');
+  div.className = 'rep-item';
+  let html = '';
+  if (c.area) html += `<textarea data-k="${c.area[0]}" placeholder="${c.area[1]}" style="min-height:70px;margin-bottom:10px"></textarea>`;
+  html += `<div class="rep-row" style="grid-template-columns:${c.cols}">` + c.fields.map(([k, p]) => `<input type="text" data-k="${k}" placeholder="${p}">`).join('') + '</div>';
+  if (c.extra) html += `<input type="text" data-k="${c.extra[0]}" placeholder="${c.extra[1]}" style="margin-top:10px">`;
+  html += '<button type="button" class="x" title="Remove">&times;</button>';
+  div.innerHTML = html;
+  div.querySelector('.x').onclick = () => { div.remove(); if (!box.children.length) addRow(kind); };
+  box.appendChild(div);
+}
+function repText(kind) {
+  return [...$(kind).children].map((it) => {
+    const v = (k) => ((it.querySelector(`[data-k=${k}]`) || {}).value || '').trim();
+    if (kind === 'products') return v('name') ? [v('name'), v('price'), v('desc')].filter(Boolean).join(' | ') : '';
+    if (kind === 'redirects') return v('item') || v('link') ? `${v('item')}: ${v('link')}` : '';
+    return v('text') ? `"${v('text')}"` + (v('who') ? `, ${v('who')}` : '') + (v('source') ? ` (${v('source')})` : '') : '';
+  }).filter(Boolean);
+}
+function resetRep(kind) { $(kind).innerHTML = ''; addRow(kind); }
+document.querySelectorAll('[data-add]').forEach((b) => b.addEventListener('click', () => addRow(b.dataset.add)));
+Object.keys(REP).forEach(resetRep);
+
+// ----- file pickers -----
+const FILES = {};
+function renderFiles(section) {
+  const ul = document.querySelector(`[data-list=${section}]`);
+  ul.innerHTML = (FILES[section] || []).map((x, i) => `<li><span>${esc(x.name)} (${(x.size / 1048576).toFixed(1)} MB)</span><button type="button" data-rm="${i}">Remove</button></li>`).join('');
+  ul.querySelectorAll('[data-rm]').forEach((b) => b.onclick = () => { FILES[section].splice(+b.dataset.rm, 1); renderFiles(section); });
+}
+function takeFiles(section, list) {
+  FILES[section] = FILES[section] || [];
+  for (const file of list) {
+    if (file.size > MAX_FILE) { fail(`${file.name} is over 25 MB. Share a link to it instead.`); continue; }
+    FILES[section].push(file);
+  }
+  renderFiles(section);
+}
+document.querySelectorAll('.drop').forEach((d) => {
+  const input = d.querySelector('input'), s = d.dataset.section;
+  input.addEventListener('change', () => { takeFiles(s, input.files); input.value = ''; });
+  d.addEventListener('dragover', (e) => { e.preventDefault(); d.classList.add('over'); });
+  d.addEventListener('dragleave', () => d.classList.remove('over'));
+  d.addEventListener('drop', (e) => { e.preventDefault(); d.classList.remove('over'); takeFiles(s, e.dataTransfer.files); });
+});
+
+// ----- show and hide -----
+function goalChanged() {
+  const g = picked('page_goal');
+  document.querySelectorAll('[data-goal]').forEach((el) => show(el, el.dataset.goal === g));
+  show($('goalOther'), g === 'Other');
+  show($('chatBlock'), !!g);
+  $('goalHint').textContent = g ? 'A few questions about this goal.' : 'Pick a goal above and the right questions will show up here.';
+}
+f.querySelectorAll('input[name=page_goal]').forEach((r) => r.addEventListener('change', goalChanged));
+f.querySelectorAll('input[name=chat_mode]').forEach((r) => r.addEventListener('change', () => show($('chatLive'), picked('chat_mode') === 'Live chat')));
+f.querySelectorAll('input[name=brand_kit]').forEach((r) => r.addEventListener('change', () => {
+  show($('kitYes'), picked('brand_kit') === 'Yes'); show($('kitNo'), picked('brand_kit') === 'No');
+}));
+$('skipSite').addEventListener('change', (e) => show($('siteBlock'), !e.target.checked));
+
+// ----- collect -----
+const visible = (el) => !el.closest('.hide');
+function collect() {
+  const d = {};
+  f.querySelectorAll('input[name],textarea[name],select[name]').forEach((el) => {
+    if (!visible(el) || el.type === 'file') return;
+    if ((el.type === 'radio' || el.type === 'checkbox') && !el.checked) return;
+    const v = (el.value || '').trim();
+    if (!v) return;
+    if (el.name === 'lead_fields') { d.lead_fields = d.lead_fields ? d.lead_fields + ', ' + v : v; return; }
+    d[el.name] = v;
+  });
+  for (const k of Object.keys(REP)) {
+    if (!visible($(k))) continue;
+    const lines = repText(k);
+    if (lines.length) d[k] = lines.join('\n');
+  }
+  if ($('skipSite').checked) d.site_wide_details = 'Answered on another submission';
+  d.message = 'Intake for: ' + (d.brand_name || '') + ' (' + (d.page_goal || '') + ')';
+  return d;
+}
+function pendingUploads() {
+  return Object.entries(FILES).filter(([s, list]) => list.length && visible(document.querySelector(`[data-list=${s}]`)));
+}
+async function upload(section, list, batch, company) {
+  const fd = new FormData();
+  fd.append('k', FORM_KEY); fd.append('batch', batch); fd.append('section', section); fd.append('company', company);
+  list.forEach((x) => fd.append('files', x, x.name));
+  const r = await fetch(SB_URL + '/functions/v1/form-upload', { method: 'POST', headers: { apikey: SB_KEY }, body: fd });
+  const out = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(out.error || 'A file upload failed. Please try again.');
+  return out.files || [];
+}
+
+function fail(msg) { const e = $('err'); e.textContent = msg; e.style.display = 'block'; e.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+
+f.addEventListener('submit', async (ev) => {
+  ev.preventDefault();
+  $('err').style.display = 'none';
+  const d = collect();
+  if (!d.name || !d.company || !d.email) return fail('Please add your name, company and email.');
+  if (!/^\S+@\S+\.\S+$/.test(d.email)) return fail('Please check your email address.');
+  if (!d.page_goal) return fail('Please pick the goal of this page.');
+  if (!d.brand_name) return fail('Please add the business or brand name for this page.');
+  if ((d.reviews || d.reviews_link) && !$('reviews_ok').checked) return fail('Please confirm the reviews are real and okay to use, or leave that section empty.');
+  if (d.reviews || d.reviews_link) d.reviews_confirmed = 'Yes';
+  const btn = $('submitBtn'); btn.disabled = true;
+  try {
+    const ups = pendingUploads();
+    if (ups.length) {
+      const batch = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+      for (const [section, list] of ups) {
+        btn.textContent = `Uploading ${section.replace('_', ' ')}...`;
+        const saved = await upload(section, list, batch, d.company);
+        d[section + '_files'] = saved.map((x) => x.url).join('\n');
+      }
+    }
+    btn.textContent = 'Sending...';
+    const r = await fetch(SB_URL + '/rest/v1/rpc/form_submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY },
+      body: JSON.stringify({ p_key: FORM_KEY, p_data: d, p_consent: false, p_page: location.href }),
+    });
+    const out = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(out.message || 'Something went wrong. Please try again.');
+    try { sessionStorage.setItem('cognix_intake', JSON.stringify({ name: d.name, company: d.company, email: d.email, phone: d.phone || '', n: (prev.n || 0) + 1 })); } catch (e) { /* private mode */ }
+    location.href = '/start/thanks/';
+  } catch (e) {
+    fail(e.message || 'Something went wrong. Please try again.');
+  } finally { btn.disabled = false; btn.textContent = 'Submit'; }
+});
+
+// Coming back from the thank-you page for another page: fill in who they are and skip the site-wide answers
+let prev = {};
+try { prev = JSON.parse(sessionStorage.getItem('cognix_intake') || '{}') || {}; } catch (e) { prev = {}; }
+if (prev.email) {
+  ['name', 'company', 'email', 'phone'].forEach((k) => { if (prev[k]) f.querySelector(`[name=${k}]`).value = prev[k]; });
+  $('skipSite').checked = true; show($('siteBlock'), false);
+  document.querySelector('.hero h1').textContent = 'Next page';
+  document.querySelector('.hero p').textContent = 'Same as before: one form for this page. We kept your contact details and skipped the site-wide questions you already answered.';
+}
+</script>
+</body>
+</html>

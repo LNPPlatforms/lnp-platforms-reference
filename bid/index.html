@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Send a bid request</title>
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: #F3F5F9; color: #1d2433; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: 620px; margin: 0 auto; padding: 24px 14px 60px; }
+    .card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(20, 30, 50, .08); }
+    h1 { margin: 0 0 6px; font-size: 24px; }
+    .intro { color: #5B6B8A; margin: 0 0 14px; white-space: pre-wrap; }
+    label { display: block; font-weight: 600; font-size: 14px; margin: 12px 0 4px; }
+    input, textarea { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #ccd3e0; border-radius: 8px; background: #fff; }
+    textarea { min-height: 90px; }
+    .row { display: flex; gap: 10px; } .row > div { flex: 1; min-width: 0; }
+    button { margin-top: 16px; width: 100%; background: #1d2433; color: #fff; border: 0; border-radius: 10px; padding: 14px; font: inherit; font-weight: 700; cursor: pointer; min-height: 48px; }
+    button:disabled { opacity: .6; }
+    .hint { color: #5B6B8A; font-size: 13px; margin: 4px 0 0; }
+    .err { color: #B4412C; margin-top: 10px; }
+    .state { text-align: center; color: #5B6B8A; padding: 50px 10px; }
+    @media (max-width: 520px) { .row { flex-direction: column; gap: 0; } }
+  </style>
+</head>
+<body>
+  <div class="wrap"><div class="card" id="root"><div class="state">Loading…</div></div></div>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm';
+    import { SUPABASE_URL, SUPABASE_KEY } from '../config.js';
+    const sb = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
+    const token = (new URLSearchParams(location.search).get('t') || '').trim();
+    const root = document.getElementById('root');
+    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const say = (t) => { root.innerHTML = `<div class="state">${t}</div>`; };
+
+    (async () => {
+      if (!/^[a-f0-9]{64}$/.test(token)) return say('This link is missing its code. Check the link you were sent.');
+      const { data, error } = await sb.rpc('bid_upload_info', { p_token: token });
+      if (error) return say('We couldn\'t load this right now. Refresh the page to try again.');
+      if (!data) return say('This upload page isn\'t open. Ask whoever sent the link for a new one.');
+      document.title = `Send a bid request to ${data.name}`;
+      root.innerHTML = `<h1>Send a bid request to ${esc(data.name)}</h1>${data.intro ? `<p class="intro">${esc(data.intro)}</p>` : '<p class="intro">Add the RFP, plans and anything else we should see. We\'ll get back to you.</p>'}
+        <form id="f"><label for="title">What's the job?</label><input id="title" name="title" maxlength="200" placeholder="Parking lot reseal and restripe">
+          <div class="row"><div><label for="name">Your name</label><input id="name" name="name" maxlength="200" required autocomplete="name"></div>
+            <div><label for="company">Company</label><input id="company" name="company" maxlength="200" autocomplete="organization"></div></div>
+          <div class="row"><div><label for="email">Email</label><input id="email" name="email" type="email" maxlength="320" required autocomplete="email"></div>
+            <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel"></div></div>
+          <label for="due">Bids due</label><input id="due" name="due" type="date">
+          <label for="files">Files</label><input id="files" name="files" type="file" multiple>
+          <p class="hint">Up to 15 files, 25 MB each.</p>
+          <label for="notes">Anything else</label><textarea id="notes" name="notes" maxlength="5000"></textarea>
+          <button type="submit" id="go">Send it</button><div class="err" id="err" role="alert"></div></form>`;
+      document.getElementById('f').onsubmit = async (e) => {
+        e.preventDefault();
+        const go = document.getElementById('go'), err = document.getElementById('err'); err.textContent = '';
+        const fd = new FormData(e.target); fd.append('t', token);
+        const files = [...document.getElementById('files').files];
+        if (files.length > 15) { err.textContent = 'Send 15 files or fewer at a time.'; return; }
+        const big = files.find((f) => f.size > 25 * 1024 * 1024); if (big) { err.textContent = `${big.name} is over 25 MB. Send a smaller copy or put a link in the notes.`; return; }
+        go.disabled = true; go.textContent = files.length ? 'Sending the files…' : 'Sending…';
+        try {
+          const r = await fetch(`${SUPABASE_URL}/functions/v1/bid-intake?mode=upload`, { method: 'POST', body: fd });
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok || !d.ok) throw new Error(d.error || 'That didn\'t go through. Try again in a minute.');
+          say(`<b>Got it, thanks.</b><br>${esc(data.name)} has your request${d.files ? ` and ${d.files} ${d.files === 1 ? 'file' : 'files'}` : ''}.`);
+        } catch (x) { go.disabled = false; go.textContent = 'Send it'; err.textContent = x.message; }
+      };
+    })();
+  </script>
+</body>
+</html>

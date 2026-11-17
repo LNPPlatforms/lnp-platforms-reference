@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Thank you | Cognix CRM</title>
+<link rel="icon" href="/brand/favicon-32.png">
+<style>
+  :root{--navy:#031C3D;--blue:#0753B6;--teal:#12B5AC;--orange:#F47700;--slate:#415568;--line:#DCE2EC;--bg:#EAEAEA;--card:#FAFAFA}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--navy);line-height:1.5}
+  header{background:#fff;border-bottom:3px solid var(--blue)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  header img{height:34px}
+  header span{font-size:13px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:36px 28px;margin:36px 0 18px;text-align:center}
+  .tick{width:64px;height:64px;border-radius:50%;background:var(--teal);color:#fff;font-size:34px;line-height:64px;margin:0 auto 16px}
+  h1{font-size:28px;margin:0 0 8px}
+  p{color:var(--slate);margin:0 auto;max-width:520px;font-size:16px}
+  .count{font-size:14px;margin-top:10px}
+  .steps{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media(max-width:620px){.steps{grid-template-columns:1fr}h1{font-size:24px}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;text-align:left;display:flex;flex-direction:column}
+  .step h2{font-size:17px;margin:0 0 6px}
+  .step p{margin:0 0 16px;font-size:14px;flex:1}
+  .btn{display:block;text-align:center;border:0;border-radius:8px;padding:13px 20px;font:bold 15px Arial,Helvetica,sans-serif;text-decoration:none}
+  .btn-main{background:var(--orange);color:#fff}
+  .btn-main:hover{background:#d96a00}
+  .btn-alt{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+  footer{text-align:center;font-size:12px;color:var(--slate);padding:20px 0 40px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="/brand/logo-word.svg" alt="Cognix CRM"><span>Project intake</span></div></header>
+<main class="wrap">
+  <div class="card">
+    <div class="tick">&#10003;</div>
+    <h1 id="title">Thank you, we've got it!</h1>
+    <p>Your page details are in. We'll look everything over before our kickoff call.</p>
+    <p class="count" id="count"></p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <h2>Have another page?</h2>
+      <p>If you need a page for another brand or service, start a new submission. Your contact details carry over, so it's quicker this time.</p>
+      <a class="btn btn-alt" href="/start/">Start a new submission</a>
+    </div>
+    <div class="step">
+      <h2>All done?</h2>
+      <p>Book your kickoff call so we can review everything together and set your timeline.</p>
+      <a class="btn btn-main" href="https://app.cognixcrm.com/book/?a=cognix&amp;c=kickoff" target="_blank" rel="noopener">Book your kickoff call</a>
+    </div>
+  </div>
+</main>
+<footer>Cognix CRM</footer>
+<script>
+  try {
+    const d = JSON.parse(sessionStorage.getItem('cognix_intake') || '{}');
+    if (d.name) document.getElementById('title').textContent = `Thank you, ${String(d.name).split(' ')[0]}!`;
+    if (d.n) document.getElementById('count').textContent = `Pages submitted so far: ${d.n}`;
+  } catch (e) { /* nothing saved */ }
+</script>
+</body>
+</html>
